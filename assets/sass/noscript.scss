@@ -1,0 +1,27 @@
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import 'libs/vendor';
+@import 'libs/breakpoints';
+@import 'libs/html-grid';
+
+/* Loader */
+
+	body.landing {
+
+		&.is-preload {
+
+			// Spinner (active)
+
+				&:before {
+					display: none;
+				}
+
+			// Overlay (active)
+
+				&:after {
+					display: none;
+				}
+
+		}
+	}
