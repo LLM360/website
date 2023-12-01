@@ -1224,6 +1224,11 @@ input, select, textarea {
 
 		@media screen and (max-width: 840px) {
 
+			.image.featured img {
+					display: block;
+					width: 100% !important;
+			}
+
 			.row {
 				display: flex;
 				flex-wrap: wrap;
@@ -2161,7 +2166,7 @@ input, select, textarea {
 
 			.image.featured img {
 				display: block;
-				width: 100%;
+				width: 200px;
 			}
 
 
