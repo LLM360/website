@@ -1,95 +1,161 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Blopost</title>
+		<title>Blogpost</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-	<body class="is-preload">
+	<body class="no-sidebar is-preload">
 		<div id="page-wrapper">
 
 			<!-- Header -->
-			<header id="header">
-				<h1 id="logo"><a href="index.html">LLM360</a></h1>
-				<nav id="nav">
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li>
-							<a href="#">Research</a>
-							<ul>
-								<li><a href="">Paper</a></li>
+				<header id="header">
+					<a href="index.html" class="logo">
+						<span class="symbol"><img src="images/logo_webheader.png" alt="" /></span><span>LLM360</span>
+					</a>
+					<nav id="nav">
+						<ul>
+							<li class="current"><a href="index.html">Home</a></li>
+							<li>
+								<a>Models</a>
+								<ul>
+									<li>
+										<a>Amber</a>
+										<ul>
+											<li><a href="https://huggingface.co/LLM360/llm360-temp">Model</a></li>
+											<li><a href="https://github.com/LLM360">Analysis</a></li>
+											<li><a href="https://huggingface.co/LLM360/llm360-temp">Data</a></li>
+											<li><a href="https://github.com/LLM360">Code</a></li>
+										</ul>
+									</li>
+									<li>
+										<a>Ctystal</a>
+										<ul>
+											<li><a href="https://huggingface.co/LLM360/llm360-temp">Model</a></li>
+											<li><a href="https://github.com/LLM360">Analysis</a></li>
+											<li><a href="https://huggingface.co/LLM360/llm360-temp">Data</a></li>
+											<li><a href="https://github.com/LLM360">Code</a></li>
+										</ul>
+									</li>
+									<li>
+										<a>Diamond</a>
+										<ul>
+											<li><a href="https://huggingface.co/LLM360/llm360-temp">Model</a></li>
+											<li><a href="https://github.com/LLM360">Analysis</a></li>
+											<li><a href="https://huggingface.co/LLM360/llm360-temp">Data</a></li>
+											<li><a href="https://github.com/LLM360">Code</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">Research</a>
+								<ul>
+									<li><a href="https://www.overleaf.com/project/654250a421e5135df6536c44">Paper</a></li>
 
-							</ul>
-						</li>
-						<li>
-							<a href="#">Models</a>
-							<ul>
-								<li><a href="">Learn More</a></li>
-								<li><a href="">Download</a></li>
-								<li><a href="">Reports</a></li>
-							</ul>
-						</li>
-						<li><a href="Blogpost.html">Blogpost</a></li>
-						<li><a href="#one">About</a></li>
-						<li><a href="#index.html" class="button primary">Contact</a></li>
-					</ul>
-				</nav>
-			</header>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+				</header>
 
 			<!-- Main -->
-				<div id="main" class="wrapper style1">
-					<div class="container">
-						<header class="major">
-							<h2>Blogpost</h2>
-							<p>This is a blogpost page</p>
-						</header>
+				<article id="main">
+					<!-- One -->
+						<section class="wrapper style5 container">
+							<header class="left container" style="margin-top: 3em">
+								<div class="row aln-middle">
+									<div class="col-8 col-12-narrower">
 
-						<!-- Content -->
-							<section id="content">
-								<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
-								<h3>Introduction</h3>
-								<p>The LLM360 project goes beyond the existing practice of sharing only final weights and brief technical reports on new LLMs. We believe that true transparency lies in providing full access to the assets and the process of LLM training.</p>
-								<p>Our primary objective is to democratize LLM understanding by making the training process accessible to a broader audience. Due to the significant financial constraints required for pretraining, it is unrealistic for most people in the research community to have ability to work on a LLM pretraining project. LLM 360 seeks to level the playing field and accelerate LLM research.  By releasing a series of models, we hope to stimulate further research and analysis of LLMs by providing the necessary resources and tools for in-depth exploration.</p>
-								<h3>Open Sourced Artifacts</h3>
-								<p>To achieve our goals of transparency and accessibility, we will open source the following project artifacts:</p>
-								<ul>
-									<li>360 Model Checkpoints: Checkpoints have been chosen from various stages of the training process. Up to 360 checkpoints will be released. The vast number of checkpoints was chosen to enable far reaching research efforts and to signify the openness of the project.</li>
-									<li>Data Buckets with Full Data Sequence: Unlike any project before, the data buckets and data sequences for each checkpoint are available.</li>
-									<li>Source code: The full suite of code used during the project including the preprocessing code, model training code, inference code, and analysis code. The full training code will ensure even the smallest detail of models will be disclosed.</li>
-									<li>Logs Book and Analysis: We unveil all the training details to provide a first hand view into LLM training. We aim to encourage digestible insights into the training process, ability to track performance metrics across training, and uncover potential areas for improvement.</li>
-									<li>Errors and Challenges: In our technical report, we will transparently document the errors and challenges encountered during the training process, providing valuable information for future research and improvement efforts.</li>
-									<li>Community Input: We welcome suggestions and feedback from the community and remain open to releasing additional details and resources based on the needs and interests of researchers and practitioners.</li>
-								</ul>
-								<h3>Potential Project Impacts</h3>
-								<p>To be continue...</p>
-							</section>
+										<h2><strong>LLM 360 </strong>A 360 Degree Open Source Framework for Large Language Models</h2>
+										<p>The LLM 360 project is open-sourcing the entire LLM training process for a series of models, including model checkpoints, data buckets, training and inference code and the entire log book.  LLM 360 aims to revolutionize the accessibility and transparency of large language models (LLMs). By adopting a 360-degree approach to openness, we strive to enable wider understanding, foster collaboration, and promote reproducibility within the field of LLMs.
+											Today, we are announcing LLM 360 and the first fully open-source LLM release in the LLM 360 project with a 7B English model, Amber 7B.
+										</p>
+									</div>
+									<div class="col-4 col-12-narrower">
+										<a href="#" class="image fit"><img src="images/logo-highres.png" alt="" style="height: 10em; width: auto"/></a>
+									</div>
+								</div>
+							</header>
 
-					</div>
-				</div>
+							<!-- Content -->
+								<div class="content">
+									<section>
+										<header>
+											<h3>Introduction</h3>
+										</header>
+										<p>The LLM 360 project goes beyond the existing practice of sharing only final weights and brief technical reports on new LLMs. We believe that true transparency lies in providing full access to the assets and the process of LLM training.
+
+											Our primary objective is to democratize LLM understanding by making the training process accessible to a broader audience. Due to the significant financial constraints required for pretraining, it is unrealistic for most people in the research community to have the ability to work on an LLM pretraining project. LLM 360 seeks to level the playing field and accelerate LLM research.  By releasing a series of models, we hope to stimulate further research and analysis of LLMs by providing the necessary resources and tools for in-depth exploration.
+
+											In a spirit of collaboration, the LLM 360 project also embraces the power of the community. LLM 360 is our new experimental approach to leverage the collective intelligence of individuals, enabling more researchers to contribute to the advancement of language model training. By merging expertise and ideas, we believe we can push the frontiers of LLM development even further.
+
+											We are committed to releasing a diverse range of models with varying domains and sizes. Our initial release will feature an early attempt, a 7B English LLM in the Llama architecture. Subsequently, we plan to introduce additional models to cater to different languages, domains, and applications.
+										</p>
+										<br>
+
+										<header>
+											<h3>Open Sourced Artifacts</h3>
+										</header>
+										<p>To achieve our goals of transparency and accessibility, we will open-source the following project artifacts:
+											<br><strong>360 Model Checkpoints: </strong>Checkpoints have been chosen from various stages of the training process. Up to 360 checkpoints will be released. The vast number of checkpoints was chosen to enable far-reaching research efforts and to signify the openness of the project.
+											<br><strong>Data Buckets with Full Data Sequence: </strong>Unlike any project before, the data buckets and data sequences for each checkpoint are available.
+											<br><strong>Source code:</strong> The full suite of code used during the project, including the preprocessing code, model training code, inference code, and analysis code. The full training code will ensure even the smallest detail of models will be disclosed.
+											<br><strong>Logs Book and Analysis: </strong>We unveil all the training details to provide a first-hand view into LLM training. We aim to encourage digestible insights into the training process, the ability to track performance metrics across training, and uncover potential areas for improvement.
+											<br><strong>Errors and Challenges: </strong>In our technical report, we will transparently document the errors and challenges encountered during the training process, providing valuable information for future research and improvement efforts.
+											<br><strong>Community Input:</strong> We welcome suggestions and feedback from the community and remain open to releasing additional details and resources based on the needs and interests of researchers and practitioners.
+										</p>
+										<br>
+
+										<header>
+											<h3>Potential Project Impacts</h3>
+										</header>
+										<p>The LLM 360 project has the potential to bring about several significant impacts:
+										<br><strong>Increased Accessibility: </strong>By open-sourcing the complete training process, individuals and organizations without access to extensive training resources can gain a deeper understanding of LLMs, accelerating research and development.
+										<br><strong>Improved Model Safety: </strong>The transparent approach allows everyone to access every detail of the model. We invite everyone to join us to conduct analysis across checkpoints and data sets, to identify factors that significantly contribute to unsafe, biased, and unethical model behavior.
+										<br><strong>Research Advancement:</strong> The availability of comprehensive and reproducible references, from data to code, will foster collaboration and encourage novel research directions, propelling the field of LLMs forward.
+										<br><strong>Reproducibility: </strong>Researchers will have access to the full LLM data and training details, allowing them to replicate experiments and validate findings, ensuring the field progresses on a foundation of transparent and reproducible research.
+										<br><strong>Better Model Understanding: </strong>By open-sourcing the data used in training, the community can help identify potential data leaks and biases, which will help design better methods for both model training and evaluation.
+										<br><strong>Environmental Responsibility: </strong> Sharing LLM results and eliminating redundant training efforts promotes environmental sustainability, as computing resources are optimized, and energy-intensive model training processes can be minimized.
+										</p>
+										<br>
+
+										<header>
+											<h3>Conclusion</h3>
+										</header>
+										<p>We hope the LLM 360 project will shed some light on the transparency and accessibility of language models. By providing open-source access to the full details of LLM training, we aim to empower researchers and practitioners, encourage collaboration and innovation, and advance the understanding and development of language models. Through the release of various models, checkpoints, and code artifacts, we hope to contribute to a more open and inclusive research ecosystem, driving the field of LLMs toward greater transparency, reproducibility, and impact.</p>
+										<p>We welcome comments, suggestions, and feedback from researchers, practitioners, and stakeholders interested in LLMs. We are also open to exploring collaboration opportunities with individuals and organizations who share our vision and want to contribute to the project.</p>
+									</section>
+								</div>
+
+						</section>
+
+				</article>
 
 			<!-- Footer -->
 				<footer id="footer">
+					<p>LLM 360, a collaboration between Petuum and MBZUAI, is dedicated to advancing the field of AI by providing comprehensive access to large language models.<br>
+						Our mission is to foster an ecosystem of collaboration, transparency, and innovation in AI research and applications.</p>
 					<ul class="icons">
-						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-						<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+						<li><a href="https://twitter.com/llm360" class="icon brands circle fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="https://github.com/LLM360" class="icon brands circle fa-github"><span class="label">Github</span></a></li>
 					</ul>
-<!--					<ul class="copyright">-->
-<!--						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>-->
-<!--					</ul>-->
+
+					<ul class="copyright">
+						<li>&copy; LLM360 2023. All rights reserved</li>
+					</ul>
+
 				</footer>
 
 		</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollgress.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
