@@ -28,7 +28,7 @@ body {
 }
 
 ol, ul {
-	list-style: none;
+	/* list-style: none; */
 }
 
 blockquote, q {
@@ -169,6 +169,27 @@ input, select, textarea {
 		border-left: solid 0.5em rgba(124, 128, 129, 0.2);
 		font-style: italic;
 		padding: 1em 0 1em 2em;
+	}
+
+	.hero img {
+		max-width: 100%;
+	}
+
+	.blog {
+
+	}
+
+	.blog a {
+		font-weight: 500;
+	}
+
+	.author {
+		font-size: 16px;
+		font-weight: 500;
+	}
+
+	.left {
+		text-align: left !important;
 	}
 
 /* Container */
@@ -1782,7 +1803,7 @@ input, select, textarea {
 				opacity: 0.35;
 			}
 
-		header.left {
+		header.location {
 			margin-bottom: 5em;
 			padding:6em 5em 0 5em;
 			position: relative;
@@ -2335,6 +2356,14 @@ input, select, textarea {
 
 		ul li {
 			padding-top: 0.5em;
+		}
+
+		ul li ul {
+		    padding-left: 2em;
+		}
+
+		ul.actions {
+			list-style: none;
 		}
 
 /* Icons */
