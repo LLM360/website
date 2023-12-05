@@ -1717,6 +1717,11 @@ input, select, textarea {
 
 		}
 
+/* Section Model Tiles */
+  #diamond .tiles {
+		display: none;
+  }
+
 /* Section/Article */
 
 	section.special, article.special {
@@ -2286,6 +2291,15 @@ input, select, textarea {
 
 				.icon.circle.fa-dribbble:hover {
 					background: #df93b8;
+				}
+
+  		.icon.circle.fa-envelope {
+					background: #70aecd;
+					color: #fff;
+			}
+
+				.icon.circle.fa-envelope:hover {
+					background: #7fb7d2;
 				}
 
 		.icon.featured {
