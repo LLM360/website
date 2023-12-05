@@ -179,13 +179,55 @@ input, select, textarea {
 
 	}
 
-	.blog a {
-		font-weight: 500;
+	.blog h1 {
+		font-size: 1.95em;
+		letter-spacing: 0.025em;
+		margin-bottom: 1em;
 	}
+
+	.blog h2 {
+		font-size: 1.7em;
+		font-weight: 400;
+		letter-spacing: 0.01em;
+		margin-top: 1.5em;
+		margin-bottom: 0.5em;
+	}
+
+	.blog h4 {
+		font-size: 1em;
+		font-weight: 600;
+		letter-spacing: 0.01em;
+		margin-top: 1.5em;
+		margin-bottom: 0;
+	}
+
+	.blog p {
+		margin-bottom: 0;
+	}
+
+	.blog ul {
+		list-style: disc;
+		margin-left: 2em;
+		padding-top: 0em;
+		margin-bottom: 0em;
+	}
+
+		.blog ul li {
+			margin: 0;
+			padding: 0em;
+		}
+			.blog ul li ul {
+				padding-left: 0em;
+			}
+
+	.blog a {
+			font-weight: 500;
+		}
 
 	.author {
 		font-size: 16px;
 		font-weight: 500;
+		letter-spacing: 0.025em;
 	}
 
 	.left {
@@ -2620,10 +2662,11 @@ input, select, textarea {
 		}
 
 		.wrapper.style5 {
+			background: #fff;
 			color: inherit;
-			margin-top: 2em;
-			padding-top: 2em;
-			text-align: justify;
+			width: 80%;
+			padding: 4em;
+			margin-bottom: 4em;
 		}
 
 /* Header */

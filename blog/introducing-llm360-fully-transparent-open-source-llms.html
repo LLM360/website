@@ -31,7 +31,7 @@
 						<ul>
 							<li class="current"><a href="../index.html">Home</a></li>
 							<li>
-								<a>Models</a>
+								<a>Model</a>
 								<ul>
 									<li>
 										<a>Amber</a>
@@ -78,28 +78,38 @@
 
 			<!-- Main -->
 				<article id="main" class="blog">
+					<header class="special container">
+						<span class="icon solid fa-blog"></span>
+
+						<h1>Introducing <strong>LLM 360 </strong>: Fully Transparent Open Source LLMs</h1>
+						<h3 class="author">Author: LLM360 Team</h3>
+						<h3 class="author">December 10th</h3>
+
+					</header>
 					<!-- One -->
 						<section class="wrapper style5 container">
 							<div class="hero">
-								<img src="../images/blog-banner.png" />
+								<img src="../images/blog-banner.png" style="margin-bottom: 2em"/>
 							</div>
-							<header class="location container" style="margin-top: 3em">
-								<div class="row aln-middle">
-									<div class="col-8 col-12-narrower left">
-										<h2>Introducing <strong>LLM 360 </strong>: Fully Transparent Open Source LLMs</h2>
-										<h3 class="author">Author: LLM360 Team</h3>
-										<p>LLM360 is an initiative to open-source large language models (LLMs) that foster transparency, trust, and collaborative research. Models released under LLM360 are open-source in the true sense of the word, with their training source code and data publicly disclosed and made openly available. We also strive to make the entire training process of LLM360 models transparent, releasing up to 360 intermediate checkpoints collected during the training of our two initial models (Amber and CrystalCoder). Our goal with LLM360 is to make advanced LLMs more transparent, foster research in smaller-scale labs, and improve reproducibility in AI research. LLM360 is a collaboration between Petuum, MBZUAI, and Cerebras.</p>
-									</div>
-									<div id="spinButton" class="col-4 col-12-narrower">
-										<img id="spinningImage" src="../images/logo-highres.png" alt="" style="height: 10em; width: auto"/>
-									</div>
-								</div>
-							</header>
+							<p>LLM360 is an initiative to open-source large language models (LLMs) that foster transparency, trust, and collaborative research. Models released under LLM360 are open-source in the true sense of the word, with their training source code and data publicly disclosed and made openly available. We also strive to make the entire training process of LLM360 models transparent, releasing up to 360 intermediate checkpoints collected during the training of our two initial models (Amber and CrystalCoder). Our goal with LLM360 is to make advanced LLMs more transparent, foster research in smaller-scale labs, and improve reproducibility in AI research. LLM360 is a collaboration between Petuum, MBZUAI, and Cerebras.
+							</p>
+<!--							<header class="location container" style="margin-top: 3em">-->
+<!--								<div class="row aln-middle">-->
+<!--&lt;!&ndash;									<h1>Introducing <strong>LLM 360 </strong>: Fully Transparent Open Source LLMs</h1>&ndash;&gt;-->
+<!--									<div class="col-8 col-12-narrower left">-->
+<!--&lt;!&ndash;										<h3 class="author" style="margin-bottom: 1.5em"> <strong>Author: LLM360 Team</strong></h3>&ndash;&gt;-->
+<!--										<p>LLM360 is an initiative to open-source large language models (LLMs) that foster transparency, trust, and collaborative research. Models released under LLM360 are open-source in the true sense of the word, with their training source code and data publicly disclosed and made openly available. We also strive to make the entire training process of LLM360 models transparent, releasing up to 360 intermediate checkpoints collected during the training of our two initial models (Amber and CrystalCoder). Our goal with LLM360 is to make advanced LLMs more transparent, foster research in smaller-scale labs, and improve reproducibility in AI research. LLM360 is a collaboration between Petuum, MBZUAI, and Cerebras.</p>-->
+<!--									</div>-->
+<!--									<div id="spinButton" class="col-4 col-12-narrower" style="padding-left: 6em">-->
+<!--										<img id="spinningImage" src="../images/logo-highres.png" alt="" style="height: 10em; width: auto"/>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</header>-->
 
 							<!-- Content -->
 								<div class="content left">
 									<section>
-										<h3>Achieving Transparency and Accessibility through LLM360</h3>
+										<h2>Achieving Transparency and Accessibility through LLM360</h2>
 										<p>The basis of LLM360 is to provide all the details of LLM training for all models. This includes all of the following artifacts associated with each model:
  											<ul>
 												<li><strong>Frequent Intermediate Model Checkpoints:</strong> During training, model parameters and optimizer states are collected regularly. These artifacts can offer valuable insights for studying LLM training dynamics and how it scales with data.</li>
@@ -111,7 +121,7 @@
 										</p>
 										<br>
 
-										<h3>Amber-7B and CrystalCoder Released under LLM360</h3>
+										<h2>Amber-7B and CrystalCoder Released under LLM360</h2>
 										<p>The first two models to be released under LLM360 are Amber and CrystalCoder. Amber is a 7B English LLM and CrystalCoder is a 7B code & text LLM. Both models are released under the Apache 2.0 license.</p>
 										<h4>Amber: Advancing Knowledge and Transparency in LLM Pretraining</h4>
 										<p>Amber has been trained on 1.2 trillion tokens and performs similarly to Falcon-7B and MPT-7B.  Amber's true superpower lies in facilitating a knowledge exchange between the training team and the wider community. Along with the customary final model weights, Amber is released with 359 additional model checkpoints (360 total) and all the per-step data sequence for each checkpoint. Providing access to these intermediate checkpoints can be beneficial to both researchers looking to advance the capability and understanding of LLMs and industry teams who are pretraining or customizing LLMs for enterprise purposes.
@@ -128,81 +138,99 @@
 										<br>
 										CrystalCoder is released with 143 checkpoints and all pretraining data.
 										</p>
-
 										<h4>Diamond (Coming Soon)</h4>
 										<p>65B English LLM trained on 1.4 trillion tokens.</p>
+										<br>
 
-										<h3>Goals of the LLM360 Framework</h3>
+										<h2>Goals of the LLM360 Framework</h2>
 										<p>Along with providing the community with several transparent LLMs
 											<ul>
 												<li><strong>Increased Accessibility:</strong> With access to 0 GPUs, the community can view all important intermediate results as if training just finished. With 1+ GPUs, intermediate checkpoints can be trained without needing to start from scratch, opening up wider research opportunities.</li>
 												<li><strong>Research Advancement, Reproducibility, and Model Understanding:</strong> We hope this project lays the groundwork for future research by offering complete, reproducible resources. By replicating studies and verifying results, we foster a reliable and transparent research environment.</li>
 												<li><strong>Environmental Responsibility:</strong> LLM360 promotes sustainable research by sharing all intermediate results that can be extended upon, thereby reducing unnecessary training compute.</li>
+											</ul>
 										</p>
+										<br>
 
-										<h3>Collaboration and Community in LLM360</h3>
+										<h2>Collaboration and Community in LLM360</h2>
 										<h4>Contributing to the LLM360 Ecosystem</h4>
 										<p>LLM360 thrives on community involvement, offering various ways for researchers, developers, and enthusiasts to engage and contribute. Here’s a streamlined guide to getting involved:
 										<ul>
-											<li><strong>1. Get Involved:</strong>
+											<li><strong>Get Involved:</strong>
 												<ul>
 													<li>GitHub: Our <a href="https://github.com/llm360" target="_blank" rel="noopener">GitHub page</a> is the hub for all code related to LLM360. Explore, modify, or use our code and contribute your improvements.</li>
 													<li>HuggingFace: Access and download LLM360 models on <a href="https://huggingface.co/llm360" target="_blank" rel="noopener">HuggingFace</a>. Experiment with them, and share your findings or applications.</li>
 												</ul>
 											</li>
-											<li><strong>2. Share Your Work:</strong>
+											<li><strong>Share Your Work:</strong>
 												<ul>
 													<li>Research Contributions: If you’ve used Amber or CrystalCoder for research, we encourage you to share your results. Your insights can help enhance these models.</li>
 													<li>Publish and Present: Document your work with our models and share it through academic journals, blogs, or platforms like arXiv.</li>
 												</ul>
 											</li>
-											<li><strong>3. Feedback and Suggestions:</strong>
+											<li><strong>Feedback and Suggestions:</strong>
 												<ul>
 													<li>Feedback Form: We value your input. <a href="../index.html#cta">Use this form</a> to provide feedback or suggest improvements.</li>
 													<li>Join Discussions: Engage with peers on our forums. Share experiences, ask questions, and exchange ideas.</li>
 												</ul>
 											</li>
-											<li><strong>4. Collaborate</strong>
+											<li><strong>Collaborate</strong>
 												<ul>
 													<li>Partnership Opportunities: If you're interested in collaborating on a project or have an idea, we’d love to hear from you.</li>
 												</ul>
 											</li>
 										</ul>
 										</p>
-										<h4>Be Part of LLM360</h4>
+										<br>
+										<h2>Be Part of LLM360</h2>
 										<p>Your involvement is crucial to making LLM360 a hub for open and innovative AI research. Join us in this journey to shape the future of AI through open collaboration and shared knowledge.
 										</p>
+										<br>
 
-										<h3>What's Ahead for LLM360</h3>
+										<h2>What's Ahead for LLM360</h2>
 										<p>LLM360 is on a mission to expand and deepen the influence of AI research by providing fully accessible, open-source LLMs. We invite the global community of researchers, developers, and AI enthusiasts to work with our Amber and CrystalCoder models, test their capabilities, and contribute to their ongoing development.<br>
 
 										Your input and insight are key to driving open LLMs and ensuring these models cater to a broad spectrum of the research community needs. Join us on this journey to make AI research more open, inclusive, and impactful. Share your thoughts and help us push the boundaries of AI.
 										</p>
+										<br>
 										<hr>
-										<h3>Thank you to Our Partners</h3>
+<!--										<h2>Thank you to Our Partners</h2>-->
 
-									<!-- Supporters -->
-										<section class="wrapper style4 container special">
-											<div class="row aln-center">
-												<div class="row aln-middle col-4 col-12-mobile">
-													<a href="https://mbzuai.ac.ae/" target="_blank" rel="noopener" class="image featured"><img src="../images/mbzuai.png" alt="Mohamed bin Zayed University of Artificial Intelligence" /></a>
-												</div>
-												<div class="row aln-middle col-4 col-12-mobile">
-													<a href="https://petuum.com/" target="_blank" rel="noopener" class="image featured"><img src="../images/petuum.png" alt="" /></a>
-												</div>
-												<div class="row aln-middle col-2 col-12-mobile">
-													<a href="https://www.cerebras.net/" target="_blank" rel="noopener" class="image featured"><img src="../images/cerebras.png" alt="" /></a>
-												</div>
-											</div>
-										</section>
+<!--									&lt;!&ndash; Supporters &ndash;&gt;-->
+<!--										<section class="wrapper style4 container special">-->
+<!--											<div class="row aln-center">-->
+<!--												<div class="row aln-middle col-4 col-12-mobile">-->
+<!--													<a href="https://mbzuai.ac.ae/" target="_blank" rel="noopener" class="image featured"><img src="../images/mbzuai.png" alt="Mohamed bin Zayed University of Artificial Intelligence" /></a>-->
+<!--												</div>-->
+<!--												<div class="row aln-middle col-4 col-12-mobile">-->
+<!--													<a href="https://petuum.com/" target="_blank" rel="noopener" class="image featured"><img src="../images/petuum.png" alt="" /></a>-->
+<!--												</div>-->
+<!--												<div class="row aln-middle col-2 col-12-mobile">-->
+<!--													<a href="https://www.cerebras.net/" target="_blank" rel="noopener" class="image featured"><img src="../images/cerebras.png" alt="" /></a>-->
+<!--												</div>-->
+<!--											</div>-->
+<!--										</section>-->
 
 
 
 
 									</section>
 								</div>
-
 						</section>
+					<!-- Supporters -->
+					<section class="wrapper style4 container special">
+						<div class="row aln-center">
+							<div class="row aln-middle col-4 col-12-mobile">
+								<a href="https://mbzuai.ac.ae/" target="_blank" rel="noopener" class="image featured"><img src="../images/mbzuai.png" alt="Mohamed bin Zayed University of Artificial Intelligence" /></a>
+							</div>
+							<div class="row aln-middle col-4 col-12-mobile">
+								<a href="https://petuum.com/" target="_blank" rel="noopener" class="image featured"><img src="../images/petuum.png" alt="" /></a>
+							</div>
+							<div class="row aln-middle col-2 col-12-mobile">
+								<a href="https://www.cerebras.net/" target="_blank" rel="noopener" class="image featured"><img src="../images/cerebras.png" alt="" /></a>
+							</div>
+						</div>
+					</section>
 
 				</article>
 
