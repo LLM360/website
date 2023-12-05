@@ -29,7 +29,7 @@
 
 	function redirectToAnotherPage() {
 		// Replace 'your_target_page.html' with the actual target page URL
-		window.location.href = 'blog/introducing-llm360-fully-transparent-open-source-llms.html';
+		window.location.href = 'https://www.llm360.ai/blog/introducing-llm360-fully-transparent-open-source-llms.html';
 	}
 
 	const spinButton = $('#spinButton');
