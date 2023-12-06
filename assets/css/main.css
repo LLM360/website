@@ -2664,7 +2664,7 @@ input, select, textarea {
 		.wrapper.style5 {
 			background: #fff;
 			color: inherit;
-			width: 80%;
+			max-width: 1200px;
 			padding: 4em;
 			margin-bottom: 4em;
 		}
