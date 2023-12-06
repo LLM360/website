@@ -2356,15 +2356,15 @@ input, select, textarea {
 					background: #df93b8;
 				}
 
-  		.icon.circle.fa-envelope {
-					background: #70aecd;
-					color: #fff;
-			}
-
-				.icon.circle.fa-envelope:hover {
-					background: #7fb7d2;
+			.icon.circle.fa-envelope {
+						background: #da83ae;
+						color: #fff;
 				}
 
+				.icon.circle.fa-envelope:hover {
+					background: #df93b8;
+				}
+				
 		.icon.featured {
 			cursor: default;
 			display: block;
