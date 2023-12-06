@@ -172,7 +172,7 @@ input, select, textarea {
 	}
 
 	.hero img {
-		max-width: 100%; 
+		max-width: 100%;
 	}
 
 	.blog {
@@ -3238,6 +3238,36 @@ input, select, textarea {
 					padding: 0;
 					border: 0;
 				}
+
+/* Widgets */
+.back-to-top {
+  position: fixed;
+  display: none;
+  background: -webkit-linear-gradient(0deg, #64c7bb 0%, #288de6 100%);
+  background: linear-gradient(#64c5bb, #288de6);
+  color: #fff;
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  line-height: 1;
+  font-size: 16px;
+  border-radius: 50%;
+  right: 15px;
+  bottom: 15px;
+  transition: background 0.5s;
+  z-index: 11;
+}
+
+.back-to-top i {
+    padding-top: 12px;
+    color: #fff
+}
+
+.back-to-top:hover, .back-to-top:focus, .back-to-top:target {
+  opacity: .9;
+}
+
 
 /* Wide */
 
