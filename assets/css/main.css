@@ -2367,7 +2367,7 @@ input, select, textarea {
 				.icon.circle.fa-envelope:hover {
 					background: #df93b8;
 				}
-				
+
 		.icon.featured {
 			cursor: default;
 			display: block;
@@ -3631,6 +3631,11 @@ input, select, textarea {
 			}
 
 		/* Nav */
+
+			/* Persistent blog icon */
+					span.icon.solid.fa-blog {
+			    display: none;
+			}
 
 			#page-wrapper {
 				-moz-backface-visibility: hidden;
