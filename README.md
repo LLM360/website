@@ -1,4 +1,8 @@
-# LLM360: Fully Transparent Open Source LLMs
+<p align="center">
+   <a href="https://github.com/LLM360/Analysis360/blob/dev/LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="license"></a>
+</p>
+
+# LLM360 |  Open-source LLMs for Transparency, Trust, and Collaborative Research 🚀
 
 Welcome to the official GitHub repository for LLM360's website, a collaborative initiative between Petuum, MBZUAI, and Cerebras. This project is dedicated to open-sourcing Large Language Models (LLMs) to promote transparency, trust, and collaborative research in the AI community.
 
@@ -54,4 +58,4 @@ LLM360 models and resources are open-sourced under the Apache 2.0 license.
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-``` 
+```
