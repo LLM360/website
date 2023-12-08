@@ -180,14 +180,12 @@ input, select, textarea {
 	}
 
 	.blog h1 {
-		color: #454e50;
 		font-size: 1.95em;
 		letter-spacing: 0.025em;
 		margin-bottom: 1em;
 	}
 
 	.blog h2 {
-		color: #454e50;
 		font-size: 1.5em;
 		font-weight: 400;
 		letter-spacing: 0.01em;
@@ -196,7 +194,6 @@ input, select, textarea {
 	}
 
 	.blog h4 {
-		color: #454e50;
 		font-size: 1em;
 		font-weight: 600;
 		letter-spacing: 0.01em;
@@ -205,13 +202,11 @@ input, select, textarea {
 	}
 
 	.blog p {
-		color: #454e50;
 		font-weight: 300;
 		margin-bottom: 1.5em;
 	}
 
 	.blog ul {
-		color: #454e50;
 		list-style: disc;
 		margin-left: 2em;
 		padding-top: 0em;
@@ -219,12 +214,10 @@ input, select, textarea {
 	}
 
 		.blog ul li {
-			color: #454e50;
 			margin: 0;
 			padding: 0em;
 		}
 			.blog ul li ul {
-				color: #454e50;
 				padding-left: 0em;
 			}
 
@@ -237,6 +230,7 @@ input, select, textarea {
 		font-size: 16px;
 		font-weight: 500;
 		letter-spacing: 0.025em;
+		white-space: pre;
 	}
 
 	.left {
@@ -3068,6 +3062,7 @@ input, select, textarea {
 
 	#blog {
 		background-color: rgba(255, 255, 255, 0.5);
+		color: #454e50;
 	}
 
 	#blog > :last-child {
