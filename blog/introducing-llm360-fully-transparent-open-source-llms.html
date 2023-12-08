@@ -86,7 +86,7 @@
 				</header>
 
 			<!-- Main -->
-				<article id="main" class="blog">
+				<article id="blog" class="blog">
 					<header class="special container">
 						<span class="icon solid fa-blog"></span>
 
@@ -100,8 +100,26 @@
 							<div class="hero">
 								<img src="../images/blog-banner.png" style="margin-bottom: 2em"/>
 							</div>
-							<p>LLM360 is an initiative to open-source large language models (LLMs) that foster transparency, trust, and collaborative research. Models released under LLM360 are open-source in the true sense of the word, with their training source code and data publicly disclosed and made openly available. We also strive to make the entire training process of LLM360 models transparent, releasing up to 360 intermediate checkpoints collected during the training of our two initial models (Amber and CrystalCoder). Our goal with LLM360 is to make advanced LLMs more transparent, foster research in smaller-scale labs, and improve reproducibility in AI research. LLM360 is a collaboration between Petuum, MBZUAI, and Cerebras.
+							<h2>Introduction</h2>
+							<p>The open source community has seen tremendous model contributions, however model weight releases and overview technical reports do not contain enough information to cover the complexity of LLM training,
+								which hinders the openness and transparency, the mechanism behind trustworthy and innovative research and science for decades.
 							</p>
+							<p>
+								To this end, we are thrilled to Introduce LLM360, an initiative to open-source large language models (LLMs) that foster transparency, trust, and collaborative research.
+								Models released under LLM360 are open-source in the truest sense of the word, we strive to make all the details of LLM accessible to everyone.
+							</p>
+							<p>
+								First, we considered disclosing all the training source code and data publicly and openly. However, we soon realize that much more information is needed to genuinely understand a model's behavior.
+								Hence we commit to releasing all the intermediate checkpoints (up to 360!) collected during the training and provide all collected metrics to analyze model dynamics.
+								LLM360 exists to make advanced LLMs more transparent, foster research in smaller-scale labs, and improve reproducibility in AI research.
+							</p>
+							<p>
+								To lead by example, we are releasing two models under LLM360: Amber-7B and CrystalCoder-7B, epitomizing the spirit of open-source and transparent AI development.
+							</p>
+							<p>
+								LLM360 is a collaboration between Petuum, MBZUAI, and Cerebras.
+							</p>
+							<br>
 <!--							<header class="location container" style="margin-top: 3em">-->
 <!--								<div class="row aln-middle">-->
 <!--&lt;!&ndash;									<h1>Introducing <strong>LLM 360 </strong>: Fully Transparent open-source LLMs</h1>&ndash;&gt;-->
@@ -119,34 +137,91 @@
 								<div class="content left">
 									<section>
 										<h2>Achieving Transparency and Accessibility through LLM360</h2>
-										<p>The basis of LLM360 is to provide all the details of LLM training for all models. This includes all of the following artifacts associated with each model:
- 											<ul>
-												<li><strong>Frequent Intermediate Model Checkpoints:</strong> During training, model parameters and optimizer states are collected regularly. These artifacts can offer valuable insights for studying LLM training dynamics and how it scales with data.</li>
-												<li><strong>Training Data with Full Data Sequence:</strong> The entire training dataset is fully disclosed and made publicly available. In addition, the full sequence of data examples used at each training step.</li>
+										<p>The basis of LLM360 is to create a framework that encourages openness and responsible usage for large language models. Currently, we include all of the following artifacts associated for models in the LLM360 family: </p>
+											<ul>
+												<li><strong>Frequent Intermediate Model Checkpoints:</strong> During training, model parameters and optimizer states are collected regularly. These artifacts can offer valuable insights for studying LLM training dynamics and how it scales with data, and allows one to resume training at various stages.</li>
+												<li><strong>Training Data with Full Data Sequence:</strong> The entire preprocessed, tokenized training dataset is fully disclosed and made publicly available. The dataset is presented exactly in correspondence to the training steps.</li>
 												<li><strong>Source Code:</strong> All the code used, including data processing, training, evaluation, and analysis.</li>
-												<li><strong>Logs and Metrics:</strong> All the training logs and evaluations done during training and using the final model are publicly disclosed.​</li>
+												<li><strong>Logs and Metrics:</strong> All the training logs,evaluations and analysis results collected during training are publicly disclosed, also in correspondence to the training steps and data sequence.​</li>
 											</ul>
-											We welcome community feedback to continually refine and develop our models and resources.
-										</p>
+											<br>
+										<p>This is just a beginning to our open source efforts and we are committed to continue providing more details. Please don’t hesitate to let us know what you want to know! We are thrilled to receive community feedback to continually refine and augment our releases.</p>
 										<br>
 
-										<h2>Amber-7B and CrystalCoder Released under LLM360</h2>
-										<p>The first two models to be released under LLM360 are Amber and CrystalCoder. Amber is a 7B English LLM and CrystalCoder is a 7B code & text LLM. Both models are released under the Apache 2.0 license.</p>
+										<h2>Amber and CrystalCoder Released under LLM360</h2>
+										<div class="row aln-middle" style="margin-top: 1em">
+											<div class="col-5 col-12-narrower">
+												<a class="image fit"><img src="../images/blogpost_AmberAndCrystal.png" alt="" /></a>
+											</div>
+											<div class="col-6 col-12-narrower">
+												<p>The first two models to be released under LLM360 are Amber and CrystalCoder.
+													Amber is a 7B English LLM and CrystalCoder is a 7B code & text LLM.
+												</p>
+												<p>Both models are released under the Apache 2.0 license.</p>
+											</div>
+										</div>
 										<h4>Amber: Advancing Knowledge and Transparency in LLM Pretraining</h4>
-										<p>Amber has been trained on 1.2 trillion tokens and performs similarly to Falcon-7B and MPT-7B.  Amber's true superpower lies in facilitating a knowledge exchange between the training team and the wider community. Along with the customary final model weights, Amber is released with 359 additional model checkpoints (360 total) and all the per-step data sequence for each checkpoint. Providing access to these intermediate checkpoints can be beneficial to both researchers looking to advance the capability and understanding of LLMs and industry teams who are pretraining or customizing LLMs for enterprise purposes.
-
-										For specific learnings and insights from training Amber check out the analysis below.
+										<p>Amber has been trained on 1.2 trillion tokens and performs similarly to LLaMA-7B, OpenLLaMA-v2-7B and outperforms Pythia-6.7B.</p>
+										<br>
+										<div class="row aln-middle">
+											<div class="col-12">
+												<a class="image fit"><img src="../images/Figure.png" alt="" /></a>
+											</div>
+										</div>
+										<div class="row aln-center">
+											<p><strong>Figure: Open LLM leaderboard comparisons among a few notable LLMs</strong></p>
+										</div>
+										<p>Amber's true superpower lies in facilitating a knowledge exchange between the training team and the wider community.
+											Along with the customary final model weights, Amber is released with 359 additional model checkpoints (360 total) and the per-step data sequence for each checkpoint.
 										</p>
+										<p>
+											Providing access to these intermediate checkpoints can be beneficial to both researchers looking to advance the capability and understanding of LLMs and industry teams who are pretraining or customizing LLMs for enterprise purposes.
+										</p>
+										<p>For specific learnings and insights from training Amber check out the analysis below.</p>
+										<div class="row aln-center">
+											<a href="https://short.llm360.ai/crystal-metrics" style="color: #fa941f">[Metrics]</a> <a href="https://short.llm360.ai/amber-data" style="color: #fa941f">[Data]</a> <a href="https://short.llm360.ai/amber-code" style="color: #fa941f">[Code]</a> <a style="color: #fa941f">[Download]</a>
+										</div>
+										<div class="row aln-center" style="margin-top: 0.1em">
+											<a class="image featured"><img src="../images/amber_logo.png" alt="" style="max-height: 250px"/></a>
+										</div>
+										<br>
+
 
 										<!-- buttons -->
 
-										<h4>CrystalCoder: Advancing Conversational Coding</h4>
-										<p>CrystalCoder has been trained on 1.4 trillion tokens and brings the best of Llama and StarCoder together into a single 7B model. Unlike most previous code LLMs, CrystalCoder is trained using a mixture of text and code data and includes code data earlier during the pretraining process (as compared with Code Llama 2 which is fine-tuned on Llama 2 using entirely code data). By excelling at both language and code, CrystalCoder may prove useful for investigating AI Agent and tool use capabilities.
-
-										[insert graph with CrystalCoder in the middle of Llama and Code Llama]
-										<br>
-										CrystalCoder is released with 143 checkpoints and all pretraining data.
+										<h4>CrystalCoder: Bridging Syntax and Semantics</h4>
+										<p>CrystalCoder is a 7B language model trained on 1.4 trillion tokens, achieving a balance between coding and language ability.</p>
+										<p><strong>Language Ability:</strong></p>
+										<div class="row aln-center">
+											<a class="image fit"><img src="../images/Language_Ability.png" alt=""/></a>
+										</div>
+										<p><strong>Code Ability:</strong></p>
+										<div class="row aln-center">
+											<a class="image fit"><img src="../images/Code_Ability.png" alt=""/></a>
+										</div>
+										<p>Unlike most previous code LLMs, CrystalCoder is trained using a careful mixture of text and code data to maximize utility in both domains.
+											Code data is introduced earlier during the pretraining process (as compared with Code Llama 2 which is fine-tuned on Llama 2 using entirely code data).
+											Furthermore, we additionally trained CrystalCoder on Python and web programming language, to make it a useful copilot.
 										</p>
+										<p>Our experiments show that CystalCoder achieves a balanced position between LLaMA 2 and Code LLaMA with fewer training tokens.
+											The graph below plots the language and coding ability of each model based on the tables above.
+											As evidenced by the evaluations, LLaMA 2 regresses in language ability when fine-tuned on code.
+											More research is needed to fully understand the phenomena, but studying CrystalCoder may offer some insights.
+										</p>
+										<br>
+										<div class="row aln-center">
+											<a class="image fit"><img src="../images/cl_vs_ccap.png" alt="" style="max-height: 300px"/></a>
+										</div>
+										<p>By excelling at both language and code, CrystalCoder may prove useful for investigating AI Agent and tool use capabilities.
+											CrystalCoder is released with 143 checkpoints and all pre training data.
+										</p>
+										<div class="row aln-center">
+											<a href="https://short.llm360.ai/crystalcoder-metrics" style="color: #9d39e1">[Metrics]</a> <a href="https://short.llm360.ai/crystalcoder-data" style="color: #9d39e1">[Data]</a> <a href="https://short.llm360.ai/crystalcoder-code" style="color: #9d39e1">[Code]</a> <a style="color: #9d39e1">[Download]</a>
+										</div>
+										<div class="row aln-center" style="margin-top: 0.1em">
+											<a class="image featured"><img src="../images/crystalcoder_logo.jpg" alt="" style="max-height: 250px"/></a>
+										</div>
+
 										<h4>Diamond (Coming Soon)</h4>
 										<p>65B English LLM trained on 1.4 trillion tokens.</p>
 										<br>
@@ -160,12 +235,11 @@
 											</ul>
 										</p>
 										<br>
-
 										<h2>Collaboration and Community in LLM360</h2>
 										<h4>Contributing to the LLM360 Ecosystem</h4>
 										<p>LLM360 thrives on community involvement, offering various ways for researchers, developers, and enthusiasts to engage and contribute. Here’s a streamlined guide to getting involved:
 										<ul>
-											<li><strong>Get Involved:</strong>
+											<li><strong> Get Involved:</strong>
 												<ul>
 													<li>GitHub: Our <a href="https://github.com/llm360" target="_blank" rel="noopener">GitHub page</a> is the hub for all code related to LLM360. Explore, modify, or use our code and contribute your improvements.</li>
 													<li>HuggingFace: Access and download LLM360 models on <a href="https://huggingface.co/llm360" target="_blank" rel="noopener">HuggingFace</a>. Experiment with them, and share your findings or applications.</li>
@@ -190,16 +264,20 @@
 											</li>
 										</ul>
 										</p>
-										<br>
-										<h2>Be Part of LLM360</h2>
-										<p>Your involvement is crucial to making LLM360 a hub for open and innovative AI research. Join us in this journey to shape the future of AI through open collaboration and shared knowledge.
+										<h4>Be Part of LLM360</h4>
+										<p>Your involvement is crucial to making LLM360 a hub for open and innovative AI research.
+											Join us in this journey to shape the future of AI through open collaboration and shared knowledge.
 										</p>
 										<br>
 
 										<h2>What's Ahead for LLM360</h2>
-										<p>LLM360 is on a mission to expand and deepen the influence of AI research by providing fully accessible, open-source LLMs. We invite the global community of researchers, developers, and AI enthusiasts to work with our Amber and CrystalCoder models, test their capabilities, and contribute to their ongoing development.<br>
-
-										Your input and insight are key to driving open LLMs and ensuring these models cater to a broad spectrum of the research community needs. Join us on this journey to make AI research more open, inclusive, and impactful. Share your thoughts and help us push the boundaries of AI.
+										<p>
+											LLM360 is on a mission to expand and deepen the influence of AI research by providing fully accessible, open-source LLMs.
+											We invite the global community of researchers, developers, and AI enthusiasts to work with our Amber and CrystalCoder models, test their capabilities, and contribute to their ongoing development.
+										</p>
+										<p>
+											Your input and insight are key to driving open LLMs and ensuring these models cater to a broad spectrum of the research community needs.
+											Join us on this journey to make AI research more open, inclusive, and impactful. Share your thoughts and help us push the boundaries of AI.
 										</p>
 										<br>
 										<hr>
@@ -250,6 +328,7 @@
 					<ul class="icons">
 						<li><a href="https://twitter.com/llm360" class="icon brands circle fa-twitter"><span class="label">Twitter</span></a></li>
 						<li><a href="https://github.com/LLM360" class="icon brands circle fa-github"><span class="label">Github</span></a></li>
+						<li><a href="mailto:team@llm360.ai" class="icon circle fa-envelope"><span class="label">Email</span></a></li>
 					</ul>
 
 					<ul class="copyright">

@@ -107,7 +107,7 @@ input, select, textarea {
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 		color: #3fb1a3;
 		text-decoration: none;
-		border-bottom: dotted 1px;
+		/*border-bottom: dotted 1px;*/
 	}
 
 		a:hover {
@@ -180,20 +180,23 @@ input, select, textarea {
 	}
 
 	.blog h1 {
+		color: #454e50;
 		font-size: 1.95em;
 		letter-spacing: 0.025em;
 		margin-bottom: 1em;
 	}
 
 	.blog h2 {
-		font-size: 1.7em;
+		color: #454e50;
+		font-size: 1.5em;
 		font-weight: 400;
 		letter-spacing: 0.01em;
-		margin-top: 1.5em;
+		margin-top: 2em;
 		margin-bottom: 0.5em;
 	}
 
 	.blog h4 {
+		color: #454e50;
 		font-size: 1em;
 		font-weight: 600;
 		letter-spacing: 0.01em;
@@ -202,10 +205,13 @@ input, select, textarea {
 	}
 
 	.blog p {
-		margin-bottom: 0;
+		color: #454e50;
+		font-weight: 300;
+		margin-bottom: 1.5em;
 	}
 
 	.blog ul {
+		color: #454e50;
 		list-style: disc;
 		margin-left: 2em;
 		padding-top: 0em;
@@ -213,15 +219,18 @@ input, select, textarea {
 	}
 
 		.blog ul li {
+			color: #454e50;
 			margin: 0;
 			padding: 0em;
 		}
 			.blog ul li ul {
+				color: #454e50;
 				padding-left: 0em;
 			}
 
 	.blog a {
 			font-weight: 500;
+			padding-bottom: 0.25em;
 		}
 
 	.author {
@@ -3054,6 +3063,33 @@ input, select, textarea {
 	body.index #main {
 		padding-top: 5em;
 	}
+
+/* Blog */
+
+	#blog {
+		background-color: rgba(255, 255, 255, 0.5);
+	}
+
+	#blog > :last-child {
+		margin-bottom: 0;
+	}
+
+	#blog .sidebar section {
+		border-top: solid 1px rgba(124, 128, 129, 0.2);
+		margin: 3em 0 0 0;
+		padding: 3em 0 0 0;
+	}
+
+	#blog .sidebar section:first-child {
+		border-top: 0;
+		padding-top: 0;
+		margin-top: 0;
+	}
+
+	body.index #blog {
+		padding-top: 5em;
+	}
+
 
 /* Carousel */
 
