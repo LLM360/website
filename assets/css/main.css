@@ -127,7 +127,7 @@ input, select, textarea {
 		font-weight: 300;
 		line-height: 1.75em;
 		margin-bottom: 1em;
-		text-transform: uppercase;
+		/*text-transform: uppercase;*/
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -186,7 +186,7 @@ input, select, textarea {
 	}
 
 	.blog h2 {
-		font-size: 1.5em;
+		font-size: 1.55em;
 		font-weight: 400;
 		letter-spacing: 0.01em;
 		margin-top: 2em;
@@ -194,11 +194,19 @@ input, select, textarea {
 	}
 
 	.blog h4 {
-		font-size: 1em;
+		font-size: 1.15em;
 		font-weight: 600;
 		letter-spacing: 0.01em;
 		margin-top: 1.5em;
 		margin-bottom: 0;
+	}
+	.blog h5 {
+		font-size: 1.1em;
+		font-weight: 500;
+		letter-spacing: 0.01em;
+		margin-top: 1.5em;
+		margin-bottom: 0;
+		color: #7c8081;
 	}
 
 	.blog p {
@@ -208,7 +216,7 @@ input, select, textarea {
 
 	.blog ul {
 		list-style: disc;
-		margin-left: 2em;
+		margin-left: 1.5em;
 		padding-top: 0em;
 		margin-bottom: 0em;
 	}
@@ -219,6 +227,7 @@ input, select, textarea {
 		}
 			.blog ul li ul {
 				padding-left: 0em;
+				list-style: circle;
 			}
 
 	.blog a {
@@ -2597,6 +2606,31 @@ input, select, textarea {
 			padding: 0.5em 0;
 		}
 
+	.button1 {
+		background-color: #fa941f;
+		color: #ffffff;
+		border-radius: 10px;
+		min-width: 10em;
+	}
+
+		.button1:hover {
+			background-color: #60d0a9;
+			color: white;
+		}
+
+
+	.button2 {
+		background-color: #b54ed7;
+		color: #ffffff;
+		border-radius: 10px;
+		min-width: 10em;
+	}
+
+		.button2:hover {
+			background-color: #191a23;
+			color: white;
+		}
+
 /* SpingButton */
 	#spinButton {
 		padding: 10px 20px;
@@ -2669,7 +2703,7 @@ input, select, textarea {
 			color: inherit;
 			max-width: 1200px;
 			padding: 4em;
-			margin-bottom: 4em;
+			margin-bottom: 3em;
 		}
 
 /* Header */
@@ -3203,15 +3237,14 @@ input, select, textarea {
 
 	.carousel article {
 		display: inline-block;
-		width: 18em;
-		/*height: 22em;*/
+		width: 17em;
+		height: 20em;
 		background: #418bea;
 		color: #ffffff;
 		border-radius:12px;
 		text-align: center;
-		padding: 0 1em 3em 1em;
+		padding: 0 1em 0em 1em;
 		margin: 0 2em 0 0;
-		white-space: normal;
 		opacity: 1.0;
 		-moz-transition: opacity 0.75s ease-in-out;
 		-webkit-transition: opacity 0.75s ease-in-out;
@@ -3226,15 +3259,27 @@ input, select, textarea {
 	.carousel article .image {
 		position: relative;
 		top: 0;
-		width: 15%;
 		right: -1em;
 		margin-bottom: 2em;
-		height: fit-content;
+		display: block;
+		width: 15%;
+	}
+
+	.carousel article h3 {
+		display: block;
+		text-align: center;
+		font-size: 1em;
+		font-weight: 500;
+		white-space: normal;
+		letter-spacing: 0.025em;
+		margin-bottom: 2em;
 	}
 
 	.carousel article p {
-		text-align: center;
-	}
+			text-align: center;
+			margin-bottom: 1em;
+			font-size: 0.75em;
+		}
 
 /* CTA */
 
