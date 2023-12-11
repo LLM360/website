@@ -100,32 +100,47 @@
 							</div>
 							<h2>Introduction</h2>
 							<p>
-								The open source community has seen tremendous model contributions,
-								however model weight releases and overview technical reports do not contain enough
-								information to cover the complexity of LLM training, which hinders the openness and
-								transparency, the mechanism behind trustworthy and innovative research and science for decades.
+                                In recent months, the open-source large language model
+                                (LLM) community has seen tremendous model contributions.
+                                However, model weight releases and overview technical
+                                reports do not contain enough information to cover the
+                                complexity of LLM training, which hinders openness and
+                                transparency, the mechanisms behind trustworthy and
+                                innovative research and science for decades.
 							</p>
 							<p>
-								To this end, we are thrilled to Introduce LLM360, an initiative to open-source
-								large language models (LLMs) that foster transparency, trust, and collaborative research.
-								Models released under LLM360 are open-source in the truest sense of the word,
-								we strive to make all the details of LLM accessible to everyone.
+                                To this end, we are thrilled to introduce LLM360, an
+                                initiative to open source LLMs that fosters
+                                transparency, trust, and collaborative research.  When
+                                releasing models under LLM360, we strive to make all the
+                                details of LLM accessible to everyone.
 							</p>
 							<p>
-								Common practice of open source in machine learning generally involves disclosing
-								preprocessing and training source code, training data and evaluation results.
-								However, we consider that much more information is needed to genuinely understand
-								a model's behavior, which is often not available to other researchers.
-								Hence we commit to releasing all the intermediate checkpoints (up to 360!)
-								collected during the training, and provide all collected metrics (e.g., loss, gradient norm, evaluation results).
-								These additional artifacts can help researchers and practitioners to have a deeper
-								look into LLM’s construction process and conduct research such as analyzing model dynamics.
-								We hope that LLM360 can help make advanced LLMs more transparent,
-								foster research in smaller-scale labs, and improve reproducibility in AI research.
+                                Most open-source LLM releases include model weights and
+                                evaluation results.
+                                However, additional information is often needed to
+                                genuinely understand a model's behavior—and this
+                                information is not typically available to most
+                                researchers.
+                                Hence, we commit to releasing all of the intermediate
+                                checkpoints (up to 360!) collected during training, all
+                                of the training data (and its mapping to checkpoints),
+                                all collected metrics (e.g., loss, gradient norm,
+                                evaluation results), and all source code for
+                                preprocessing data and model training.
+                                These additional artifacts can help researchers and
+                                practitioners to have a deeper look into LLM’s
+                                construction process and conduct research such as
+                                analyzing model dynamics.
+                                We hope that LLM360 can help make advanced LLMs more
+                                transparent, foster research in smaller-scale labs, and
+                                improve reproducibility in AI research.
 							</p>
 							<p>
-								To lead by example, we are releasing two models under LLM360: Amber-7B and CrystalCoder-7B,
-								epitomizing the spirit of open-source and transparent AI development. 
+                                To start, we are releasing two models under LLM360:
+                                Amber-7B and CrystalCoder-7B, which we hope epitomize
+                                the spirit of open-source and transparent AI
+                                development.
 							</p>
 							<p>
 								LLM360 is a collaboration between <a href="https://petuum.com/" target="_blank">Petuum</a>, <a href="https://mbzuai.ac.ae/" target="_blank">MBZUAI</a>, and <a href="https://www.cerebras.net/" target="_blank">Cerebras</a>.
@@ -187,7 +202,7 @@
 										<br>
 										<div class="row aln-middle">
 											<div class="col-12">
-												<a class="image fit"><img src="../images/table_amber.png" alt="" /></a>
+                                                <p align="center"><img src="../images/table_amber.png" alt="" width="750"/></p>
 											</div>
 										</div>
 										<div class="row aln-center">
@@ -339,6 +354,31 @@
 											<li><a href="https://github.com/llm360" target="_blank" rel="noopener">Access our codebase</a></li>
 											<li><a href="../paper.pdf" target="_blank">Read the paper</a></li>
 										</ul>
+
+
+                                        <br/><br/><br/>
+										<h2>Citation</h2>
+                                        <p> If you use LLM360, feel free to cite: </p>
+<div class="box" background-color="#eee" border="1px" solid="#999" display="block" padding="20px">
+<font size="-0.5">
+<p>
+@article{liu2023llm360,<br/>
+title={LLM360: Towards Fully Transparent Open-Source LLMs},<br/>
+author={Liu, Zhengzhong and Qiao, Aurick and Neiswanger, Willie and Wang, Hongyi and
+Tan, Bowen and Tao, Tianhua and Li, Junbo and Wang, Yuqi and Sun, Suqi and Pagarkar,
+Omkar and Fan, Richard and Gu, Yi and Miller, Victor and Zhuang, Yonghao and He, Guowei
+and Li, Haonan and Koto, Fajri and Tang, Liping and Ranjan, Nikhil and Shen, Zhiqiang
+and Ren, Xuguang and Iriondo, Roberto and Mu, Cun and Hu, Zhiting and Schulze, Mark and
+Nakov, Preslav and Baldwin, Tim and Xing, Eric},<br/>
+year={2023}}
+</p>
+</font>
+</div>
+
+                                        <!--</div>-->
+
+
+
 <!--										<h2>Thank you to Our Partners</h2>-->
 
 <!--									&lt;!&ndash; Supporters &ndash;&gt;-->
