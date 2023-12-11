@@ -3119,6 +3119,10 @@ input, select, textarea {
 		padding-top: 5em;
 	}
 
+	textarea#citation {
+		    background: #eee;
+		}
+
 /* Paper */
 
 	#paper {

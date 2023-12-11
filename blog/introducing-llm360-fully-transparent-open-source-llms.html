@@ -56,7 +56,7 @@
 		<meta name="twitter:url" content="https://www.llm360.ai/blog/introducing-llm360-fully-transparent-open-source-llms.html">
 		<meta name="twitter:image" content="https://www.llm360.ai/images/blog-banner.png">
 		<meta name="twitter:site" content="@llm360">
-		<meta name="twitter:creator" content="@llm360">   
+		<meta name="twitter:creator" content="@llm360">
 
 	  <!-- Schema Markup -->
 	  <script type="application/ld+json">
@@ -451,23 +451,41 @@
 
 
                                         <br/><br/><br/>
-										<h2>Citation</h2>
-                                        <p> If you use LLM360, feel free to cite: </p>
-<div class="box" background-color="#eee" border="1px" solid="#999" display="block" padding="20px">
-<font size="-0.5">
-<p>
-@article{liu2023llm360,<br/>
-title={LLM360: Towards Fully Transparent Open-Source LLMs},<br/>
-author={Liu, Zhengzhong and Qiao, Aurick and Neiswanger, Willie and Wang, Hongyi and
-Tan, Bowen and Tao, Tianhua and Li, Junbo and Wang, Yuqi and Sun, Suqi and Pangarkar,
-Omkar and Fan, Richard and Gu, Yi and Miller, Victor and Zhuang, Yonghao and He, Guowei
-and Li, Haonan and Koto, Fajri and Tang, Liping and Ranjan, Nikhil and Shen, Zhiqiang
-and Ren, Xuguang and Iriondo, Roberto and Mu, Cun and Hu, Zhiting and Schulze, Mark and
-Nakov, Preslav and Baldwin, Tim and Xing, Eric},<br/>
+											<!--
+											<div class="box" background-color="#eee" border="1px" solid="#999" display="block" padding="20px">
+												<font size="-0.5">
+												<p>
+												@article{liu2023llm360,<br/>
+												title={LLM360: Towards Fully Transparent Open-Source LLMs},<br/>
+												author={Liu, Zhengzhong and Qiao, Aurick and Neiswanger, Willie and Wang, Hongyi and
+												Tan, Bowen and Tao, Tianhua and Li, Junbo and Wang, Yuqi and Sun, Suqi and Pangarkar,
+												Omkar and Fan, Richard and Gu, Yi and Miller, Victor and Zhuang, Yonghao and He, Guowei
+												and Li, Haonan and Koto, Fajri and Tang, Liping and Ranjan, Nikhil and Shen, Zhiqiang
+												and Ren, Xuguang and Iriondo, Roberto and Mu, Cun and Hu, Zhiting and Schulze, Mark and
+												Nakov, Preslav and Baldwin, Tim and Xing, Eric},<br/>
+												year={2023}}
+												</p>
+												</font>
+											</div>
+											-->
+												<h2><label for="citation">Citation</label></h2>
+												<p> If you use LLM360, feel free to cite: </p>
+												<div class="box" background-color="#eee" border="1px" solid="#999" display="block" padding="20px">
+												<textarea id="citation" rows="9" cols="50" readonly>@article{liu2023llm360,
+title={LLM360: Towards Fully Transparent Open-Source LLMs},
+author={Liu, Zhengzhong and Qiao, Aurick and Neiswanger, Willie and Wang, Hongyi and Tan, Bowen and Tao, Tianhua and Li, Junbo and Wang, Yuqi and Sun, Suqi and Pangarkar, Omkar and Fan, Richard and Gu, Yi and Miller, Victor and Zhuang, Yonghao and He, Guowei and Li, Haonan and Koto, Fajri and Tang, Liping and Ranjan, Nikhil and Shen, Zhiqiang and Ren, Xuguang and Iriondo, Roberto and Mu, Cun and Hu, Zhiting and Schulze, Mark and Nakov, Preslav and Baldwin, Tim and Xing, Eric},
 year={2023}}
-</p>
-</font>
-</div>
+												</textarea>
+												<button onclick="copyCitation()">Copy Citation</button>
+
+												<script>
+												function copyCitation() {
+												  var copyText = document.getElementById("citation");
+												  copyText.select();
+												  document.execCommand("copy");
+												}
+												</script>
+											</div>
 
                                         <!--</div>-->
 
