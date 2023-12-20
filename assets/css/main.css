@@ -3239,7 +3239,7 @@ input, select, textarea {
 		padding: 0 2em 0 2em;
 	}
 
-	.carousel article {
+	.carousel article1 {
 		display: inline-block;
 		width: 17em;
 		height: 20em;
@@ -3254,22 +3254,29 @@ input, select, textarea {
 		-webkit-transition: opacity 0.75s ease-in-out;
 		-ms-transition: opacity 0.75s ease-in-out;
 		transition: opacity 0.75s ease-in-out;
+		/*box-shadow: 5px 5px 2px rgba(173, 216, 230, 0.31);*/
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.11), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+
 	}
 
-	.carousel article.loading {
+	.carousel article1 hr{
+		border-top: 1px solid white;
+	}
+
+	.carousel article1.loading {
 		opacity: 0;
 	}
 
-	.carousel article .image {
+	.carousel article1 .image {
 		position: relative;
-		top: 0;
-		right: -1em;
+		top: 0.5em;
+		/*right: -1em;*/
 		margin-bottom: 2em;
 		display: block;
 		width: 15%;
 	}
 
-	.carousel article h3 {
+	.carousel article1 h3 {
 		display: block;
 		text-align: center;
 		font-size: 1em;
@@ -3279,9 +3286,64 @@ input, select, textarea {
 		margin-bottom: 2em;
 	}
 
-	.carousel article p {
+	.carousel article1 p {
 			text-align: center;
-			margin-bottom: 1em;
+			margin-top: 1em;
+			margin-bottom: 2em;
+			font-size: 0.75em;
+		}
+
+	.carousel article2 {
+		display: inline-block;
+		width: 17em;
+		height: 20em;
+		background: rgb(131, 211, 201);
+		color: #ffffff;
+		border-radius:12px;
+		text-align: center;
+		padding: 0 1em 0em 1em;
+		margin: 0 2em 0 0;
+		opacity: 1.0;
+		-moz-transition: opacity 0.75s ease-in-out;
+		-webkit-transition: opacity 0.75s ease-in-out;
+		-ms-transition: opacity 0.75s ease-in-out;
+		transition: opacity 0.75s ease-in-out;
+		/*box-shadow: 5px 5px 2px rgba(4, 108, 243, 0.07);*/
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.11), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+
+	}
+
+		.carousel article2 hr{
+			border-top: 1px solid white;
+		}
+
+		.carousel article2.loading {
+			opacity: 0;
+		}
+
+		.carousel article2 .image {
+			position: relative;
+			top: 0.5em;
+			/*right: -1em;*/
+			margin-bottom: 2em;
+			display: block;
+			width: 15%;
+		}
+
+		.carousel article2 h3 {
+			display: block;
+			text-align: center;
+			font-size: 1em;
+			font-weight: 500;
+			white-space: normal;
+			letter-spacing: 0.025em;
+			margin-bottom: 2em;
+		}
+
+		.carousel article2 p {
+			text-align: center;
+			margin-top: 1em;
+			margin-bottom: 2em;
 			font-size: 0.75em;
 		}
 
