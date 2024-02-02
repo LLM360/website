@@ -3272,7 +3272,7 @@ input, select, textarea {
 
 	#main {
 		background-attachment: scroll, scroll, scroll, fixed;
-		background-image: url("images/dark-tl.svg"), url("images/dark-tr.svg"),url("../../images/background.png"), url("../../images/background.png");
+		/* background-image: url("images/dark-tl.svg"), url("images/dark-tr.svg"),url("../../images/background.png"), url("../../images/background.png"); */
 		background-position: top left, top right, top center, top center;
 		background-repeat: no-repeat, no-repeat, repeat, no-repeat;
 		background-size: 25em, 25em, auto, cover;
@@ -3334,7 +3334,7 @@ input, select, textarea {
 
 	#paper {
 		background-attachment: scroll, scroll, scroll, fixed;
-		background-image: url("images/dark-tl.svg"), url("images/dark-tr.svg"),url("../../images/background.png"), url("../../images/background.png");
+		/* background-image: url("images/dark-tl.svg"), url("images/dark-tr.svg"),url("../../images/background.png"), url("../../images/background.png"); */
 		background-position: top left, top right, top center, top center;
 		background-repeat: no-repeat, no-repeat, repeat, no-repeat;
 		background-size: 25em, 25em, auto, cover;
