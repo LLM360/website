@@ -1,626 +1,437 @@
-<!DOCTYPE HTML>
-<!-- Thank you to HTML5 UP for the template to create this site: https://html5up.net/license -->
-<html>
-	<head>
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-0FFN6N7318"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Google tag (gtag.js) -->
+    		<script async src="https://www.googletagmanager.com/gtag/js?id=G-0FFN6N7318"></script>
+    		<script>
+    		  window.dataLayer = window.dataLayer || [];
+    		  function gtag(){dataLayer.push(arguments);}
+    		  gtag('js', new Date());
 
-		  gtag('config', 'G-0FFN6N7318');
-		</script>
-		<!-- Twitter conversion tracking base code
-		<script>
-		!function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
-		},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
-		a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
-		twq('config','ohxde');
-		</script>
-		<!-- End Twitter conversion tracking base code -->
+    		  gtag('config', 'G-0FFN6N7318');
+    		</script>
 
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-		<!-- SEO -->
-		<title>LLM360 | Open-source LLMs for Transparency, Trust, and Collaborative Research 🚀</title>
-    <meta name="description" content="LLM360, a framework for open-sourcing LLMs to foster transparency, trust, and collaborative research."/>
-		<link rel="canonical" href="https://www.llm360.ai/" />
-    <meta name="keywords" content="LLM360, Open Source AI, Large Language Models, AI Research, Petuum, MBZUAI, Mohamed bin Zayed University of Artificial Intelligence, Amber LLM, CrystalCode, NLP, Language Processing"/>
-    <meta name="author" content="Petuum, Mohamed bin Zayed University of Artificial Intelligence"/>
-    <meta name="robots" content="index, follow"/>
+        <!-- SEO -->
+        <title>LLM360 | Open-source LLMs for Transparency, Trust, and Collaborative Research 🚀</title>
+        <meta name="description" content="LLM360, a framework for open-sourcing LLMs to foster transparency, trust, and collaborative research."/>
+        <link rel="canonical" href="https://www.llm360.ai/" />
+        <meta name="keywords" content="LLM360, Open Source AI, Large Language Models, AI Research, Petuum, MBZUAI, Mohamed bin Zayed University of Artificial Intelligence, Amber LLM, CrystalCode, NLP, Language Processing"/>
+        <meta name="author" content="Petuum, Mohamed bin Zayed University of Artificial Intelligence"/>
+        <meta name="robots" content="index, follow"/>
 
-    <!-- Open Graph Protocol -->
-    <meta property="og:title" content="LLM360 | Open-source LLMs for Transparency, Trust, and Collaborative Research 🚀"/>
-    <meta property="og:description" content="LLM360, a framework for open-sourcing LLMs to foster transparency, trust, and collaborative research."/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://www.llm360.ai/"/>
-    <meta property="og:image" content="https://www.llm360.ai/images/pic00.jpg"/>
+        <!-- Open Graph Protocol -->
+        <meta property="og:title" content="LLM360 | Open-source LLMs for Transparency, Trust, and Collaborative Research 🚀"/>
+        <meta property="og:description" content="LLM360, a framework for open-sourcing LLMs to foster transparency, trust, and collaborative research."/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="https://www.llm360.ai/"/>
+        <meta property="og:image" content="https://www.llm360.ai/images/pic00.jpg"/>
 
-		<!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@llm360">
-    <meta name="twitter:title" content="LLM360 | Open-source LLMs for Transparency, Trust, and Collaborative Research 🚀">
-    <meta name="twitter:description" content="LLM360, a framework for open-sourcing LLMs to foster transparency, trust, and collaborative research.">
-    <meta name="twitter:image" content="https://www.llm360.ai/images/pic00.jpg">
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@llm360">
+        <meta name="twitter:title" content="LLM360 | Open-source LLMs for Transparency, Trust, and Collaborative Research 🚀">
+        <meta name="twitter:description" content="LLM360, a framework for open-sourcing LLMs to foster transparency, trust, and collaborative research.">
+        <meta name="twitter:image" content="https://www.llm360.ai/images/pic00.jpg">
 
-    <!-- Schema Markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": "LLM360",
-      "url": "https://www.llm360.ai/",
-      "description": "LLM360, a framework for open-sourcing LLMs to foster transparency, trust, and collaborative research.",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Petuum, Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)"
-      },
-      "image": {
-        "@type": "ImageObject",
-        "url": "https://www.llm360.ai/images/pic00.jpg",
-        "width": 1920,
-        "height": 1080
-      }
-    }
-    </script>
-		<!-- /SEO -->
+        <!-- Schema Markup -->
+        <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "WebSite",
+          "name": "LLM360",
+          "url": "https://www.llm360.ai/",
+          "description": "LLM360, a framework for open-sourcing LLMs to foster transparency, trust, and collaborative research.",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Petuum, Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)"
+          },
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://www.llm360.ai/images/pic00.jpg",
+            "width": 1920,
+            "height": 1080
+          }
+        }
+        </script>
+      	<!-- /SEO -->
 
-		<!-- Favicon -->
-		<link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/android-chrome-512x512.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-    <!-- <link rel="manifest" href="/site.webmanifest"> -->
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+        <!-- Favicon -->
+    		<link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/android-chrome-512x512.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+        <!-- <link rel="manifest" href="/site.webmanifest"> -->
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
 
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="index is-preload">
-		<div id="page-wrapper">
+        <!-- Style -->
+        <link rel="stylesheet" href="assets/css/main.css" />
 
-			<!-- Header -->
-			<header id="header" class="alt">
-				<a href="index.html" class="logo">
-					<span class="symbol"><img src="images/logo_webheader.png" alt="" /></span><span>LLM360</span>
-				</a>
-				<nav id="nav">
-					<ul>
-						<li class="current"><a href="index.html">Home</a></li>
-						<li>
-							<a>Models</a>
-							<ul>
-								<li>
-									<a>Amber</a>
-									<ul>
-										<li>
-											<a>Amber</a>
-											<ul>
-												<li><a href="https://short.llm360.ai/amber-model" target="_blank">Model</a></li>
-												<li><a href="https://wandb.ai/llm360/Amber" target="_blank">Metrics</a></li>
-												<li><a href="https://short.llm360.ai/amber-data" target="_blank">Data</a></li>
-												<li><a href="https://short.llm360.ai/amber-code" target="_blank">Code</a></li>
-											</ul>
-										</li>
-										<li>
-											<a>AmberChat</a>
-											<ul>
-												<li><a href="https://huggingface.co/LLM360/AmberChat" target="_blank">Model</a></li>
-												<li><a href="https://wandb.ai/llm360/Amber" target="_blank">Metrics</a></li>
-												<li><a href="https://short.llm360.ai/amber-data" target="_blank">Data</a></li>
-												<li><a href="https://short.llm360.ai/amber-code" target="_blank">Code</a></li>
-											</ul>
-										</li>
-										<li>
-											<a>AmberSafe</a>
-											<ul>
-												<li><a href="https://huggingface.co/LLM360/AmberSafe" target="_blank">Model</a></li>
-												<li><a href="https://wandb.ai/llm360/Amber" target="_blank">Metrics</a></li>
-												<li><a href="https://short.llm360.ai/amber-data" target="_blank">Data</a></li>
-												<li><a href="https://short.llm360.ai/amber-code" target="_blank">Code</a></li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a>Crystal</a>
-									<ul>
-										<li>
-											<a>CrystalChat</a>
-											<ul>
-												<li><a href="https://huggingface.co/LLM360/CrystalChat" target="_blank">Model</a></li>
-												<li><a href="https://wandb.ai/llm360/CrystalCoder" target="_blank">Metrics</a></li>
-												<li><a href="https://short.llm360.ai/crystalcoder-data" target="_blank">Data</a></li>
-												<li><a href="https://short.llm360.ai/crystalcoder-code" target="_blank">Code</a></li>
-											</ul>
-										</li>
-										<li>
-											<a>CrystalCoder</a>
-											<ul>
-												<li><a href="https://short.llm360.ai/crystalcoder-model" target="_blank">Model</a></li>
-												<li><a href="https://wandb.ai/llm360/CrystalCoder" target="_blank">Metrics</a></li>
-												<li><a href="https://short.llm360.ai/crystalcoder-data" target="_blank">Data</a></li>
-												<li><a href="https://short.llm360.ai/crystalcoder-code" target="_blank">Code</a></li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a>Diamond (Coming Soon)</a>
-									<!--
-                                    <ul>
-                                        <li><a href="https://huggingface.co/LLM360/llm360-temp">Model</a></li>
-                                        <li><a href="https://github.com/LLM360">Analysis</a></li>
-                                        <li><a href="https://huggingface.co/LLM360/llm360-temp">Data</a></li>
-                                        <li><a href="https://github.com/LLM360">Code</a></li>
-                                    </ul>
+    </head>
+    <body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+                <!-- Banner -->
+                <section id="banner">
+                    <div class="content">
+                        <header>
+                            <h1>Open-source LLMs to foster <strong>transparency</strong>, <strong>trust</strong>, and <strong>collaborative research</strong>.</h1>
+                        </header>
+                    </div>
+                </section>
+
+                <!-- Models -->
+                <section id="crystal" class="wrapper style1">
+                    <header class="major">
+                        <h1>LLM360-Crystal</h1>
+                    </header>
+                    <div class="features style1">
+                        <div class="row gtr-50">
+                            <div class="box alt">
+                                <div class="row gtr-50">
+                                    <div class="col-8 col-12-large">
+                                        <h2>Crystal:</h2>
+                                        <p>SlimPajama and StarCoder datasets, balancing in NLP and coding.</p>
+                                    </div>
+                                    <div class="col-4 col-12-large">
+                                        <div class="row aln-middle" style="margin-left: 0.5em">
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/crystalcoder-model" target="_blank" class="image fit"><img src="images/model_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/crystalcoder-metrics" target="_blank" class="image fit"><img src="images/wandb_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/crystalcoder-data" target="_blank" class="image fit"><img src="images/data_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/crystalcoder-code" target="_blank" class="image fit"><img src="images/code_button.png" alt="" /></a>                                    </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box alt">
+                                <div class="row gtr-50">
+                                    <div class="col-8 col-12-large">
+                                        <h2>CrystalChat:</h2>
+                                        <p>Chat model, carefully selected of mix language and code datasets.</p>
+                                    </div>
+                                    <div class="col-4 col-12-large">
+                                        <div class="row aln-middle" style="margin-left: 0.5em">
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://huggingface.co/LLM360/CrystalChat" target="_blank" class="image fit"><img src="images/model_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/crystalcoder-metrics" target="_blank" class="image fit"><img src="images/wandb_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/crystalcoder-data" target="_blank" class="image fit"><img src="images/data_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/crystalcoder-code" target="_blank" class="image fit"><img src="images/code_button.png" alt="" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box alt">
+                                <div class="row gtr-50">
+                                    <div class="col-8 col-12-large">
+                                        <h2>CrystalVision:</h2>
+                                        <p>Coming soon...</p>
+                                    </div>
+                                    <div class="col-4 col-12-large">
+                                        <div class="row aln-middle" style="margin-left: 0.5em">
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a class="image fit"><img src="images/model_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/crystalcoder-metrics" target="_blank" class="image fit"><img src="images/wandb_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/crystalcoder-data" target="_blank" class="image fit"><img src="images/data_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a class="image fit"><img src="images/code_button.png" alt="" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="Amber" class="wrapper style2">
+                    <header class="major">
+                        <h1>LLM360-Amber</h1>
+                    </header>
+                    <div class="features style2">
+                        <div class="row gtr-50">
+                            <div class="box alt">
+                                <div class="row gtr-50">
+                                    <div class="col-8 col-12-large">
+                                        <h2>Amber:</h2>
+                                        <p>7B English language model with the LLaMA architecture.</p>
+                                    </div>
+                                    <div class="col-4 col-12-large">
+                                        <div class="row aln-middle" style="margin-left: 0.5em">
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/amber-model" target="_blank" class="image fit"><img src="images/model_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/amber-metrics" target="_blank" class="image fit"><img src="images/wandb_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/amber-data" target="_blank" class="image fit"><img src="images/data_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/amber-code" target="_blank" class="image fit"><img src="images/code_button.png" alt="" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box alt">
+                                <div class="row gtr-50">
+                                    <div class="col-8 col-12-large">
+                                        <h2>AmberChat:</h2>
+                                        <p>Instruction following model finetuned from LLM360-Amber.</p>
+                                    </div>
+                                    <div class="col-4 col-12-large">
+                                        <div class="row aln-middle" style="margin-left: 0.5em">
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://huggingface.co/LLM360/AmberChat" target="_blank" class="image fit"><img src="images/model_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/amber-metrics" target="_blank" class="image fit"><img src="images/wandb_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/amber-data" target="_blank" class="image fit"><img src="images/data_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/amber-code" target="_blank" class="image fit"><img src="images/code_button.png" alt="" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box alt">
+                                <div class="row gtr-50">
+                                    <div class="col-8 col-12-large">
+                                        <h2>AmberSafe:</h2>
+                                        <p>Safety-finetuned instruction model using AmberChat as the base.</p>
+                                    </div>
+                                    <div class="col-4 col-12-large">
+                                        <div class="row aln-middle" style="margin-left: 0.5em">
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://huggingface.co/LLM360/AmberSafe" target="_blank" class="image fit"><img src="images/model_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/amber-metrics" target="_blank" class="image fit"><img src="images/wandb_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/amber-data" target="_blank" class="image fit"><img src="images/data_button.png" alt="" /></a>
+                                            </div>
+                                            <div class="col-3" style="padding: 0.5em 0 0 0">
+                                                <a href="https://short.llm360.ai/amber-code" target="_blank" class="image fit"><img src="images/code_button.png" alt="" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Research -->
+                <section id="research" class="wrapper style3">
+                    <header class="major">
+                        <h1>Research</h1>
+                    </header>
+                    <div class="box primary">
+                        <div class="row gtr-150 gtr-uniform">
+                            <div class="col-8 col-12-medium">
+                                <h2>LLM360 Paper</h2>
+                                <div class="box alt">
+                                    <div class="posts">
+                                        <article>
+                                            <a class="image fit"><img src="images/crystalcoder_paper.png" alt="" /></a>
+                                            <h3>Crystal Paper</h3>
+                                            <p>Large Language Models (LLMs) specializing in code generation (which are
+                                                also often referred to as code LLMs), e.g., StarCoder and Code Llama, play
+                                                increasingly critical roles in various software development scenarios...</p>
+                                            <ul class="actions">
+                                                <li><a class="button3">Learn More</a></li>
+                                            </ul>
+                                        </article>
+                                        <article>
+                                            <a class="image fit"><img src="images/llm360_paper.png" alt="" /></a>
+                                            <h3>LLM360: Towards Fully Transparent Open-Source LLMs</h3>
+                                            <p>The recent surge in open-source Large Language Models (LLMs), such as LLaMA,
+                                                Falcon, and Mistral, provides diverse options for AI practitioners and researchers.
+                                                However, most LLMs have only released partial artifacts...</p>
+                                            <ul class="actions">
+                                                <li><a href="paper.html" target="_blank" class="button3">Learn More</a></li>
+                                            </ul>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-12-medium">
+                                <h2>Inspired Research</h2>
+                                <!--
+                                <div class="box alt">
+                                    <div class="posts">
                                     -->
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">Research</a>
-							<ul>
-								<li><a href="paper.html" target="_blank">Paper</a></li>
-							</ul>
-						</li>
-						<li><a href="blog/introducing-llm360-fully-transparent-open-source-llms.html">Blog</a></li>
-						<!-- <li><a href="blogpost.html">About</a></li> -->
-						<li><a href="#cta">Contact</a></li>
-					</ul>
-				</nav>
-			</header>
+                                      <article>
+                                        <a class="image fit"><img src="images/research_1.jpg" alt="" /></a>
+                                          <h3>Towards Tracing Trustworthiness Dynamics: Revisiting Pre-training Period of Large Language Models</h3>
+                                          <p>This paper explores the trustworthiness of large language models (LLMs) during pre-training, focusing on reliability, privacy, toxicity, fairness, and robustness using LLM360.</p>
+                                        <ul class="actions">
+                                            <li><a href="ttps://arxiv.org/pdf/2402.19465.pdf" target="_blank" rel="noopener" class="button3">Learn More</a></li>
+                                        </ul>
+                                      </article>
+                                      <!--
+                                  </div>
+                                </div>
+                              -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-			<!-- Banner -->
-			<section id="banner">
+                <!-- Resources -->
+                <section id="resources" class="wrapper style4">
+                    <header class="major">
+                        <h1>Resources</h1>
+                    </header>
+                    <div class="box primary">
+                        <div class="row gtr-150 gtr-uniform">
+                            <div class="posts">
+                                <article>
+                                    <a class="image"><img src="images/blog.png" alt="" /></a>
+                                    <h3>Introducing LLM360: Fully Transparent Open-Source LLMs</h3>
+                                    <p>In recent months, the open-source large language model (LLM) community has seen tremendous model contributions. However, model weight releases and overview technical reports do not contain enough information to cover the complexity of LLM training...</p>
+                                    <ul class="actions">
+                                        <li><a href="blog/introducing-llm360-fully-transparent-open-source-llms.html" class="button3">Learn More</a></li>
+                                    </ul>
+                                </article>
+                                <article>
+                                    <a class="image"><img src="images/pretraining_guide.png" alt="" /></a>
+                                    <h3>LLM Pretraining Guide</h3>
+                                    <p>The LLM360 Pre-Training Guide provides complete details and considerations for anyone leading a pre-training project. The Guide is divided into three categories: Project Planning, Initial Training Decision, Ensuring Success. Learning and procedural steps were ...</p>
+                                    <ul class="actions">
+                                        <li><a href="pretrainingguide.html" class="button3">Learn More</a></li>
+                                    </ul>
+                                </article>
+                                <article>
+                                    <a class="image"><img src="images/usage_guide.png" alt="" /></a>
+                                    <h3>Model Usage Guide</h3>
+                                    <p>Coming Soon...</p>
+                                    <ul class="actions">
+                                        <li><a class="button3 hidden">Learn More</a></li>
+                                    </ul>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row aln-center" style="margin-bottom: 5em; margin-top: -4em; margin-left: 0">
+                        <!-- Twitter -->
+                        <div class="col-4 col-12-large" style="padding: 1em">
+                            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Great to see LLM360 in the top 5 on the ‘Openness of instruction-tuned LLMs’ scoreboard along with <a href="https://twitter.com/BigscienceW?ref_src=twsrc%5Etfw">@BigscienceW</a>, <a href="https://twitter.com/laion_ai?ref_src=twsrc%5Etfw">@laion_ai</a>, and <a href="https://twitter.com/togethercompute?ref_src=twsrc%5Etfw">@togethercompute</a>.<br><br>Check out the work from <a href="https://twitter.com/Radboud_Uni?ref_src=twsrc%5Etfw">@Radboud_Uni</a> here: <a href="https://t.co/g2Lf4yNPMz">https://t.co/g2Lf4yNPMz</a> <a href="https://t.co/t0MELYPpvK">pic.twitter.com/t0MELYPpvK</a></p>&mdash; LLM360 (@llm360) <a href="https://twitter.com/llm360/status/1755311069504114834?ref_src=twsrc%5Etfw">February 7, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </div>
+                        <div class="col-4 col-12-large" style="padding: 1em">
+                            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">1/3 We are releasing CrystalChat 🔮 — a top-scoring 7B chat model, fully open source!<br><br>As always, CrystalChat is released under Apache 2.0, along with all training data, checkpoints, and implementation details.<br><br>Grab the model here: <a href="https://t.co/n78jhxpVhA">https://t.co/n78jhxpVhA</a> <a href="https://t.co/jPXgEL0Xq5">pic.twitter.com/jPXgEL0Xq5</a></p>&mdash; LLM360 (@llm360) <a href="https://twitter.com/llm360/status/1745481617655669103?ref_src=twsrc%5Etfw">January 11, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </div>
+                        <div class="col-4 col-12-large" style="padding: 1em">
+                            <blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">2/3 Choosing models without knowing the training data is becoming riskier and riskier (e.g. <a href="https://twitter.com/nytimes?ref_src=twsrc%5Etfw">@nytimes</a> vs <a href="https://twitter.com/OpenAI?ref_src=twsrc%5Etfw">@openai</a>).<br><br>CrystalChat makes all that information available — with more to come!<br><br>Check out how CrystalChat compares to SOTA models and performs on the major benchmarks below. <a href="https://t.co/paTKmPCHph">pic.twitter.com/paTKmPCHph</a></p>&mdash; LLM360 (@llm360) <a href="https://twitter.com/llm360/status/1745481619794763953?ref_src=twsrc%5Etfw">January 11, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </div>
+                    </div>
+                </section>
 
-					<!--
-						".inner" is set up as an inline-block so it automatically expands
-						in both directions to fit whatever's inside it. This means it won't
-						automatically wrap lines, so be sure to use line breaks where
-						appropriate (<br />).
-					-->
-					<div class="inner">
-						<div class="row aln-middle">
-							<div class="col-4 col-12-narrower">
-								<img id="spinningImage" src="images/logo-highres-banner.png" alt="" style="width:200px;height:200px"/>
-							</div>
-							<div class="col-6 col-12-narrower">
-								<header>
-									<h2>LLM360</h2>
-								</header>
-								<p>A framework for <strong>open-source LLMs</strong> to foster <strong>transparency</strong>, <strong>trust</strong>, and <strong>collaborative research</strong>.</p>
-								<br>
-								<button id="spinButton" onclick="redirectToAnotherPage()">Spin With Us</button>
-							</div>
-						</div>
-					</div>
+                <!-- Contact -->
+                <section id="contact"  class="wrapper style5">
+                    <header class="major">
+                        <h1>WE VALUE YOUR INSIGHTS</h1>
+                    </header>
+                    <p>Your feedback drives the evolution of LLM360. Share your experiences, results, and how we can improve to serve the AI community better.</p>
+                    <form method="post" action="https://formspree.io/f/xqkvrzyy" name="Contact Form">
+                        <div class="row gtr-uniform">
+                            <div class="col-6 col-12-xsmall">
+                                <input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+                            </div>
+                            <div class="col-6 col-12-xsmall">
+                                <input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+                            </div>
+                            <div class="col-12">
+                                <textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <ul class="actions">
+                                    <li><input type="submit" value="Send Message" class="primary" /></li>
+                                    <li><input type="reset" value="Reset" /></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </section>
 
-				</section>
+            </div>
+        </div>
 
-			<!-- Main -->
-			<article id="main">
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
+                <!-- Menu -->
+                <nav id="menu">
+      						<a href="index.html">
+      							<figure class="hover-rotate">
+      								<img src="images/logo-highres.png" alt="logo" />
+      							</figure>
+      						</a>
+                    <header>
+                        <h1><a href="#top">LLM360</a></h1>
+                    </header>
+                    <ul>
+                        <li><a href="#crystal">Models</a></li>
+                        <li><a href="#research">Research</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </nav>
+                <!-- Footer -->
+                <footer id="footer">
+                    <p>
+                        LLM360, proudly sponsored by Petuum, MBZUAI, and Cerebras, is dedicated to advancing the field of AI by providing comprehensive access to large language models.<br>
+                        Our mission is to foster an ecosystem of collaboration, transparency, and innovation in AI research and applications.
+                    </p>
+                    <ul class="icons">
+                        <li><a href="https://twitter.com/llm360" target="_blank" class="icon brands circle fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="https://github.com/LLM360" target="_blank" class="icon brands circle fa-github"><span class="label">Github</span></a></li>
+                        <li><a href="mailto:team@llm360.ai" target="_blank" class="icon circle fa-envelope"><span class="label">Email</span></a></li>
+                    </ul>
+                    <p class="copyright">&copy; LLM360 2023. All rights reserved.</p>
+                </footer>
 
-				<!-- Models -->
-					<section class="wrapper style1 container special">
-						<div class="row aln-center">
-							<div class="col-4 col-12-narrower">
-								<section id="Amber">
-									<a class="image fit"><img src="images/amber.png" alt="" /></a>
-								</section>
-								<div class="tabset1">
-									<!-- Tab 1 -->
-									<input type="radio" name="tabset1" id="tab1" checked>
-									<label for="tab1">Amber</label>
-									<!-- Tab 2 -->
-									<input type="radio" name="tabset1" id="tab2">
-									<label for="tab2">AmberChat</label>
-									<!-- Tab 3 -->
-									<input type="radio" name="tabset1" id="tab3">
-									<label for="tab3">AmberSafe</label>
-
-									<div class="tab1-panels">
-										<section class="tab1-panel">
-											<h3> An 7B English language model with the LLaMA architecture.</h3>
-											<section class="tiles">
-												<article class="style1">
-													<span class="image">
-														<img src="images/huggingface.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/amber-model" target="_blank">
-														<h4>Model</h4>
-													</a>
-												</article>
-												<article class="style1">
-													<span class="image">
-														<img src="images/wandb.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/amber-metrics" target="_blank">
-														<h4>Metrics</h4>
-													</a>
-												</article>
-												<article class="style1">
-													<span class="image">
-														<img src="images/huggingface.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/amber-data" target="_blank">
-														<h4>Data</h4>
-													</a>
-												</article>
-												<article class="style1">
-													<span class="image">
-														<img src="images/git.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/amber-code" target="_blank">
-														<h4>Code</h4>
-													</a>
-												</article>
-											</section>
-										</section>
-										<section class="tab1-panel">
-											<h3>An instruction following model finetuned from LLM360-Amber.</h3>
-											<section class="tiles">
-												<article class="style1">
-													<span class="image">
-														<img src="images/huggingface.jpg" alt="" />
-													</span>
-													<a href="https://huggingface.co/LLM360/AmberChat" target="_blank">
-														<h4>Model</h4>
-													</a>
-												</article>
-												<article class="style1">
-													<span class="image">
-														<img src="images/wandb.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/amber-metrics" target="_blank">
-														<h4>Metrics</h4>
-													</a>
-												</article>
-												<article class="style1">
-													<span class="image">
-														<img src="images/huggingface.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/amber-data" target="_blank">
-														<h4>Data</h4>
-													</a>
-												</article>
-												<article class="style1">
-													<span class="image">
-														<img src="images/git.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/amber-code" target="_blank">
-														<h4>Code</h4>
-													</a>
-												</article>
-											</section>
-										</section>
-										<section class="tab1-panel">
-											<h3>A safety-finetuned instruction model using LLM360-AmberChat as the base.</h3>
-											<section class="tiles">
-												<article class="style1">
-													<span class="image">
-														<img src="images/huggingface.jpg" alt="" />
-													</span>
-													<a href="https://huggingface.co/LLM360/AmberSafe" target="_blank">
-														<h4>Model</h4>
-													</a>
-												</article>
-												<article class="style1">
-													<span class="image">
-														<img src="images/wandb.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/amber-metrics" target="_blank">
-														<h4>Metrics</h4>
-													</a>
-												</article>
-												<article class="style1">
-													<span class="image">
-														<img src="images/huggingface.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/amber-data" target="_blank">
-														<h4>Data</h4>
-													</a>
-												</article>
-												<article class="style1">
-													<span class="image">
-														<img src="images/git.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/amber-code" target="_blank">
-														<h4>Code</h4>
-													</a>
-												</article>
-											</section>
-										</section>
-									</div>
-								</div>
-							</div>
-							<div class="col-4 col-12-narrower">
-								<section id="crystal">
-									<a class="image fit"><img src="images/crystal.png" alt="" /></a>
-								</section>
-								<div class="tabset2">
-									<!-- Tab 4 -->
-									<input type="radio" name="tabset2" id="tab4" checked>
-									<label for="tab4">CrystalChat</label>
-									<!-- Tab 5 -->
-									<input type="radio" name="tabset2" id="tab5">
-									<label for="tab5">CrystalCoder</label>
-									<div class="tab2-panels">
-										<section class="tab2-panel">
-											<h3>An instruction following model finetuned from LLM360-CrystalCoder.</h3>
-											<section class="tiles">
-												<article class="style2">
-													<span class="image">
-														<img src="images/huggingface.jpg" alt="" />
-													</span>
-													<a href="https://huggingface.co/LLM360/CrystalChat" target="_blank">
-														<h4>Model</h4>
-													</a>
-												</article>
-												<article class="style2">
-													<span class="image">
-														<img src="images/wandb.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/crystalcoder-metrics" target="_blank">
-														<h4>Metrics</h4>
-													</a>
-												</article>
-												<article class="style2">
-													<span class="image">
-														<img src="images/huggingface.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/crystalcoder-data" target="_blank">
-														<h4>Data</h4>
-
-													</a>
-												</article>
-												<article class="style2">
-													<span class="image">
-														<img src="images/git.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/crystalcoder-code" target="_blank">
-														<h4>Code</h4>
-													</a>
-												</article>
-											</section>
-										</section>
-										<section class="tab2-panel">
-											<h3>A 7B parameter language model balance on language and coding tasks.</h3>
-											<section class="tiles">
-												<article class="style2">
-													<span class="image">
-														<img src="images/huggingface.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/crystalcoder-model" target="_blank">
-														<h4>Model</h4>
-													</a>
-												</article>
-												<article class="style2">
-													<span class="image">
-														<img src="images/wandb.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/crystalcoder-metrics" target="_blank">
-														<h4>Metrics</h4>
-													</a>
-												</article>
-												<article class="style2">
-													<span class="image">
-														<img src="images/huggingface.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/crystalcoder-data" target="_blank">
-														<h4>Data</h4>
-
-													</a>
-												</article>
-												<article class="style2">
-													<span class="image">
-														<img src="images/git.jpg" alt="" />
-													</span>
-													<a href="https://short.llm360.ai/crystalcoder-code" target="_blank">
-														<h4>Code</h4>
-													</a>
-												</article>
-											</section>
-										</section>
-									</div>
-								</div>
-							</div>
-							<div class="col-4 col-12-narrower">
-								<section id="diamond">
-									<a class="image fit"><img src="images/diamond.png" alt="" />
-										<h3 style="margin-top: 0.5em; font-weight: 500; color: #3fb1a3">Coming soon!</h3>
-									</a>
-									<section class="tiles">
-										<article class="style3">
-											<span class="image">
-												<img src="images/huggingface.jpg" alt="" />
-											</span>
-											<a href="#">
-												<h4>Model</h4>
-											</a>
-										</article>
-										<article class="style3">
-											<span class="image">
-												<img src="images/wandb.jpg" alt="" />
-											</span>
-											<a href="#">
-												<h4>Metrics</h4>
-											</a>
-										</article>
-										<article class="style3">
-											<span class="image">
-												<img src="images/huggingface.jpg" alt="" />
-											</span>
-											<a href="#">
-												<h4>Data</h4>
-
-											</a>
-										</article>
-										<article class="style3">
-											<span class="image">
-												<img src="images/git.jpg" alt="" />
-											</span>
-											<a href="#">
-												<h4>Code</h4>
-
-											</a>
-										</article>
-									</section>
-								</section>
-
-							</div>
-						</div>
-					</section>
-<!--					&lt;!&ndash; Supporters &ndash;&gt;-->
-<!--						<section class="wrapper style4 container special">-->
-<!--							<div class="row aln-center">-->
-<!--								<div class="row aln-middle col-4 col-12-mobile">-->
-<!--									<a target="_blank" rel="noopener" class="image featured"><img src="images/mbzuai.png" alt="Mohamed bin Zayed University of Artificial Intelligence" /></a>-->
-<!--								</div>-->
-<!--								<div class="row aln-middle col-4 col-12-mobile">-->
-<!--									<a target="_blank" rel="noopener" class="image featured"><img src="images/petuum.png" alt="" /></a>-->
-<!--								</div>-->
-<!--								<div class="row aln-middle col-2 col-12-mobile">-->
-<!--									<a target="_blank" rel="noopener" class="image featured"><img src="images/cerebras.png" alt="" /></a>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</section>-->
-<!--				</article>-->
-
-				<!-- CTA -->
-					<section id="cta">
-	<!--					<article id="main">-->
-							<header>
-								<h2><strong>WE VALUE YOUR INSIGHTS</strong></h2>
-								<p>Your feedback drives the evolution of LLM360. <br>
-									Share your experiences, results, and how we can improve to serve the AI community better.</p>
-							</header>
-							<!-- One -->
-							<section class="wrapper style4 special container medium">
-
-								<!-- Content -->
-								<div class="content">
-									<form method="post" action="https://formspree.io/f/xqkvrzyy" name="Contact Form">
-										<div class="row gtr-50">
-											<form method="post" action="#">
-												<div class="row gtr-uniform gtr-50">
-													<div class="col-6 col-12-xsmall">
-														<input type="text" name="Name" id="name" value="" placeholder="Name" />
-													</div>
-													<div class="col-6 col-12-xsmall">
-														<input type="email" name="Email" id="email" value="" placeholder="Email" />
-													</div>
-													<div class="col-12">
-														<textarea name="message" id="Message" placeholder="Enter your message" rows="6"></textarea>
-													</div>
-													<div class="col-12">
-														<ul class="actions">
-															<li><input type="submit" value="Send Message" class="primary" /><input type="reset" value="Reset" /></li>
-														</ul>
-													</div>
-												</div>
-											</form>
-										</div>
-									</form>
-								</div>
-	<!--						</article>-->
-						</section>
-
-					</section>
-
-				<!-- Carousel -->
-				<article id="paper">
-					<section class="carousel">
-						<div class="reel">
-							<article1>
-	<!--							<img class="image" src="images/blog.png" alt="" />-->
-								<header>
-									<p>Blog</p>
-									<br>
-									<h3><a href="blog/introducing-llm360-fully-transparent-open-source-llms.html">Introducing LLM360: Fully Transparent Open-Source LLMs</a></h3>
-								</header>
-								<hr>
-								<p>LLM360 Team</p>
-	<!--							<p>Brief introduction...</p>-->
-
-							</article1>
-
-							<article2>
-	<!--							<img class="image" src="images/paper.png" alt="" />-->
-								<header>
-									<p>Paper</p>
-									<br>
-									<h3><a href="paper.html" target="_blank">LLM360: Towards Fully Transparent Open-Source LLMs</a></h3>
-								</header>
-								<hr>
-								<p>LLM360 Team</p>
-	<!--							<p>Brief introduction...</p>-->
-							</article2>
-
-	<!--						<article>-->
-	<!--							<a href="#" class="image featured"><img src="images/paper.png" alt="" /></a>-->
-	<!--							<header>-->
-	<!--								<h3><a href="#">What does a fully "open-source" model look like.</a></h3>-->
-	<!--								<p>Author</p>-->
-	<!--							</header>-->
-	<!--							<p>Brief introduction...</p>-->
-	<!--						</article>-->
-
-	<!--						<article>-->
-	<!--							<a href="#" class="image featured"><img src="images/paper.png" alt="" /></a>-->
-	<!--							<header>-->
-	<!--								<h3><a href="#">What are checkpoints in AI and why are they important?</a></h3>-->
-	<!--								<p>Author</p>-->
-	<!--							</header>-->
-	<!--							<p>Brief introduction...</p>-->
-
-	<!--						</article>-->
-
-	<!--						<article>-->
-	<!--							<a href="#" class="image featured"><img src="images/paper.png" alt="" /></a>-->
-	<!--							<header>-->
-	<!--								<h3><a href="#">Statistical analyses of Large Language Models using 360 checkpoints.</a></h3>-->
-	<!--								<p>Author</p>-->
-	<!--							</header>-->
-	<!--							<p>Brief introduction...</p>-->
-	<!--						</article>-->
-						</div>
-					</section>
-				</article>
-			</article>
-			<!-- Footer -->
-			<footer id="footer">
-				<p>LLM360, proudly sponsored by Petuum, MBZUAI, and Cerebras, is dedicated to advancing the field of AI by providing comprehensive access to large language models.<br>
-					Our mission is to foster an ecosystem of collaboration, transparency, and innovation in AI research and applications.</p>
-				<ul class="icons">
-					<li><a href="https://twitter.com/llm360" class="icon brands circle fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="https://github.com/LLM360" class="icon brands circle fa-github"><span class="label">Github</span></a></li>
-					<li><a href="mailto:team@llm360.ai" class="icon circle fa-envelope"><span class="label">Email</span></a></li>
-				</ul>
-
-				<ul class="copyright">
-					<li>&copy; LLM360 2023. All rights reserved</li>
-				</ul>
-				<a title="Scroll back to top" aria-label="Scroll back to top" href="#" class="back-to-top" hidefocus="true" style="outline: none;">
-					<i class="fa fa-chevron-up"></i>
-				</a>
-			</footer>
-		</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+            </div>
+        </div>
+        <a id="buttonToTop"></a>
+    </div>
+    <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+    </body>
 </html>

@@ -1,258 +1,340 @@
-
+/* script.js */
 (function($) {
 
-	var	$window = $(window),
-		$body = $('body'),
-		$header = $('#header'),
-		$banner = $('#banner'),
-		settings = {
+    var	$window = $(window),
+        $head = $('head'),
+        $body = $('body');
 
-			// Carousels
-			carousels: {
-				speed: 4,
-				fadeIn: true,
-				fadeDelay: 250
-			},
+    // Breakpoints.
+    breakpoints({
+        xlarge:   [ '1281px',  '1680px' ],
+        large:    [ '981px',   '1280px' ],
+        medium:   [ '737px',   '980px'  ],
+        small:    [ '481px',   '736px'  ],
+        xsmall:   [ '361px',   '480px'  ],
+        xxsmall:  [ null,      '360px'  ],
+        'xlarge-to-max':    '(min-width: 1681px)',
+        'small-to-xlarge':  '(min-width: 481px) and (max-width: 1680px)'
+    });
 
-		};
+    // Stops animations/transitions until the page has ...
 
-	// Your added code for the button and spinning image
-	const spinningImage = $('#spinningImage');
+    // ... loaded.
+    $window.on('load', function() {
+        window.setTimeout(function() {
+            $body.removeClass('is-preload');
+        }, 100);
+    });
 
-	function spinImage() {
-		spinningImage.addClass('spinning');
-	}
+    // ... stopped resizing.
+    var resizeTimeout;
 
-	function stopSpin() {
-		spinningImage.removeClass('spinning');
-	}
+    $window.on('resize', function() {
 
-	function redirectToAnotherPage() {
-		// Replace 'your_target_page.html' with the actual target page URL
-		window.location.href = 'https://www.llm360.ai/blog/introducing-llm360-fully-transparent-open-source-llms.html';
-	}
+        // Mark as resizing.
+        $body.addClass('is-resizing');
 
-	const spinButton = $('#spinButton');
-	spinButton.on('mouseenter', spinImage).on('mouseleave', stopSpin);
-	spinButton.on('click', redirectToAnotherPage);
+        // Unmark after delay.
+        clearTimeout(resizeTimeout);
 
-	// Breakpoints.
-		breakpoints({
-			wide:      [ '1281px',  '1680px' ],
-			normal:    [ '981px',   '1280px' ],
-			narrow:    [ '841px',   '980px'  ],
-			narrower:  [ '737px',   '840px'  ],
-			mobile:    [ null,      '736px'  ]
-		});
+        resizeTimeout = setTimeout(function() {
+            $body.removeClass('is-resizing');
+        }, 100);
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+    });
 
-	// Scrolly.
-		$('.scrolly').scrolly({
-			speed: 1000,
-			offset: function() { return $header.height() + 10; }
-		});
+    // Fixes.
 
-	// Dropdowns.
-		$('#nav > ul').dropotron({
-			mode: 'fade',
-			noOpenerFade: true,
-			expandMode: (browser.mobile ? 'click' : 'hover')
-		});
+    // Object fit images.
+    if (!browser.canUse('object-fit')
+        ||	browser.name == 'safari')
+        $('.image.object').each(function() {
 
-	// Nav Panel.
+            var $this = $(this),
+                $img = $this.children('img');
 
-		// Button.
-			$(
-				'<div id="navButton">' +
-					'<a href="#navPanel" class="toggle"></a>' +
-				'</div>'
-			)
-				.appendTo($body);
+            // Hide original image.
+            $img.css('opacity', '0');
 
-		// Panel.
-			$(
-				'<div id="navPanel">' +
-					'<nav>' +
-						$('#nav').navList() +
-					'</nav>' +
-				'</div>'
-			)
-				.appendTo($body)
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'left',
-					target: $body,
-					visibleClass: 'navPanel-visible'
-				});
+            // Set background.
+            $this
+                .css('background-image', 'url("' + $img.attr('src') + '")')
+                .css('background-size', $img.css('object-fit') ? $img.css('object-fit') : 'cover')
+                .css('background-position', $img.css('object-position') ? $img.css('object-position') : 'center');
 
-		// Fix: Remove navPanel transitions on WP<10 (poor/buggy performance).
-			if (browser.os == 'wp' && browser.osVersion < 10)
-				$('#navButton, #navPanel, #page-wrapper')
-					.css('transition', 'none');
-	// Carousels.
-		$('.carousel').each(function() {
+        });
 
-			var	$t = $(this),
-				$forward = $('<span class="forward"></span>'),
-				$backward = $('<span class="backward"></span>'),
-				$reel = $t.children('.reel'),
-				$items = $reel.children('article');
+    // Sidebar.
+    var $sidebar = $('#sidebar'),
+        $sidebar_inner = $sidebar.children('.inner');
 
-			var	pos = 0,
-				leftLimit,
-				rightLimit,
-				itemWidth,
-				reelWidth,
-				timerId;
+    // Inactive by default on <= large.
+    breakpoints.on('<=large', function() {
+        $sidebar.addClass('inactive');
+    });
 
-			// Items.
-			if (settings.carousels.fadeIn) {
+    breakpoints.on('>large', function() {
+        $sidebar.removeClass('inactive');
+    });
 
-				$items.addClass('loading');
+    // Hack: Workaround for Chrome/Android scrollbar position bug.
+    if (browser.os == 'android'
+        &&	browser.name == 'chrome')
+        $('<style>#sidebar .inner::-webkit-scrollbar { display: none; }</style>')
+            .appendTo($head);
 
-				$t.scrollex({
-					mode: 'middle',
-					top: '-20vh',
-					bottom: '-20vh',
-					enter: function() {
+    // Toggle.
+    $('<a href="#sidebar" class="toggle"></a>')
+        .appendTo($sidebar)
+        .on('click', function(event) {
 
-						var	timerId,
-							limit = $items.length - Math.ceil($window.width() / itemWidth);
+            // Prevent default.
+            event.preventDefault();
+            event.stopPropagation();
 
-						timerId = window.setInterval(function() {
-							var x = $items.filter('.loading'), xf = x.first();
+            // Toggle.
+            $sidebar.toggleClass('inactive');
 
-							if (x.length <= limit) {
+        });
 
-								window.clearInterval(timerId);
-								$items.removeClass('loading');
-								return;
+    // Events.
 
-							}
+    // Link clicks.
+    $sidebar.on('click', 'a', function(event) {
 
-							xf.removeClass('loading');
+        // >large? Bail.
+        if (breakpoints.active('>large'))
+            return;
 
-						}, settings.carousels.fadeDelay);
+        // Vars.
+        var $a = $(this),
+            href = $a.attr('href'),
+            target = $a.attr('target');
 
-					}
-				});
+        // Prevent default.
+        event.preventDefault();
+        event.stopPropagation();
 
-			}
+        // Check URL.
+        if (!href || href == '#' || href == '')
+            return;
 
-			// Main.
-			$t._update = function() {
-				pos = 0;
-				rightLimit = (-1 * reelWidth) + $window.width();
-				leftLimit = 0;
-				$t._updatePos();
-			};
+        // Hide sidebar.
+        $sidebar.addClass('inactive');
 
-			$t._updatePos = function() { $reel.css('transform', 'translate(' + pos + 'px, 0)'); };
+        // Redirect to href.
+        setTimeout(function() {
 
-			// Forward.
-			$forward
-				.appendTo($t)
-				.hide()
-				.mouseenter(function(e) {
-					timerId = window.setInterval(function() {
-						pos -= settings.carousels.speed;
+            if (target == '_blank')
+                window.open(href);
+            else
+                window.location.href = href;
 
-						if (pos <= rightLimit)
-						{
-							window.clearInterval(timerId);
-							pos = rightLimit;
-						}
+        }, 500);
 
-						$t._updatePos();
-					}, 10);
-				})
-				.mouseleave(function(e) {
-					window.clearInterval(timerId);
-				});
+    });
 
-			// Backward.
-			$backward
-				.appendTo($t)
-				.hide()
-				.mouseenter(function(e) {
-					timerId = window.setInterval(function() {
-						pos += settings.carousels.speed;
+    // Prevent certain events inside the panel from bubbling.
+    $sidebar.on('click touchend touchstart touchmove', function(event) {
 
-						if (pos >= leftLimit) {
+        // >large? Bail.
+        if (breakpoints.active('>large'))
+            return;
 
-							window.clearInterval(timerId);
-							pos = leftLimit;
+        // Prevent propagation.
+        event.stopPropagation();
 
-						}
+    });
 
-						$t._updatePos();
-					}, 10);
-				})
-				.mouseleave(function(e) {
-					window.clearInterval(timerId);
-				});
+    // Hide panel on body click/tap.
+    $body.on('click touchend', function(event) {
 
-			// Init.
-			$window.on('load', function() {
+        // >large? Bail.
+        if (breakpoints.active('>large'))
+            return;
 
-				reelWidth = $reel[0].scrollWidth;
+        // Deactivate.
+        $sidebar.addClass('inactive');
 
-				if (browser.mobile) {
+    });
 
-					$reel
-						.css('overflow-y', 'hidden')
-						.css('overflow-x', 'scroll')
-						.scrollLeft(0);
-					$forward.hide();
-					$backward.hide();
+    // Scroll lock.
+    // Note: If you do anything to change the height of the sidebar's content, be sure to
+    // trigger 'resize.sidebar-lock' on $window so stuff doesn't get out of sync.
 
-				}
-				else {
+    $window.on('load.sidebar-lock', function() {
 
-					$reel
-						.css('overflow', 'visible')
-						.scrollLeft(0);
-					$forward.show();
-					$backward.show();
+        var sh, wh, st;
 
-				}
+        // Reset scroll position to 0 if it's 1.
+        if ($window.scrollTop() == 1)
+            $window.scrollTop(0);
 
-				$t._update();
+        $window
+            .on('scroll.sidebar-lock', function() {
 
-				$window.on('resize', function() {
-					reelWidth = $reel[0].scrollWidth;
-					$t._update();
-				}).trigger('resize');
+                var x, y;
 
-			});
+                // <=large? Bail.
+                if (breakpoints.active('<=large')) {
 
-		});
-	// Header.
-		if (!browser.mobile
-		&&	$header.hasClass('alt')
-		&&	$banner.length > 0) {
+                    $sidebar_inner
+                        .data('locked', 0)
+                        .css('position', '')
+                        .css('top', '');
 
-			$window.on('load', function() {
+                    return;
 
-				$banner.scrollex({
-					bottom:		$header.outerHeight(),
-					terminate:	function() { $header.removeClass('alt'); },
-					enter:		function() { $header.addClass('alt reveal'); },
-					leave:		function() { $header.removeClass('alt'); }
-				});
+                }
 
-			});
+                // Calculate positions.
+                x = Math.max(sh - wh, 0);
+                y = Math.max(0, $window.scrollTop() - x);
 
-		}
+                // Lock/unlock.
+                if ($sidebar_inner.data('locked') == 1) {
 
+                    if (y <= 0)
+                        $sidebar_inner
+                            .data('locked', 0)
+                            .css('position', '')
+                            .css('top', '');
+                    else
+                        $sidebar_inner
+                            .css('top', -1 * x);
+
+                }
+                else {
+
+                    if (y > 0)
+                        $sidebar_inner
+                            .data('locked', 1)
+                            .css('position', 'fixed')
+                            .css('top', -1 * x);
+
+                }
+
+            })
+            .on('resize.sidebar-lock', function() {
+
+                // Calculate heights.
+                wh = $window.height();
+                sh = $sidebar_inner.outerHeight() + 30;
+
+                // Trigger scroll.
+                $window.trigger('scroll.sidebar-lock');
+
+            })
+            .trigger('resize.sidebar-lock');
+
+    });
+    // Menu.
+    var $menu = $('#menu'),
+        $menu_openers = $menu.children('ul').find('.opener');
+
+    // Openers.
+    $menu_openers.each(function() {
+
+        var $this = $(this);
+
+        $this.on('click', function(event) {
+
+            // Prevent default.
+            event.preventDefault();
+
+            // Toggle.
+            $menu_openers.not($this).removeClass('active');
+            $this.toggleClass('active');
+
+            // Trigger resize (sidebar lock).
+            $window.triggerHandler('resize.sidebar-lock');
+
+        });
+
+    });
+
+    //Back to Top button
+    var btn = $('#buttonToTop');
+
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 300) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+
+    btn.on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop:0}, '300');
+    });
+
+    //Animated Collapsibles
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    };
+
+    // Auto Slideshow
+    function goSlider(container, interval, fadeTime) { // overall slider function
+        var element = container; // get the container element, turn into element var
+
+        if(interval == null) {
+            var interval = 1000; // set the interval between fades
+        }
+        if(fadeTime == null) {
+            var fadeTime = 500; // set the fade times
+        }
+        slideOut(element); // begin the slideOut process
+
+
+        function slideOut(element, looping) { // slideOut Functionality, fades out the current slide
+
+            if(looping != null) { // if looping already
+                $slide = element; // $slide = the next slide
+            } else { // otherwise the slide to fade out is the first child of the container
+                $slide = $(element).find(">:first-child");
+            }
+
+            // grab the slide, delay using interval, then fade out
+            $slide
+                .delay(interval)
+                .fadeOut(fadeTime, slideIn);
+
+            // once faded out, callback to SlideIn for next slide
+
+        } // end slideOut function
+
+        function slideIn() { // slideIn Functionality, fades in the next one
+            var $nextSlide = $(this).next(); // get next slide
+
+            if ($nextSlide.length == 0) { // if end of slides
+                $firstSlide = $(this).parent().find(">:first-child"); // "next slide" return to first child of the slideshow
+                $firstSlide.fadeIn(fadeTime); // fade in the original slide
+                slideOut($firstSlide, true); // now run the slideOut again setting looping to true
+
+            } else {
+                // if there is a next slide
+                $nextSlide.fadeIn(fadeTime); // fade it in
+                slideOut($nextSlide, true); // then run the fadeOut
+
+            } // end else
+        }
+    }
+
+    $(document).ready(function() {
+
+        goSlider('.slider', 2500, 1500); // run the slider
+
+    }); // end doc ready
 })(jQuery);
