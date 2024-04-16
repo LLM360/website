@@ -2182,7 +2182,7 @@ button3:disabled,
     font-size: 2.5em;
     color: #e76b20;}
 #wrapper .style2 p{
-    font-size: 1em;
+    font-size: 1.1em;
     font-weight: 300;
     margin:0.5em 0 0.5em 0.5em;}
 #wrapper .style3 h2{
@@ -2307,10 +2307,38 @@ button3:disabled,
     font-weight: 300;
     color: #454e50;
     margin:0.5em 0 0 0;}
+@media screen and (min-width: 2000px) {
+    #wrapper .style1 h3 {
+        font-size: 2em;}
+    #wrapper .style1 p{
+        font-size: 1.6em;}
+    #wrapper .style2 h3 {
+        font-size: 2em;}
+    #wrapper .style2 p{
+        font-size: 1.6em;}  }
+@media screen and (min-width: 1690px) and (max-width:1999px) {
+    #wrapper .style1 h3 {
+        font-size: 1.5em;}
+    #wrapper .style1 p{
+        font-size: 1.1em;}
+    #wrapper .style2 h3 {
+        font-size: 1.5em;}
+    #wrapper .style2 p{
+        font-size: 1.1em;}  }
+@media screen and (min-width: 1480px) and (max-width:1689px) {
+    #wrapper .style1 h3 {
+        font-size: 1.5em;}
+    #wrapper .style1 p{
+        font-size: 1.2em;}
+    #wrapper .style2 h3 {
+        font-size: 1.5em;}
+    #wrapper .style2 p{
+        font-size: 1.2em;}
+}
 @media screen and (max-width: 1280px) {
     #wrapper .style1 h2{
         font-size: 4em;}
-    #wrapper .style1 h2{
+    #wrapper .style1 h3{
         font-size: 3em;}
     #wrapper .style1 p{
         font-size: 2.5em;
@@ -2319,7 +2347,7 @@ button3:disabled,
         width: 70%;}
     #wrapper .style2 h2{
         font-size: 4em;}
-    #wrapper .style2 h2{
+    #wrapper .style2 h3{
         font-size: 3em;}
     #wrapper .style2 p{
         font-size: 2.5em;
@@ -2330,14 +2358,14 @@ button3:disabled,
 @media screen and (max-width: 736px) {
     #wrapper .style1 h2{
         font-size: 3em;}
-    #wrapper .style1 h2{
+    #wrapper .style1 h3{
         font-size: 2em;}
     #wrapper .style1 p{
         font-size: 1.75em;
         margin-bottom: 2em;}
     #wrapper .style2 h2{
         font-size: 3em;}
-    #wrapper .style2 h2{
+    #wrapper .style2 h3{
         font-size: 2em;}
     #wrapper .style2 p{
         font-size: 1.75em;
@@ -2367,17 +2395,17 @@ button3:disabled,
     #main > .inner {
         padding: 0 5em 0.1em 5em ; }
     #main > .inner > section {
-        padding: 5em 0 3em 0 ; } }
+        padding: 1em 0 1em 0 ; } }
 @media screen and (max-width: 1280px) {
     #main > .inner {
         padding: 0 4em 0.1em 4em ; }
     #main > .inner > section {
-        padding: 4em 0 2em 0 ; }  }
+        padding: 1em 0 1em 0 ; }  }
 @media screen and (max-width: 736px) {
     #main > .inner {
         padding: 0 2em 0.1em 2em ; }
     #main > .inner > section {
-        padding: 3em 0 1em 0 ; } }
+        padding: 1em 0 1em 0 ; } }
 
 /* Sidebar */
 #search form {
