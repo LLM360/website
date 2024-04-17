@@ -264,6 +264,8 @@ hr.major {
 .row.gtr-uniform > * > :last-child {
     margin-bottom: 0;}
 .row.aln-left {
+    margin-top: -2.25em;
+    padding-top: 2.5em;
     justify-content: flex-start; }
 .row.aln-center {
     justify-content: center; }
