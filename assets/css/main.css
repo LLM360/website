@@ -475,7 +475,7 @@ hr.major {
         padding-top: 0.375em; }
     .row.gtr-50 {
         margin-top: 0;
-        margin-left: -0.75em; }
+        margin-left: 0; }
     .row.gtr-50 > * {
         padding: 0 0 0 0.75em; }
     .row.gtr-50.gtr-uniform {
@@ -601,7 +601,7 @@ hr.major {
         padding-top: 0.375em; }
     .row.gtr-50 {
         margin-top: 0;
-        margin-left: -0.75em;
+        margin-left: 0;
         margin-bottom: 2em;}
     .row.gtr-50 > * {
         padding: 0 0 0 0.75em; }
@@ -728,7 +728,7 @@ hr.major {
         padding-top: 0.375em; }
     .row.gtr-50 {
         margin-top: 0;
-        margin-left: -0.75em;
+        margin-left: 0;
         margin-bottom: 2em;}
     .row.gtr-50 > * {
         padding: 0 0 0 0.75em; }
@@ -855,7 +855,7 @@ hr.major {
         padding-top: 0.375em; }
     .row.gtr-50 {
         margin-top: 0;
-        margin-left: -0.75em; }
+        margin-left: 0; }
     .row.gtr-50 > * {
         padding: 0 0 0 0.75em; }
     .row.gtr-50.gtr-uniform {
@@ -981,7 +981,7 @@ hr.major {
         padding-top: 0.375em; }
     .row.gtr-50 {
         margin-top: 0;
-        margin-left: -0.75em; }
+        margin-left: 0; }
     .row.gtr-50 > * {
         padding: 0 0 0 0.75em; }
     .row.gtr-50.gtr-uniform {
@@ -2336,7 +2336,7 @@ body.is-preload .wrapper.fade > .inner {
 #wrapper .style4 h3 {
     font-size: 1.8em;
     color: #868686;
-    margin:0 1em 0.5em 0;
+    margin:0 0 0.5em 0;
     border-bottom:solid 2px #868686;}
 #wrapper .style4 h4 {
     font-size: 1.2em;
@@ -2353,7 +2353,7 @@ body.is-preload .wrapper.fade > .inner {
 #wrapper .style5 h3 {
     font-size: 2em;
     color: #868686;
-    margin:0 1em 1em 0;
+    margin:0;
     border-bottom:solid 2px #868686;}
 #wrapper .style5 h4 {
     font-size: 1.2em;
