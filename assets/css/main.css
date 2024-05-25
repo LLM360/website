@@ -2092,7 +2092,7 @@ input, select, textarea {
 
 			/* Adjusted sections 3 and 4 to have border-top */
 			.features section:nth-child(2)::before,
-			.features section:nth-child(3)::before,{
+			.features section:nth-child(3)::before {
 				content: "";
 				position: absolute;
 				top: -2em;
@@ -3374,7 +3374,7 @@ input, select, textarea {
 			@media screen and (max-width: 1680px) {
 
 				.wrapper > .inner {
-					padding: 4em 4em 2em 4em ;
+					padding: 4em;
 				}
 
 			}
@@ -3390,7 +3390,7 @@ input, select, textarea {
 			@media screen and (max-width: 736px) {
 
 				.wrapper > .inner {
-					padding: 3em 2em 1em 2em ;
+					padding: 3em 2em 3em 2em ;
 				}
 
 			}
@@ -3490,9 +3490,9 @@ input, select, textarea {
 				/*	min-height: calc(100vh - 2.5em);*/
 				/*}*/
 
-				/*	body.is-ie .wrapper.fullscreen {*/
-				/*		height: calc(100vh - 2.5em);*/
-				/*	}*/
+					/*body.is-ie .wrapper.fullscreen {*/
+					/*	height: calc(100vh - 2.5em);*/
+					/*}*/
 
 			}
 
@@ -3521,47 +3521,83 @@ input, select, textarea {
 			opacity: 1.0;
 		}
 
-		.wrapper.fade-up.inactive > .inner,
-		body.is-preload .wrapper.fade-up > .inner {
-			opacity: 0;
-			-moz-transform: translateY(1em);
-			-webkit-transform: translateY(1em);
-			-ms-transform: translateY(1em);
-			transform: translateY(1em);
-		}
+			.wrapper.fade-up.style1 >  .inner > ul.actions {
+				display: -moz-flex;
+				display: -webkit-flex;
+				display: -ms-flex;
+				display: flex;
+				cursor: default;
+				list-style: none;
+				position: absolute;
+				bottom: -1em;
+				right: 2em;
+				padding-left: 0;
+			}
 
-		.wrapper.fade-down > .inner {
-			-moz-transform: translateY(0);
-			-webkit-transform: translateY(0);
-			-ms-transform: translateY(0);
-			transform: translateY(0);
-			-moz-transition: opacity 1s ease, -moz-transform 1s ease;
-			-webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
-			-ms-transition: opacity 1s ease, -ms-transform 1s ease;
-			transition: opacity 1s ease, transform 1s ease;
-			opacity: 1.0;
-		}
+			.wrapper.fade-up.style1 >  .inner > ul.actions li {
+				padding: 0 0 0 1em;
+				vertical-align: middle;
+				color: white;
+			}
 
-		.wrapper.fade-down.inactive > .inner,
-		body.is-preload .wrapper.fade-down > .inner {
-			opacity: 0;
-			-moz-transform: translateY(-1em);
-			-webkit-transform: translateY(-1em);
-			-ms-transform: translateY(-1em);
-			transform: translateY(-1em);
-		}
 
-		.wrapper.fade > .inner {
-			-moz-transition: opacity 1s ease;
-			-webkit-transition: opacity 1s ease;
-			-ms-transition: opacity 1s ease;
-			transition: opacity 1s ease;
-			opacity: 1.0;
-		}
+    .wrapper.fade-up.inactive > .inner,
+    body.is-preload .wrapper.fade-up > .inner {
+        opacity: 0;
+        -moz-transform: translateY(1em);
+        -webkit-transform: translateY(1em);
+        -ms-transform: translateY(1em);
+        transform: translateY(1em);
+    }
 
-		.wrapper.fade.inactive > .inner,
-		body.is-preload .wrapper.fade > .inner {
-			opacity: 0;
+    .wrapper.fade-down > .inner {
+        -moz-transform: translateY(0);
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+        -moz-transition: opacity 1s ease, -moz-transform 1s ease;
+        -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+        -ms-transition: opacity 1s ease, -ms-transform 1s ease;
+        transition: opacity 1s ease, transform 1s ease;
+        opacity: 1.0;
+    }
+
+    .wrapper.fade-down.inactive > .inner,
+    body.is-preload .wrapper.fade-down > .inner {
+        opacity: 0;
+        -moz-transform: translateY(-1em);
+        -webkit-transform: translateY(-1em);
+        -ms-transform: translateY(-1em);
+        transform: translateY(-1em);
+    }
+
+    .wrapper.fade > .inner {
+        -moz-transition: opacity 1s ease;
+        -webkit-transition: opacity 1s ease;
+        -ms-transition: opacity 1s ease;
+        transition: opacity 1s ease;
+        opacity: 1.0;
+    }
+
+    .wrapper.fade.inactive > .inner,
+    body.is-preload .wrapper.fade > .inner {
+        opacity: 0;
+    }
+
+		@media screen and (max-width: 780px) {
+
+			.wrapper.fade-up.style1 > .inner > ul.actions {
+				display: -moz-flex;
+				display: -webkit-flex;
+				display: -ms-flex;
+				display: flex;
+				cursor: default;
+				list-style: none;
+				position: absolute;
+				padding-left: 0;
+				-webkit-flex-direction: row;
+			}
+
 		}
 
 /* Header */
