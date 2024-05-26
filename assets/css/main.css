@@ -2043,12 +2043,37 @@ input, select, textarea {
 		.features.alt {
 			background: none;
 		}
+		.features.alt2 {
+			overflow-x: scroll;
+			border-radius: 0;
+			background-color: transparent;
+		}
+			.features.alt2 section{
+				padding: 0;
+			}
+			.features.alt2 table {
+				width: 100%;
+			}
 		.features.chat {
 			overflow-x: scroll;
 			border-radius: 0;
-			background-color: #f1f4f7;
+			background: linear-gradient(-45deg, rgb(238, 140, 26, 0.05), rgb(161, 117, 227, 0.05), rgb(53, 86, 236, 0.05), rgb(102, 197, 165, 0.05));
+			background-size: 200% 200%;
+			animation: gradient 15s ease infinite;
 		}
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
 			.features.chat table {
+				padding: 1em;
 				width: 100%;
 			}
 
@@ -3134,11 +3159,9 @@ input, select, textarea {
 		-ms-flex-direction: row;
 		flex-direction: row;
 		min-height: 22.5em;
-		/*color: rgb(53, 86, 236);*/
 	}
 		.spotlights > section h2{
 			font-weight: bold;
-			/*color: rgb(53, 86, 236);*/
 		}
 
 		body.is-ie .spotlights > section {
@@ -3162,7 +3185,6 @@ input, select, textarea {
 			.spotlights > section > .image img {
 				border-radius: 0;
 				max-width: 100%;
-				max-height: 100%;
 				display: block;
 			}
 
@@ -3214,21 +3236,11 @@ input, select, textarea {
 
 		.spotlights > section:nth-child(2) {
 			margin-top: -2em;
-			/*color: rgb(161, 117, 227);*/
 		}
-			.spotlights > section:nth-child(2) h2 {
-				font-weight: bold;
-				/*color: rgb(161, 117, 227);*/
-			}
 
 		.spotlights > section:nth-child(3) {
 			margin-top: -2em;
-			/*color: rgb(238, 140, 26)*/
 		}
-			.spotlights > section:nth-child(3) h2 {
-				font-weight: bold;
-				/*color: rgb(238, 140, 26)*/
-			}
 
 		.spotlights > section.inactive > .image:before,
 		body.is-preload .spotlights > section > .image:before {
@@ -3262,10 +3274,7 @@ input, select, textarea {
 					background-position: center center;
 					display: flex; /* Use flexbox for child alignment */
 					margin-top: 3em;
-					height: 25vh;
 					width: 80%;
-
-
 				}
 
 				.spotlights > section > .content {
@@ -3286,7 +3295,6 @@ input, select, textarea {
 			.spotlights > section > .content {
 				padding: 3em 2em 1em 2em ;
 			}
-
 		}
 
 /* Table */
@@ -3308,6 +3316,11 @@ input, select, textarea {
 			border-left: 0;
 			border-right: 0;
 		}
+
+			table tbody tr.alt {
+				font-weight: 500;
+				color: rgb(53, 86, 236);
+			}
 
 			table tbody tr:nth-child(2n + 1) {
 				background-color: rgba(255, 255, 255, 0.05);
