@@ -1867,6 +1867,33 @@ input, select, textarea {
 		color: rgb(238, 140, 26) !important;
 	}
 
+	.button.nav {
+		background-color: rgba(0, 0, 0, 0.5);
+		border: none!important;
+		color: white !important;
+		height: 1.5em;
+		line-height: 1.3em;
+		cursor: pointer;
+		padding: 0 0.5em;
+		z-index: 10;
+		font-size: 1.5em;
+	}
+		.button.nav:hover {
+			background-color: rgba(0, 0, 0, 0.8);
+			border: none !important;
+
+		}
+
+		.button.nav.prev {
+			position: absolute;
+			left: 0;
+		}
+
+		.button.nav.next {
+			position: absolute;
+			right: 0;
+		}
+
 	.button.bottom {
 		position: absolute;
 		bottom: 0; /* Adjust the distance from the bottom of the section */
@@ -2066,27 +2093,44 @@ input, select, textarea {
 			background-size: 200% 200%;
 			animation: gradient 15s ease infinite;
 		}
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
+			@keyframes gradient {
+				0% {
+					background-position: 0% 50%;
+				}
+				50% {
+					background-position: 100% 50%;
+				}
+				100% {
+					background-position: 0% 50%;
+				}
+			}
+
 			.features.chat table {
 				padding: 1em;
 				width: 100%;
 			}
 
-		.features section {
+		.features.two section {
+			background: #f0f3f5;
+			padding: 1em ;
+			position: relative;
+			width: 50%;
+		}
+
+		.features.three section {
 			margin:2em 0;
 			padding: 1em 2em ;
 			position: relative;
 			width: 33%;
+		}
+
+		.features.three.dark section {
+			background: #f1f4f7;
+			border-radius: 1em;
+			margin:1em 0.5em;
+			padding: 1em;
+			position: relative;
+			width: 30%;
 		}
 
 		.features.alt section {
@@ -2348,6 +2392,27 @@ input, select, textarea {
 					width: 100%;
 				}
 
+			.features.two section {
+				border-bottom-width: 0 !important;
+				border-left-width: 0 !important;
+				border-right-width: 0 !important;
+				width: 100% !important;
+			}
+
+			.features.three section {
+				border-bottom-width: 0 !important;
+				border-left-width: 0 !important;
+				border-right-width: 0 !important;
+				width: 100% !important;
+			}
+
+			features.three.dark section {
+				border-bottom-width: 0 !important;
+				border-left-width: 0 !important;
+				border-right-width: 0 !important;
+				width: 100% !important;
+			}
+
 					.features section:nth-child(1) {
 						border-top-width: 0 !important;
 					}
@@ -2369,6 +2434,21 @@ input, select, textarea {
 					left: 1.5em;
 					top: 2em;
 				}
+
+			.features.two section {
+				width: 100%;
+				padding: 2.5em 2.5em 0.1em 5.5em ;
+			}
+
+			.features.three section {
+				width: 100%;
+				padding: 2.5em 2.5em 0.1em 5.5em ;
+			}
+
+			.features.three.dark section {
+				width: 100%;
+				padding: 2.5em 2.5em 0.1em 5.5em ;
+			}
 
 		}
 
@@ -3490,6 +3570,25 @@ input, select, textarea {
 		background-position: 0% 50%;
 	}
 }
+		.wrapper.style3.dark {
+			background: linear-gradient(-45deg, rgb(93, 54, 9), rgb(58, 42, 82), rgb(14, 24, 65), rgb(30, 58, 49));
+			background-size: 200% 200%;
+			animation: gradient 15s ease infinite;
+		}
+		@keyframes gradient {
+			0% {
+				background-position: 0% 50%;
+			}
+			50% {
+				background-position: 100% 50%;
+			}
+			100% {
+				background-position: 0% 50%;
+			}
+		}
+			/*.wrapper.style3.dark h1, h2, h3, h4, h5, p, a {*/
+			/*	color: white;*/
+			/*}*/
 
 		.wrapper.style3-alt {
 			/*background-color: rgba(76, 160, 126, 0.57);*/
@@ -3578,6 +3677,7 @@ input, select, textarea {
 				vertical-align: middle;
 				color: white;
 			}
+
 
 
     .wrapper.fade-up.inactive > .inner,
@@ -4041,13 +4141,10 @@ input, select, textarea {
 			display: block;
 			font-size: 1em;
 			font-weight: 300;
-			/*letter-spacing: 0.05em;*/
-			line-height: 1.5;
 			outline: 0;
 			padding: 0.5em 0 0.25em 0;
 			position: relative;
 			text-decoration: none;
-			/*text-transform: uppercase;*/
 		}
 		#sidebar nav a.alt {
 			padding-left: 1em;
@@ -4213,3 +4310,36 @@ body.is-preload #sidebar > .inner {
 			}
 
 		}
+
+.gallery-container {
+	display: flex;
+	align-items: center;
+	width: 95%;
+	overflow: hidden;
+	position: relative;
+	margin: 2em 0;
+}
+
+.gallery-wrapper {
+	overflow: hidden;
+	width: 100%;
+}
+
+.gallery {
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+}
+
+.gallery img {
+	border-radius: 1em;
+	width: 33%;
+	min-width: 333px;
+	height: auto;
+	margin: 0.5em 1em;
+}
+
+
+.gallery h4{
+	margin: 0 1em;
+}
+

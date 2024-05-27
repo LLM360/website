@@ -226,5 +226,36 @@
 		document.documentElement.scrollTop = 0;
 	};
 
+	document.addEventListener('DOMContentLoaded', function () {
+		const gallery = document.querySelector('.gallery');
+		const prevButton = document.getElementById('prevButton');
+		const nextButton = document.getElementById('nextButton');
+		let scrollAmount = 0;
+		const scrollPerClick = gallery.clientWidth;
+		const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+
+		nextButton.addEventListener('click', () => {
+			if (scrollAmount < maxScroll) {
+				scrollAmount += scrollPerClick;
+				if (scrollAmount > maxScroll) {
+					scrollAmount = maxScroll;
+				}
+				gallery.style.transform = `translateX(-${scrollAmount}px)`;
+			}
+		});
+
+		prevButton.addEventListener('click', () => {
+			if (scrollAmount > 0) {
+				scrollAmount -= scrollPerClick;
+				if (scrollAmount < 0) {
+					scrollAmount = 0;
+				}
+				gallery.style.transform = `translateX(-${scrollAmount}px)`;
+			}
+		});
+	});
+
+
+
 
 })(jQuery);
