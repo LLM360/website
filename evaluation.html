@@ -1,12 +1,77 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <title>LLM360 Evaluation Suite</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    </head>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0FFN6N7318"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-0FFN6N7318');
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <!-- SEO -->
+    <title>Performance and Evaluation | LLM360</title>
+    <meta name="description" content="Explore LLM360, a groundbreaking open-source initiative dedicated to fully transparent LLMs. Access complete training data, source codes, and intermediate checkpoints crafted by leading experts from Petuum, MBZUAI, Carnegie Mellon and more. Join us at LLM360 to shape the future of LLM research and application."/>
+    <link rel="canonical" href="https://www.llm360.ai/evaluation.html" />
+    <meta name="keywords" content="LLM360, Open Source AI, Large Language Models, AI Research, Petuum, MBZUAI, Mohamed bin Zayed University of Artificial Intelligence, Amber LLM, CrystalCode, NLP, Language Processing"/>
+    <meta name="author" content="Petuum, Mohamed bin Zayed University of Artificial Intelligence"/>
+    <meta name="robots" content="index, follow"/>
+
+    <!-- Open Graph Protocol -->
+    <meta property="og:title" content="Performance and Evaluation | LLM360"/>
+    <meta property="og:description" content="Explore LLM360, a groundbreaking open-source initiative dedicated to fully transparent LLMs. Access complete training data, source codes, and intermediate checkpoints crafted by leading experts from Petuum, MBZUAI, Carnegie Mellon and more. Join us at LLM360 to shape the future of LLM research and application."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://www.llm360.ai/evaluation.html/"/>
+    <meta property="og:image" content="https://www.llm360.ai/images/pic00.jpg"/>
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@llm360">
+    <meta name="twitter:title" content="Performance and Evaluation | LLM360">
+    <meta name="twitter:description" content="Explore LLM360, a groundbreaking open-source initiative dedicated to fully transparent LLMs. Access complete training data, source codes, and intermediate checkpoints crafted by leading experts from Petuum, MBZUAI, Carnegie Mellon and more. Join us at LLM360 to shape the future of LLM research and application.">
+    <meta name="twitter:image" content="https://www.llm360.ai/images/pic00.jpg">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "name": "LLM360",
+            "url": "https://www.llm360.ai/evaluation.html/",
+            "description": "Explore LLM360, a groundbreaking open-source initiative dedicated to fully transparent LLMs. Access complete training data, source codes, and intermediate checkpoints crafted by leading experts from Petuum, MBZUAI, Carnegie Mellon and more. Join us at LLM360 to shape the future of LLM research and application.",
+            "publisher": {
+                "@type": "Organization",
+                "name": "Petuum, Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)"
+            },
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://www.llm360.ai/images/pic00.jpg",
+                "width": 1920,
+                "height": 1080
+            }
+        }
+    </script>
+    <!-- /SEO -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <!-- <link rel="manifest" href="/site.webmanifest"> -->
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
     <body class="is-preload">
 
         <!-- Sidebar -->
@@ -56,7 +121,6 @@
                                 <li><a href="evaluation.html#math" class="button fit">Math</a></li>
                                 <li><a href="evaluation.html#medical" class="button fit">Medical</a></li>
                                 <li><a href="evaluation.html#multiplechoice" class="button fit">Multiple Choice</a></li>
-<!--                                <li><a href="evaluation.html#remainder" class="button fit">Remainder</a></li>-->
                             </ul>
                             <div class="table-wrapper">
                                 <div id="base">
@@ -68,12 +132,12 @@
                                                 <thead>
                                                 <tr>
                                                     <th>Base Models</th>
-                                                    <th>LLM360 Evaluation Suite</th>
+                                                    <th>Overall Eval</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>llama3-70B</td>
+                                                        <td>Llama 3-70B	</td>
                                                         <td>63.0</td>
                                                     </tr>
                                                     <tr class="alt">
@@ -85,11 +149,11 @@
                                                         <td>56.6</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>llama2-70B</td>
+                                                        <td>Llama 2-70B</td>
                                                         <td>56.5</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>llama-65B</td>
+                                                        <td>Llama-65B</td>
                                                         <td>53.3</td>
                                                     </tr>
                                                     <tr>
@@ -108,12 +172,12 @@
                                                 <thead>
                                                 <tr>
                                                     <th>Base Models</th>
-                                                    <th>LLM360 Evaluation Suite</th>
+                                                    <th>Overall Eval</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr>
-                                                    <td>llama3-70B-instruct</td>
+                                                    <td>Llama 3-70B-Instruct</td>
                                                     <td>63.4</td>
                                                 </tr>
                                                 <tr class="alt">
@@ -256,7 +320,7 @@
                                     </div>
                                     <div class="features chat">
                                         <section>
-                                            <h4>Chat/Instruct</h4>
+                                            <h4>OpenLLM Leaderboard: Chat/Instruct</h4>
                                             <div class="row aln-top">
                                                 <div class="col-4 col-12-medium">
                                                     <table class="alt">
@@ -441,7 +505,7 @@
                                     </div>
                                     <div class="features chat">
                                         <section>
-                                            <h4>Chat/Instruct</h4>
+                                            <h4>Coding: Chat/Instruct</h4>
                                             <div class="row aln-middle">
                                                 <div class="col-8  col-12-medium">
                                                         <div class="col-12">
@@ -641,7 +705,7 @@
                                     </div>
                                     <div class="features chat">
                                         <section>
-                                            <h4>Chat/Instruct</h4>
+                                            <h4>Generation: Chat/Instruct</h4>
                                             <div class="row aln-middle">
                                                 <div class="col-8 col-12-medium">
                                                     <div class="col-3 col-12-medium">
@@ -818,7 +882,7 @@
                                     </div>
                                     <div class="features chat">
                                         <section>
-                                            <h4>Chat/Instruct</h4>
+                                            <h4>Math: Chat/Instruct</h4>
                                             <div class="row aln-middle">
                                                 <div class="col-8 col-12-medium">
                                                     <div class="col-12">
@@ -986,7 +1050,7 @@
                                     </div>
                                     <div class="features chat">
                                         <section>
-                                            <h4>Chat/Instruct</h4>
+                                            <h4>Medical: Chat/Instruct</h4>
                                             <div class="row aln-middle">
                                                 <div class="col-4 col-12-medium">
                                                     <table class="alt">
@@ -1267,7 +1331,7 @@
                                     </div>
                                     <div class="features chat">
                                         <section>
-                                            <h4>Chat/Instruct</h4>
+                                            <h4>Multiple Choice: Chat/Instruct</h4>
                                             <div class="row gtr-150">
                                                 <div class="col-12 col-12-medium">
                                                     <table class="alt">
@@ -1381,177 +1445,6 @@
                                         </section>
                                     </div>
                                 </div>
-<!--                                <div id="remainder">-->
-<!--                                    <br>-->
-<!--                                    <h3>Remainder</h3>-->
-<!--                                    <div class="row gtr-150">-->
-<!--                                        <div class="col-12 col-12-medium">-->
-<!--                                            <table class="alt">-->
-<!--                                                <thead>-->
-<!--                                                <tr>-->
-<!--                                                    <th>Models</th>-->
-<!--                                                    <th>race</th>-->
-<!--                                                    <th>piqa5</th>-->
-<!--                                                    <th>arc_easy</th>-->
-<!--                                                    <th>obqa5</th>-->
-<!--                                                    <th>crowspairs</th>-->
-<!--                                                    <th>toxigen</th>-->
-<!--                                                    <th>logiqa2</th>-->
-<!--                                                    <th>Big-Bench-H</th>-->
-<!--                                                    <th>Average</th>-->
-<!--                                                </tr>-->
-<!--                                                </thead>-->
-<!--                                                <tbody>-->
-<!--                                                <tr>-->
-<!--                                                    <td>Falcon-40B</td>-->
-<!--                                                    <td>40</td>-->
-<!--                                                    <td>84.8</td>-->
-<!--                                                    <td>85.6</td>-->
-<!--                                                    <td>49</td>-->
-<!--                                                    <td>75.9</td>-->
-<!--                                                    <td>43.2</td>-->
-<!--                                                    <td>30.1</td>-->
-<!--                                                    <td>41.2</td>-->
-<!--                                                    <td>56.2</td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>Llama-65B</td>-->
-<!--                                                    <td>41.8</td>-->
-<!--                                                    <td>83.9</td>-->
-<!--                                                    <td>86.9</td>-->
-<!--                                                    <td>50</td>-->
-<!--                                                    <td>72.9</td>-->
-<!--                                                    <td>43.1</td>-->
-<!--                                                    <td>37</td>-->
-<!--                                                    <td>58.5</td>-->
-<!--                                                    <td>59.3</td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>Falcon-180B</td>-->
-<!--                                                    <td>41.1</td>-->
-<!--                                                    <td>87.1</td>-->
-<!--                                                    <td>89.6</td>-->
-<!--                                                    <td>52.2</td>-->
-<!--                                                    <td>68.4</td>-->
-<!--                                                    <td>43.2</td>-->
-<!--                                                    <td>33.6</td>-->
-<!--                                                    <td>62</td>-->
-<!--                                                    <td>59.7</td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>Llama 2-70B</td>-->
-<!--                                                    <td><strong>42.7</strong></td>-->
-<!--                                                    <td><strong>84.3</strong></td>-->
-<!--                                                    <td><strong>88.2</strong></td>-->
-<!--                                                    <td><strong>52.4</strong></td>-->
-<!--                                                    <td><strong>73.5</strong></td>-->
-<!--                                                    <td>43.2</td>-->
-<!--                                                    <td>37.3</td>-->
-<!--                                                    <td>66.7</td>-->
-<!--                                                    <td>61.0</td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>K2 - Stage 1</td>-->
-<!--                                                    <td>40.6</td>-->
-<!--                                                    <td><strong>84.6</strong></td>-->
-<!--                                                    <td><strong>86.4</strong></td>-->
-<!--                                                    <td><strong>49.2</strong></td>-->
-<!--                                                    <td><strong>74</strong></td>-->
-<!--                                                    <td>43.2</td>-->
-<!--                                                    <td><strong>34.6</strong></td>-->
-<!--                                                    <td><strong>64.6</strong></td>-->
-<!--                                                    <td>59.7</td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>K2</td>-->
-<!--                                                    <td>41.1</td>-->
-<!--                                                    <td>82.8</td>-->
-<!--                                                    <td>85.1</td>-->
-<!--                                                    <td>45.4</td>-->
-<!--                                                    <td>72.9</td>-->
-<!--                                                    <td>43.2</td>-->
-<!--                                                    <td><strong>38.2</strong></td>-->
-<!--                                                    <td><strong>69.8</strong></td>-->
-<!--                                                    <td>59.8</td>-->
-<!--                                                </tr>-->
-<!--                                                <tr>-->
-<!--                                                    <td>Llama 3-70B</td>-->
-<!--                                                    <td>42.1</td>-->
-<!--                                                    <td>85.4</td>-->
-<!--                                                    <td>90.1</td>-->
-<!--                                                    <td>53.4</td>-->
-<!--                                                    <td>71.2</td>-->
-<!--                                                    <td>43.3</td>-->
-<!--                                                    <td>45</td>-->
-<!--                                                    <td>79.1</td>-->
-<!--                                                    <td>63.7</td>-->
-<!--                                                </tr>-->
-<!--                                                </tbody>-->
-<!--                                            </table>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="features chat">-->
-<!--                                        <section>-->
-<!--                                            <h4>Chat/Instruct</h4>-->
-<!--                                            <div class="row aln-middle">-->
-<!--                                                <table class="alt">-->
-<!--                                                    <thead>-->
-<!--                                                    <tr>-->
-<!--                                                        <th>Models</th>-->
-<!--                                                        <th>race</th>-->
-<!--                                                        <th>piqa5</th>-->
-<!--                                                        <th>arc_easy</th>-->
-<!--                                                        <th>obqa5</th>-->
-<!--                                                        <th>crowspairs</th>-->
-<!--                                                        <th>toxigen</th>-->
-<!--                                                        <th>logiqa2</th>-->
-<!--                                                        <th>Big-Bench-H</th>-->
-<!--                                                        <th>Average</th>-->
-<!--                                                    </tr>-->
-<!--                                                    </thead>-->
-<!--                                                    <tbody>-->
-<!--                                                    <tr>-->
-<!--                                                        <td>Llama 2-70B-Chat</td>-->
-<!--                                                        <td>44</td>-->
-<!--                                                        <td>81.8</td>-->
-<!--                                                        <td><strong>85.5</strong></td>-->
-<!--                                                        <td>47.2</td>-->
-<!--                                                        <td><strong>71.9</strong></td>-->
-<!--                                                        <td>43.9</td>-->
-<!--                                                        <td>37.7</td>-->
-<!--                                                        <td>63</td>-->
-<!--                                                        <td>59.4</td>-->
-<!--                                                    </tr>-->
-<!--                                                    <tr>-->
-<!--                                                        <td>K2 Chat</td>-->
-<!--                                                        <td><strong>46.1</strong></td>-->
-<!--                                                        <td><strong>82.3</strong></td>-->
-<!--                                                        <td>84.6</td>-->
-<!--                                                        <td><strong>48</strong></td>-->
-<!--                                                        <td>64.2</td>-->
-<!--                                                        <td>43.2</td>-->
-<!--                                                        <td><strong>38</strong></td>-->
-<!--                                                        <td><strong>64.9</strong></td>-->
-<!--                                                        <td>58.9</td>-->
-<!--                                                    </tr>-->
-<!--                                                    <tr>-->
-<!--                                                        <td>Llama 3-70B-Instruct</td>-->
-<!--                                                        <td>47</td>-->
-<!--                                                        <td>85</td>-->
-<!--                                                        <td>89.8</td>-->
-<!--                                                        <td>55.2</td>-->
-<!--                                                        <td>71.1</td>-->
-<!--                                                        <td>45.6</td>-->
-<!--                                                        <td>41.5</td>-->
-<!--                                                        <td>45.6</td>-->
-<!--                                                        <td>60.1</td>-->
-<!--                                                    </tr>-->
-<!--                                                    </tbody>-->
-<!--                                                </table>-->
-<!--                                            </div>-->
-<!--                                        </section>-->
-<!--                                    </div>-->
-<!--                                </div>-->
                             </div>
                     </section>
                     </div>
