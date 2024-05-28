@@ -4311,7 +4311,7 @@ body.is-preload #sidebar > .inner {
 .gallery-container {
 	display: flex;
 	align-items: center;
-	width: 95%;
+	width: 100%;
 	overflow: hidden;
 	position: relative;
 	margin: 1em 0 4em 0;
@@ -4329,8 +4329,7 @@ body.is-preload #sidebar > .inner {
 
 .gallery img {
 	border-radius: 1em;
-	width: 33%;
-	min-width: 333px;
+	width:300px;
 	height: auto;
 	margin: 0.5em 1em;
 }
@@ -4338,5 +4337,13 @@ body.is-preload #sidebar > .inner {
 
 .gallery h4{
 	margin: 0 1em;
+}
+
+@media screen and (max-width: 980px) {
+	.gallery img {
+		border-radius: 1em;
+		max-width: 100px;
+		margin: 0.5em 1em;
+	}
 }
 

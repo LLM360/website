@@ -226,14 +226,28 @@
 		document.documentElement.scrollTop = 0;
 	};
 
+	// Scroll to see all pictures in the gallery
 	document.addEventListener('DOMContentLoaded', function () {
 		function setupGalleryNavigation(galleryId, prevButtonId, nextButtonId) {
 			const gallery = document.getElementById(galleryId);
 			const prevButton = document.getElementById(prevButtonId);
 			const nextButton = document.getElementById(nextButtonId);
 			let scrollAmount = 0;
-			const scrollPerClick = gallery.clientWidth;
-			const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+			let scrollPerClick = gallery.clientWidth;
+			let maxScroll = gallery.scrollWidth - gallery.clientWidth;
+
+			function updateScrollMetrics() {
+				scrollPerClick = gallery.clientWidth;
+				maxScroll = gallery.scrollWidth - gallery.clientWidth;
+				// Show or hide buttons based on whether scrolling is necessary
+				if (maxScroll <= 0) {
+					prevButton.style.display = 'none';
+					nextButton.style.display = 'none';
+				} else {
+					prevButton.style.display = 'block';
+					nextButton.style.display = 'block';
+				}
+			}
 
 			nextButton.addEventListener('click', () => {
 				if (scrollAmount < maxScroll) {
@@ -243,6 +257,8 @@
 					}
 					gallery.style.transform = `translateX(-${scrollAmount}px)`;
 				}
+				// Check button visibility after scrolling
+				updateButtonVisibility();
 			});
 
 			prevButton.addEventListener('click', () => {
@@ -253,7 +269,39 @@
 					}
 					gallery.style.transform = `translateX(-${scrollAmount}px)`;
 				}
+				// Check button visibility after scrolling
+				updateButtonVisibility();
 			});
+
+			function updateButtonVisibility() {
+				// Show or hide buttons based on current scroll position
+				if (scrollAmount <= 0) {
+					prevButton.style.display = 'none';
+				} else {
+					prevButton.style.display = 'block';
+				}
+				if (scrollAmount >= maxScroll) {
+					nextButton.style.display = 'none';
+				} else {
+					nextButton.style.display = 'block';
+				}
+			}
+
+			window.addEventListener('resize', () => {
+				updateScrollMetrics();
+				// Ensure gallery is still correctly aligned after resize
+				if (scrollAmount > maxScroll) {
+					scrollAmount = maxScroll;
+					gallery.style.transform = `translateX(-${scrollAmount}px)`;
+				}
+				// Check button visibility after resize
+				updateButtonVisibility();
+			});
+
+			// Initial calculation
+			updateScrollMetrics();
+			// Initial button visibility check
+			updateButtonVisibility();
 		}
 
 		setupGalleryNavigation('gallery1', 'prevButton1', 'nextButton1');
@@ -261,6 +309,7 @@
 		setupGalleryNavigation('gallery3', 'prevButton3', 'nextButton3');
 		setupGalleryNavigation('gallery4', 'prevButton4', 'nextButton4');
 	});
+
 
 
 
