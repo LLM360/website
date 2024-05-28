@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0FFN6N7318"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-0FFN6N7318');
+    </script>
+
+    <title>Introducing K2-65B | LLM360</title>
+    <meta name="description" content="LLM360 is excited to announce several new releases to further our mission enabling community-owned AGI by creating standards and tools to advance the bleeding edge of LLM capability and empower knowledge transfer, research, and development." />
+    <link rel="canonical" href="https://www.llm360.ai/blog/blog2.html" />
+    <meta name="author" content="Petuum, Mohamed bin Zayed University of Artificial Intelligence"/>
+    <meta name="robots" content="index, follow"/>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/favicon/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <!-- <link rel="manifest" href="/site.webmanifest"> -->
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Several New Releases to Further Our Mission" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.llm360.ai/blog/blog2.html" />
+    <meta property="og:image" content="https://www.llm360.ai/images/blog-banner.png" />
+    <meta property="og:description" content="LLM360 is excited to announce several new releases to further our mission enabling community-owned AGI by creating standards and tools to advance the bleeding edge of LLM capability and empower knowledge transfer, research, and development." />
+    <meta property="og:site_name" content="LLM360" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Several New Releases to Further Our Mission">
+    <meta name="twitter:description" content="LLM360 is excited to announce several new releases to further our mission enabling community-owned AGI by creating standards and tools to advance the bleeding edge of LLM capability and empower knowledge transfer, research, and development.">
+    <meta name="twitter:url" content="https://www.llm360.ai/blog/blog2.html">
+    <meta name="twitter:image" content="https://www.llm360.ai/images/blog-banner.png">
+    <meta name="twitter:site" content="@llm360">
+    <meta name="twitter:creator" content="@llm360">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "ScholarlyArticle",
+            "headline": "Introducing LLM360: Fully Transparent Open-Source LLMs",
+            "description": "Introducing LLM360 - an initiative for fully transparent open-source large language models...",
+            "image": "https://www.llm360.ai/images/blog-banner.png",
+            "keywords": "LLM, Open Source, AI, Machine Learning, LLM360",
+            "articleSection": "Artificial Intelligence",
+            "author": [
+                {"@type": "Person", "name": "Liu, Zhengzhong"},
+                {"@type": "Person", "name": "Qiao, Aurick"},
+                {"@type": "Person", "name": "Neiswanger, Willie"},
+                {"@type": "Person", "name": " Wang, Hongyi"},
+                {"@type": "Person", "name": " Tan, Bowen"},
+                {"@type": "Person", "name": " Tao, Tianhua"},
+                {"@type": "Person", "name": " Li, Junbo"},
+                {"@type": "Person", "name": " Pangarkar, Omkar"},
+                {"@type": "Person", "name": " Fan, Richard"},
+                {"@type": "Person", "name": " Gu, Yi"},
+                {"@type": "Person", "name": " Miller, Victor"},
+                {"@type": "Person", "name": " Zhuang, Yonghao"},
+                {"@type": "Person", "name": " He, Guowei"},
+                {"@type": "Person", "name": " Li, Haonan"},
+                {"@type": "Person", "name": " Ranjan, Nikhil"},
+                {"@type": "Person", "name": " Shen, Zhiqiang"},
+                {"@type": "Person", "name": " Ren, Xuguang"},
+                {"@type": "Person", "name": " Iriondo, Roberto"},
+                {"@type": "Person", "name": " Mu, Cun"},
+                {"@type": "Person", "name": " Hu, Zhiting"},
+                {"@type": "Person", "name": " Schulze, Mark"},
+                {"@type": "Person", "name": " Nakov, Preslav"},
+                {"@type": "Person", "name": " Baldwin, Tim"},
+                {"@type": "Person", "name": "Xing, Eric"}
+            ],
+            "datePublished": "2023-12-11",
+            "url": "https://www.llm360.ai/blog/introducing-llm360-fully-transparent-open-source-llms.html",
+            "publisher": {
+                "@type": "Organization",
+                "name": "LLM360",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://www.llm360.ai/images/logo-highres.png"
+                }
+            },
+            "articleBody": "The recent surge in open-source Large Language Models (LLMs), such as LLaMA, Falcon, and Mistral, provides diverse options for AI practitioners and researchers.However, most LLMs have only released partial artifacts, such as the final modelweights or inference code, and technical reports increasingly limit their scope tohigh-level design choices and surface statistics. These choices hinder progress inthe field by degrading transparency into the training of LLMs and forcing teams torediscover many details in the training process. We present LLM360, an initiativeto fully open-source LLMs, which advocates for all training code and data, modelcheckpoints, and intermediate results to be made available to the community. Thegoal of LLM360 is to support open and collaborative AI research by making theend-to-end LLM training process transparent and reproducible by everyone. As afirst step of LLM360, we release two 7B parameter LLMs pre-trained from scratch,AMBER and CRYSTALCODER, including their training code, data, intermediatecheckpoints, and analyses (at llm360.ai). We are committed to continuallypushing the boundaries of LLMs through this open-source effort. More large-scaleand stronger models are underway and will be released in the future."
+        }
+    </script>
+
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+<!-- Sidebar -->
+<button class="toggle-btn" id="toggleBtn">☰</button>
+<section id="sidebar" class="sidebar">
+    <div class="inner">
+        <nav>
+            <a class="alt" href="../index.html">
+                <figure class="hover-rotate">
+                    <img src="../images/logo-highres.png" alt="logo" />
+                </figure>
+            </a>
+            <h2>LLM360</h2>
+            <ul>
+                <li><a href="../index.html#one">Models</a></li>
+                <li><a href="evaluation.html">Performance and Evaluation</a></li>
+                <li><a href="../index.html#two" >LLM360 Suites</a></li>
+                <li><a href="../index.html#three">Papers</a></li>
+                <li><a href="../index.html#four">Blogs</a></li>
+                <li><a href="../index.html#six">Get in touch</a></li>
+                <li><a href="../community.html#five">Open-source Community</a></li>
+                <li><a href="../about.html#seven">About</a></li>
+            </ul>
+        </nav>
+    </div>
+</section>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Intro -->
+    <section id="seven" class="wrapper fullscreen fade-up">
+        <div class="inner">
+            <h1>Introducing <strong>K2-65B</strong>: Charting the Blueprint Towards Open-Source Artificial General Intelligence</h1>
+            <p>LLM360 Team  &nbsp | &nbsp May 29, 2024</p>
+            <div class="content">
+                <span class="image left">
+						<img src="../images/k2.svg" alt="" />
+					</span>
+                <p>
+                    LLM360 is excited to announce several new releases to further our mission enabling community-owned AGI by creating standards and tools to advance the bleeding edge of LLM capability and empower knowledge transfer, research, and development.
+                </p>
+                <h2>K2-65B</h2>
+                <p>
+                    The first fully reproducible large language model to outperform Llama 2 70B, using 35% less compute. Trained in two stages, K2-65B has demonstrated on par reasoning and text generation capabilities with strong domain knowledge in medicine, coding, and math.
+                    <a href="https://huggingface.co/collections/LLM360/k2-6622ae6911e3eb6219690039" target="_blank">Learn more here.</a>
+                </p>
+                <h2>The LLM360 Research Suite</h2>
+                <p>
+                    A comprehensive set of large language model (LLM) artifacts from Amber-7B, CrystalCoder-7B, and K2-65B models for academic and industry researchers to explore LLM training dynamics.
+                    <a href="../research.html" target="_blank">Learn more here.</a>
+                </p>
+                <h2>The LLM360 Developer Suite</h2>
+                <p>
+                    A series finetuning and inference tutorials to Amber-7B, CrystalCoder-7B, and K2-65B models for tech enthusiasts, AI practitioners and academic or industry who are interested in general model usage or downstream task evaluation and research.
+                    <a href="../development.html" target="_blank">Learn more here.</a>
+                </p>
+                <h2>The LLM360 Pretraining Suite</h2>
+                <p>
+                    A series of step-by-step guides to reproduce Amber-7B, CrystalCoder-7B, and K2-65B models for tech enthusiasts, AI practitioners and academic or industry researchers to transfer knowledge on LLM pretraining techniques.
+                    <a href="../pretraining.html" target="_blank">Learn more here.</a>
+                </p>
+                <h2>The LLM360 Model Performance and Evaluation Collection</h2>
+                <p>
+                    A robust large language model evaluation suite consisting of general and domain specific evaluations to assess model knowledge and function.
+                    <a href="../evaluation.html" target="_blank">Learn more here.</a>
+                </p>
+                <p>Please reach out with any feedback or questions to  <a href="mailto:team@llm360.ai">team@llm360.ai</a></p>
+                <p>
+                    Thanks,<br>
+                    The LLM360 Team
+                </p>
+
+                <h2><label for="citation">Citation</label></h2>
+                <p> If you use LLM360, feel free to cite: </p>
+                <div class="box" background-color="#eee" border="1px" solid="#999" display="block" padding="20px">
+						<textarea style="margin-bottom:1em" id="citation" rows="9" cols="50" readonly>@article{liu2023llm360,
+	title={LLM360: Towards Fully Transparent Open-Source LLMs},
+	author={Liu, Zhengzhong and Qiao, Aurick and Neiswanger, Willie and Wang, Hongyi and Tan, Bowen and Tao, Tianhua and Li, Junbo and Wang, Yuqi and Sun, Suqi and Pangarkar, Omkar and Fan, Richard and Gu, Yi and Miller, Victor and Zhuang, Yonghao and He, Guowei and Li, Haonan and Koto, Fajri and Tang, Liping and Ranjan, Nikhil and Shen, Zhiqiang and Ren, Xuguang and Iriondo, Roberto and Mu, Cun and Hu, Zhiting and Schulze, Mark and Nakov, Preslav and Baldwin, Tim and Xing, Eric},
+	year={2023}}
+						</textarea>
+                    <button onclick="copyCitation()">Copy Citation</button>
+                    <script>
+                        function copyCitation() {
+                            var copyText = document.getElementById("citation");
+                            copyText.select();
+                            document.execCommand("copy");
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="wrapper style1-alt">
+    <div class="inner">
+        <ul class="menu">
+            <p>
+                LLM360, proudly sponsored by Petuum and MBZUAI, is dedicated to advancing the field of AI by providing comprehensive access to large language models.<br>
+                Our mission is to foster an ecosystem of collaboration, transparency, and innovation in AI research and applications.
+            </p>
+            <ul class="actions">
+                <li><a href="https://twitter.com/llm360" target="_blank" class="icon brands circle fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="https://github.com/LLM360" target="_blank" class="icon brands circle fa-github"><span class="label">Github</span></a></li>
+                <li><a href="mailto:team@llm360.ai" target="_blank" class="icon circle fa-envelope"><span class="label">Email</span></a></li>
+            </ul>
+            <p class="copyright">&copy; LLM360 2023-2024. All rights reserved.</p>
+        </ul>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/jquery.scrollex.min.js"></script>
+<script src="../assets/js/jquery.scrolly.min.js"></script>
+<script src="../assets/js/browser.min.js"></script>
+<script src="../assets/js/breakpoints.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const content = document.getElementById('content');
+
+        toggleBtn.addEventListener('click', function () {
+            sidebar.classList.toggle('hidden');
+            content.classList.toggle('expanded');
+        });
+
+        function checkScreenSize() {
+            if (window.innerWidth < 1280) {
+                sidebar.classList.add('hidden');
+            } else {
+                sidebar.classList.remove('hidden');
+            }
+        }
+
+        window.addEventListener('resize', checkScreenSize);
+        checkScreenSize(); // Initial check
+    });
+
+    // Create the button element
+    const backToTopButton = document.createElement('button');
+    backToTopButton.id = 'back-to-top';
+    backToTopButton.textContent = 'Top';
+    document.body.appendChild(backToTopButton);
+
+    // Show or hide the button based on scroll position
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    };
+
+    // Scroll to the top when the button is clicked
+    backToTopButton.onclick = function() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    };
+</script>
+
+</body>
+</html>
