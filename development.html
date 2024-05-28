@@ -157,15 +157,25 @@
         <div class="inner">
             <h2>K2-chat Model</h2>
             <p>Please try out our K2-chat app 🤗</p>
-            <form action="https://formspree.io/f/xzbnkzqg" method="POST" name="Demo Request">
-                <label>Request demo:</label>
+            <p>Due to resource limitation, please submit a request for our K2 chat interface:</p>
+            <form method="post" action="https://formspree.io/f/xqkvrzyy" name="Request Demo">
                 <div class="fields">
-                    <div class="field half">
-                        <input type="email" name="demo-email" id="demo-email" value="" required placeholder="your email" />
+                    <div class="field quarter">
+                        <input type="text" name="name" id="name" placeholder="Name"/>
+                    </div>
+                    <div class="field quarter">
+                        <input type="text" name="email" id="email" placeholder="Email"/>
+                    </div>
+                    <div class="field quarter">
+                        <input type="text" name="affiliation" id="affiliation" placeholder="Affiliation"/>
+                    </div>
+                    <div class="field quarter">
+                        <input type="text" name="purpose" id="purpose" placeholder="Purpose"/>
                     </div>
                 </div>
                 <ul class="actions">
                     <li><a href="" class="button submit">Submit</a></li>
+                    <li><input type="reset" value="Reset" /></li>
                 </ul>
             </form>
         </div>
