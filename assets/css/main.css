@@ -2170,6 +2170,19 @@ input, select, textarea {
 				border-left: solid 2px #f1f4f7;
 			}
 
+			.features.alt section:nth-child(2) {
+				border-left-width: 0;
+			}
+
+			.features.alt section:nth-child(3) {
+				border-left-width: 0;
+			}
+
+			.features.alt section:nth-child(4) {
+				border-left-width: 0;
+			}
+
+
 			.features.alt1 section:nth-child(1) {
 				background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url("../../images/amber_logo.png");
 			}
@@ -2837,7 +2850,7 @@ input, select, textarea {
 		.image.right {
 			max-width: 30%;
 			float: right;
-			margin: 2em 0 1em 1.5em;
+			margin: 1em 0 1em 1.5em;
 			top: 0.25em;
 		}
 
