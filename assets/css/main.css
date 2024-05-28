@@ -1884,13 +1884,10 @@ input, select, textarea {
 
 		}
 
-		.button.nav.prev {
-			position: absolute;
+.button.nav.prevButton {
 			left: 0;
 		}
-
-		.button.nav.next {
-			position: absolute;
+.button.nav.nextButton {
 			right: 0;
 		}
 
@@ -4317,7 +4314,7 @@ body.is-preload #sidebar > .inner {
 	width: 95%;
 	overflow: hidden;
 	position: relative;
-	margin: 2em 0;
+	margin: 1em 0 4em 0;
 }
 
 .gallery-wrapper {

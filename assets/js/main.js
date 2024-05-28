@@ -227,32 +227,39 @@
 	};
 
 	document.addEventListener('DOMContentLoaded', function () {
-		const gallery = document.querySelector('.gallery');
-		const prevButton = document.getElementById('prevButton');
-		const nextButton = document.getElementById('nextButton');
-		let scrollAmount = 0;
-		const scrollPerClick = gallery.clientWidth;
-		const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+		function setupGalleryNavigation(galleryId, prevButtonId, nextButtonId) {
+			const gallery = document.getElementById(galleryId);
+			const prevButton = document.getElementById(prevButtonId);
+			const nextButton = document.getElementById(nextButtonId);
+			let scrollAmount = 0;
+			const scrollPerClick = gallery.clientWidth;
+			const maxScroll = gallery.scrollWidth - gallery.clientWidth;
 
-		nextButton.addEventListener('click', () => {
-			if (scrollAmount < maxScroll) {
-				scrollAmount += scrollPerClick;
-				if (scrollAmount > maxScroll) {
-					scrollAmount = maxScroll;
+			nextButton.addEventListener('click', () => {
+				if (scrollAmount < maxScroll) {
+					scrollAmount += scrollPerClick;
+					if (scrollAmount > maxScroll) {
+						scrollAmount = maxScroll;
+					}
+					gallery.style.transform = `translateX(-${scrollAmount}px)`;
 				}
-				gallery.style.transform = `translateX(-${scrollAmount}px)`;
-			}
-		});
+			});
 
-		prevButton.addEventListener('click', () => {
-			if (scrollAmount > 0) {
-				scrollAmount -= scrollPerClick;
-				if (scrollAmount < 0) {
-					scrollAmount = 0;
+			prevButton.addEventListener('click', () => {
+				if (scrollAmount > 0) {
+					scrollAmount -= scrollPerClick;
+					if (scrollAmount < 0) {
+						scrollAmount = 0;
+					}
+					gallery.style.transform = `translateX(-${scrollAmount}px)`;
 				}
-				gallery.style.transform = `translateX(-${scrollAmount}px)`;
-			}
-		});
+			});
+		}
+
+		setupGalleryNavigation('gallery1', 'prevButton1', 'nextButton1');
+		setupGalleryNavigation('gallery2', 'prevButton2', 'nextButton2');
+		setupGalleryNavigation('gallery3', 'prevButton3', 'nextButton3');
+		setupGalleryNavigation('gallery4', 'prevButton4', 'nextButton4');
 	});
 
 
