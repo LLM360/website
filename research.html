@@ -92,7 +92,7 @@
                 <li><a href="index.html#three">Papers</a></li>
                 <li><a href="index.html#four">Blogs</a></li>
                 <li><a href="index.html#six">Get in touch</a></li>
-                <li><a href="community.html">Open-source Community</a></li>
+                <li><a href="community.html">Open-source Communities</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
         </nav>
@@ -113,7 +113,7 @@
     <!-- One -->
     <section id="one" class="wrapper style3 fullscreen fade-up">
         <div class="inner">
-            <h2>Training Dynamics Checklist</h2>
+            <h2>Training Dynamics Collection</h2>
             <div class="features three">
                 <section>
                     <h3>Amber</h3>
@@ -129,8 +129,8 @@
                     <ul>
                         <li><a href="https://huggingface.co/LLM360/CrystalCoder/tree/main" target="_blank">120 Checkpoints</a></li>
                         <li><a href="https://github.com/LLM360/crystalcoder-train" target="_blank">Training Code</a></li>
-                        <li><a href="https://wandb.ai/llm360/CrystalCoder?nw=hdze3lfpuer" target="_blank">WandB</a></li>
                         <li><a href="https://huggingface.co/datasets/LLM360/CrystalCoderDatasets" target="_blank">Data (dataset, code, sequence)</a></li>
+                        <li><a href="https://wandb.ai/llm360/CrystalCoder?nw=hdze3lfpuer" target="_blank">WandB</a></li>
                     </ul>
                 </section>
                 <section>
@@ -138,10 +138,10 @@
                     <ul>
                         <li><a href="https://huggingface.co/LLM360/K2/tree/main" target="_blank">120 Checkpoints</a></li>
                         <li><a href="https://github.com/LLM360/k2-train" target="_blank">Training Code</a></li>
+                        <li><a href="https://huggingface.co/datasets/LLM360/K2Datasets" target="_blank">Data (dataset, code, sequence)</a></li>
+                        <li><a href="https://wandb.ai/llm360/K2?nw=29mu6l0zzqq" target="_blank">WandB</a></li>
                         <li><a href="https://huggingface.co/spaces/LLM360/k2-gallery" target="_blank">K2 Prompt Gallery</a></li>
                         <li><a href="https://huggingface.co/spaces/LLM360/k2-eval-gallery" target="_blank">K2 Evaluation Gallery</a></li>
-                        <li><a>WandB</a></li>
-                        <li><a href="https://huggingface.co/datasets/LLM360/K2Datasets" target="_blank">Data (dataset, code, sequence)</a></li>
                     </ul>
                 </section>
             </div>
@@ -152,23 +152,19 @@
     <section id="two" class="wrapper style4 fade-up">
         <div class="inner">
             <h2>K2 Spikes</h2>
-            <p> (Full transparency, lessons learned, go higher, (similar to NaN data))</p>
-            <div class="row gtr-uniform">
-                <div class="col-6 col-12-medium">
-                    <p>Spike 1: 34 checkpoints, <a src="">WandB</a></p>
-                    <span class="image main">
-                        <img src="images/k2_spike1.png"/>
-                    </span>
-                </div>
-                <div class="col-6 col-12-medium">
-                    <div class="col-6 col-12-medium">
-                        <p>Spike 2: 8 checkpoints, <a src="">WandB</a></p>
-                        <span class="image main">
-                            <img src=""/>
-                        </span>
-                    </div>
-                </div>
-            </div>
+            <p> We encountered two major loss spikes while training K2:
+            <ul>
+                <li>The first loss spike occurred after 160 checkpoints and lasted over ~34 checkpoints. We restarted training at checkpoint 160 and training returned to normal.</li>
+                <li>The second loss spike occurred after restarting training to fix the first loss spike at checkpoint 186 and lasted from ~8 checkpoints. Again, we restarted training at checkpoint 186 and training returned to normal.</li>
+            </ul>
+            We are releasing these checkpoints so others can study this interesting phenomena in large model training.</p>
+            <ul>
+                <li>Spike 1: 34 checkpoints, <a href="https://wandb.ai/llm360/K2?nw=29mu6l0zzqq" target="_blank">WandB</a></li>
+                <li>Spike 2: 8 checkpoints, <a href="https://wandb.ai/llm360/K2?nw=29mu6l0zzqq" target="_blank">WandB</a></li>
+            </ul>
+            <span class="image fit">
+                <img src="images/spike_k2.png"/>
+            </span>
         </div>
     </section>
 
@@ -604,7 +600,7 @@
         <ul class="menu">
             <p>
                 LLM360, proudly sponsored by Petuum and MBZUAI, is dedicated to advancing the field of AI by providing comprehensive access to large language models.<br>
-                Our mission is to foster an ecosystem of collaboration, transparency, and innovation in AI research and applications.
+                LLM360 enables community-owned AGI by creating standards and tools to advance the bleeding edge of LLM capability and empower knowledge transfer, research, and development.
             </p>
             <ul class="actions">
                 <li><a href="https://twitter.com/llm360" target="_blank" class="icon brands circle fa-twitter"><span class="label">Twitter</span></a></li>
