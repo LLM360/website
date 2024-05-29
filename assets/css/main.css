@@ -2850,7 +2850,7 @@ input, select, textarea {
 		.image.right {
 			max-width: 30%;
 			float: right;
-			margin: 1em 0 1em 1.5em;
+			margin: 1em 0 0 1.5em;
 			top: 0.25em;
 		}
 
