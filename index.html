@@ -69,7 +69,7 @@
       	<!-- /SEO -->
 
         <!-- Favicon -->
-    		<link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
         <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-chrome-192x192.png">
         <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/android-chrome-512x512.png">
         <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
@@ -83,6 +83,13 @@
         <link rel="stylesheet" href="assets/css/main.css" />
 
     </head>
+    <style>
+        body{
+            background-image:url("images/background1.png");
+            background-repeat: repeat;
+            background-size: 100%;
+        }
+    </style>
     <body class="is-preload">
 
         <!-- Sidebar -->
@@ -97,14 +104,15 @@
                     </a>
                     <h2>LLM360</h2>
                     <ul>
-                        <li><a href="#one">Models</a></li>
+<!--                        <li><a href="#datasets">Datasets</a></li>-->
+                        <li><a href="#models">Models</a></li>
+                        <li><a href="#paper">Papers</a></li>
+                        <li><a href="#blogs">Blogs</a></li>
                         <li><a href="evaluation.html">Performance and Evaluation</a></li>
-                        <li><a href="#two">LLM360 Suites</a></li>
-                        <li><a href="#three">Papers</a></li>
-                        <li><a href="#four">Blogs</a></li>
-                        <li><a href="#six">Get in touch</a></li>
                         <li><a href="community.html">Open-source Communities</a></li>
-                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="joinus.html">Join Us</a></li>
+                        <li><a href="#six">Get in touch</a></li>
                     </ul>
                 </nav>
             </div>
@@ -113,41 +121,51 @@
 
         <!-- Wrapper -->
         <div id="wrapper">
+<!--            <div class="alert-banner" id="alertBanner">-->
+<!--                <a href="https://huggingface.co/spaces/LLM360/TxT360" target="_blank">Announcing our first dataset <strong>TxT360</strong>: Learn More Here.</a>-->
+<!--            </div>-->
 
             <!-- Intro -->
             <section id="intro" class="wrapper style1 fullscreen fade-up">
-                <div class="alert-banner" id="alertBanner">
-                    <a href="blog/several-new-releases-to-further-our-mission.html" target="_blank">Announcing K2-65B: Learn More Here.</a>
-                </div>
                 <div class="inner">
-                    <h1><strong>LLM360</strong> enables <strong>community-owned AGI</strong> through <strong>open-source large model</strong> research and development.</h1>
+                    <h1><strong>LLM360</strong> enables <strong>community-owned AI</strong> through <strong>open-source large model</strong> research and development.</h1>
                     <ul class="actions">
                         <li><a href="https://twitter.com/llm360" target="_blank" class="icon brands circle fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="https://discord.gg/jFPq9AycBu" target="_blank" class="icon brands circle fa-discord"><span class="label">Discord</span></a></li>
                         <li><a href="https://github.com/LLM360" target="_blank" class="icon brands circle fa-github"><span class="label">Github</span></a></li>
                         <li><a href="mailto:team@llm360.ai" target="_blank" class="icon circle fa-envelope"><span class="label">Email</span></a></li>
                     </ul>
                 </div>
             </section>
 
-            <!-- One -->
-            <section id="one" class="wrapper style2 spotlights">
+            <!-- Datasets -->
+<!--            <section id="datasets" class="wrapper style2 spotlights">-->
+<!--                <div class="inner">-->
+<!--                    <h1>Datasets</h1>-->
+<!--                </div>-->
+<!--                <section id="txt360">-->
+<!--                    <span class="image">-->
+<!--                        <img src="images/txt360_logo.png" alt=""/>-->
+<!--                    </span>-->
+<!--                    <div class="content">-->
+<!--                        <h3><strong>TxT360</strong>: the most comprehensive, highest quality, and production ready pretraining dataset</h3>-->
+<!--                        <p>-->
+<!--                            Pretraining performant large language models (LLMs) requires trillions of tokens of high quality data. Many prior work, including our previous pretraining projects Amber-7B, Crystal-7B, and K2-65B have demonstrated how data curation is a ‘make-or-break’ decision for model quality and capability.-->
+<!--                            <br>-->
+<!--                            We present TxT360, the Trillion eXtracted Text corpus, a 5.7T token dataset for pretraining projects.-->
+<!--                        </p>-->
+<!--                        <ul class="actions">-->
+<!--                            <li><a href="https://huggingface.co/spaces/LLM360/TxT360" target="_blank" class="button">Learn more</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </section>-->
+<!--            </section>-->
+
+            <!-- Models -->
+            <section id="models" class="wrapper style2 spotlights">
                 <div class="inner">
-                    <h1>Our models</h1>
+                    <h1>Models</h1>
                 </div>
-                <section class="pictures-section">
-                    <a href="#k2" class="picture-link">
-                        <img src="images/k2_logo.png" alt="" class="picture">
-                        <h2>K2-65B</h2>
-                    </a>
-                    <a href="#crystal" class="picture-link">
-                        <img src="images/cc_logo.png" alt="Image 2" class="picture">
-                        <h2>CrystalCoder-7B</h2>
-                    </a>
-                    <a href="#amber" class="picture-link">
-                        <img src="images/amber_logo.png" alt="Image 3" class="picture">
-                        <h2>Amber-7B</h2>
-                    </a>
-                </section>
                 <section id="k2">
                     <span class="image">
                         <img src="images/k2_logo.png" alt=""/>
@@ -158,10 +176,10 @@
                             <p>A <strong>65B parameter</strong> language model trained on <strong>1.4T tokens</strong>. It outperforms <strong>Llama 2 70B</strong>, but uses approximately <strong>35% less</strong> compute to train.</p>
                             <section>
                                 <ul class="actions fit"  >
-                                    <li><a href="https://huggingface.co/collections/LLM360/k2-6622ae6911e3eb6219690039" target="_blank" class="button style1 fit">Model</a></li>
-                                    <li><a href="https://wandb.ai/llm360/K2?nw=29mu6l0zzqq" target="_blank" class="button style1 fit">W&B</a></li>
-                                    <li><a href="https://huggingface.co/datasets/LLM360/K2Datasets" target="_blank" class="button style1 fit">Data</a></li>
-                                    <li><a href="https://github.com/LLM360/k2-train" target="_blank" class="button style1 fit">Code</a></li>
+                                    <li><a href="https://huggingface.co/collections/LLM360/k2-6622ae6911e3eb6219690039" target="_blank" class="button fit">Model</a></li>
+                                    <li><a href="https://wandb.ai/llm360/K2?nw=29mu6l0zzqq" target="_blank" class="button fit">W&B</a></li>
+                                    <li><a href="https://huggingface.co/datasets/LLM360/K2Datasets" target="_blank" class="button fit">Data</a></li>
+                                    <li><a href="https://github.com/LLM360/k2-train" target="_blank" class="button fit">Code</a></li>
                                 </ul>
                             </section>
                         </div>
@@ -178,10 +196,10 @@
                                 eclipsing the <strong>Llama 2</strong> frontier, skillfully <strong>balances</strong> language and coding.
                                 Its instruction-following variant, <a href="https://huggingface.co/LLM360/CrystalChat" target="_blank">CrystalChat</a>, stands out as a <strong>top-scoring</strong> 7B chat model, trained on a carefully selected mix publicly available language and code datasets.</p>
                             <ul class="actions fit">
-                                <li><a href="https://huggingface.co/collections/LLM360/crystal-65e733d14e6a0786c4f5a606" target="_blank" class="button style2 fit">Model</a></li>
-                                <li><a href="https://wandb.ai/llm360/CrystalCoder?nw=hdze3lfpuer" target="_blank" class="button style2 fit">W&B</a></li>
-                                <li><a href="https://huggingface.co/datasets/LLM360/CrystalCoderDatasets" target="_blank" class="button style2 fit">Data</a></li>
-                                <li><a href="https://github.com/LLM360" target="_blank" class="button style2 fit">Code</a></li>
+                                <li><a href="https://huggingface.co/collections/LLM360/crystal-65e733d14e6a0786c4f5a606" target="_blank" class="button  fit">Model</a></li>
+                                <li><a href="https://wandb.ai/llm360/CrystalCoder?nw=hdze3lfpuer" target="_blank" class="button  fit">W&B</a></li>
+                                <li><a href="https://huggingface.co/datasets/LLM360/CrystalCoderDatasets" target="_blank" class="button  fit">Data</a></li>
+                                <li><a href="https://github.com/LLM360" target="_blank" class="button  fit">Code</a></li>
                             </ul>
                         </div>
                     </div>
@@ -195,74 +213,57 @@
                             <h2>Amber-7B</h2>
                             <p>A 7B parameter English language model based on the <strong>LLaMA</strong> architecture has two fine-tuned instruction-following models named <a href="https://huggingface.co/LLM360/AmberChat" target="_blank">AmberChat</a> and <a href="https://huggingface.co/LLM360/AmberSafe" target="_blank">AmberSafe</a>.</p>
                             <ul class="actions fit">
-                                <li><a href="https://huggingface.co/collections/LLM360/amber-65e7333ff73c7bbb014f2f2f" target="_blank" class="button style3 fit">Model</a></li>
-                                <li><a href="https://wandb.ai/llm360/Amber/workspace?nw=lnzi8o2g4z" target="_blank" class="button style3 fit">W&B</a></li>
-                                <li><a href="https://huggingface.co/datasets/LLM360/AmberDatasets" target="_blank" class="button style3 fit">Data</a></li>
-                                <li><a href="https://github.com/LLM360" target="_blank" class="button style3 fit">Code</a></li>
+                                <li><a href="https://huggingface.co/collections/LLM360/amber-65e7333ff73c7bbb014f2f2f" target="_blank" class="button  fit">Model</a></li>
+                                <li><a href="https://wandb.ai/llm360/Amber/workspace?nw=lnzi8o2g4z" target="_blank" class="button  fit">W&B</a></li>
+                                <li><a href="https://huggingface.co/datasets/LLM360/AmberDatasets" target="_blank" class="button  fit">Data</a></li>
+                                <li><a href="https://github.com/LLM360" target="_blank" class="button  fit">Code</a></li>
                             </ul>
                         </div>
                     </div>
                 </section>
             </section>
 
-            <!-- Two -->
-            <section id="two" class="wrapper style3 fade-up">
+            <!-- Papers -->
+            <section id="paper" class="wrapper style2 fade-up">
                 <div class="inner">
-                    <h2>LLM360 Suites</h2>
-                    <div class="features three">
-                        <section>
-                            <h3>LLM360 Research Suite</h3>
-                            <p>The Research Suite is a comprehensive set of large language model (LLM) artifacts from each of our models, for academic and industry researchers to explore LLM training dynamics.</p>
-                            <ul class="actions">
-                                <li><a href="research.html" class="button bottom">Learn more</a></li>
-                            </ul>
-                        </section>
-                        <section>
-                            <h3>LLM360  Pretraining Suite</h3>
-                            <p>The Pretraining Suite is a series of step-by-step guides to reproduce each of our models, for tech enthusiasts, AI practitioners, and academic or industry researchers, to transfer knowledge on LLM pretraining techniques.</p>
-                            <ul class="actions">
-                                <li><a href="pretraining.html" class="button bottom">Learn more</a></li>
-                            </ul>
-                        </section>
-                        <section>
-                            <h3>LLM360 Developer Suite</h3>
-                            <p>The Developer Suite is a series of fine-tuning and inference tutorials for tech enthusiasts, AI practitioners, and academic or industry researchers, who are interested in general model usage or downstream task evaluation and research.</p>
-                            <ul class="actions">
-                                <li><a href="developer.html" class="button bottom">Learn more</a></li>
-                            </ul>
-                        </section>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Three -->
-            <section id="three" class="wrapper style4 fade-up">
-                <div class="inner">
-                    <h2>Papers</h2>
+                    <h1>Papers</h1>
                     <div class="features alt">
-                        <section>
-                            <h3>LLM360 K2-65B: Scaling Up Fully Transparent Open-Source LLMs</h3>
-                            <span class="image right">
-                                <img src="images/paper2.png">
-                            </span>
-                            <p>In this paper, we present LLM360 K2-65B, the most powerful fully transparent open-source large language model (LLM) released to date. K2 is a 65 billion parameter LLM, which follows best practices for reproducibility from the LLM360 project. Despite numerous efforts to develop and release open-source LLMs, full transparency around the training process still remains limited... </p>
-                            <ul class="actions">
-                                <li><a href="paper2.pdf" target="_blank" class="button">Learn more</a></li>
-                            </ul>
+                        <section id="paper1">
+                            <div class="row">
+                                <div class="col-5">
+                                    <span class="image main">
+                                        <img src="images/paper2.png">
+                                    </span>
+                                </div>
+                                <div class="col-7">
+                                    <h3>LLM360 K2-65B: Scaling Up Fully Transparent Open-Source LLMs</h3>
+                                    <p>In this paper, we present LLM360 K2-65B, the most powerful fully transparent open-source large language model (LLM) released to date. K2 is a 65 billion parameter LLM, which follows best practices for reproducibility from the LLM360 project. Despite numerous efforts to develop and release open-source LLMs, full transparency around the training process still remains limited... </p>
+                                    <ul class="actions">
+                                        <li><a href="LLM360 K2-65B: Scaling Up Fully Transparent Open-Source LLMs.pdf" target="_blank" class="button">Learn more</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </section>
-                        <section>
-                            <span class="image right">
-                                <img src="images/llm360_paper.png">
-                            </span>
-                            <h3>LLM360: Towards Fully Transparent Open-Source LLMs</h3>
-                            <p>The recent surge in open-source Large Language Models (LLMs), such as LLaMA,
-                                Falcon, and Mistral, provides diverse options for AI practitioners and researchers.
-                                However, most LLMs have only released partial artifacts, such as the final model
-                                weights or inference code, and technical reports increasingly limit their scope to
-                                high-level design choices and surface statistics... </p>
-                            <ul class="actions">
-                                <li><a href="paper.pdf" target="_blank" class="button">Learn more</a></li>
-                            </ul>
+                        <br>
+                        <section id="paper2">
+                            <div class="row">
+                                <div class="col-5">
+                                   <span class="image main">
+                                       <img src="images/llm360_paper.png">
+                                    </span>
+                                </div>
+                                <div class="col-7">
+                                    <h3>LLM360: Towards Fully Transparent Open-Source LLMs</h3>
+                                    <p>The recent surge in open-source Large Language Models (LLMs), such as LLaMA,
+                                        Falcon, and Mistral, provides diverse options for AI practitioners and researchers.
+                                        However, most LLMs have only released partial artifacts, such as the final model
+                                        weights or inference code, and technical reports increasingly limit their scope to
+                                        high-level design choices and surface statistics... </p>
+                                    <ul class="actions">
+                                        <li><a href="LLM360-Towards-Fully-Transparent-Open-Source-LLMs.pdf" target="_blank" class="button">Learn more</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </section>
                     </div>
                     <section>
@@ -279,40 +280,101 @@
                 </div>
             </section>
 
-            <!-- Four -->
-            <section id="four" class="wrapper style3 fade-up">
+            <!-- Blog -->
+            <section id="blogs" class="wrapper style2 fade-up">
                 <div class="inner">
-                    <h2>Blogs</h2>
+                    <h1>Blogs</h1>
                     <div class="features alt">
-                        <section>
-                            <span class="image right">
-                                <img src="images/blog2.png">
-                            </span>
-                            <h3>Introducing K2-65B: Charting the Blueprint Towards Open-Source Artificial General Intelligence</h3>
-                            <p>LLM360 is excited to announce several new releases to further our mission enabling community-owned AGI by creating standards and tools to advance the bleeding edge of LLM capability and empower knowledge transfer, research, and development.</p>
-                            <ul class="actions">
-                                <li><a href="blog/several-new-releases-to-further-our-mission.html" class="button">Learn more</a></li>
-                            </ul>
-                        </section>
-                        <section>
-                            <span class="image right">
-                                <img src="images/blog.png">
-                            </span>
-                            <h3>Introducing LLM360: Fully Transparent Open-Source LLMs</h3>
-                            <p>In recent months, the open-source large language model (LLM) community has seen tremendous model contributions. However, model weight releases and overview technical reports do not contain enough information to cover the complexity of LLM training, which hinders openness and transparency, the mechanisms behind trustworthy and innovative research and science for decades.</p>
-                            <ul class="actions">
-                                <li><a href="blog/introducing-llm360-fully-transparent-open-source-llms.html" class="button">Learn more</a></li>
-                            </ul>
-                        </section>
+<!--                        <ul class="tags">-->
+<!--                            <li> <a class="tag" data-tag="all">All</a></li>-->
+<!--                            <li> <a class="tag" data-tag="announcement">announcement</a></li>-->
+<!--                            <li> <a class="tag" data-tag="model">model</a></li>-->
+<!--                            <li> <a class="tag" data-tag="dataset">dataset</a></li>-->
+<!--                            <li> <a class="tag" data-tag="software">software</a></li>-->
+<!--                            <li> <a class="tag" data-tag="research">research</a></li>-->
+<!--                        </ul>-->
+                        <div class="blog-posts">
+                            <section data-tags="announcement, model" class="blog-post">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <span class="image main">
+                                            <img src="images/blog2.png">
+                                        </span>
+                                    </div>
+                                    <div class="col-7">
+                                        <h3>Introducing K2-65B: Charting the Blueprint Towards Open-Source Artificial General Intelligence</h3>
+                                        <ul class="tags">
+                                            <li> <a class="tag" data-tag="announcement">announcement</a></li>
+                                            <li> <a class="tag" data-tag="model">model</a></li>
+                                        </ul>
+                                        <p>LLM360 is excited to announce several new releases to further our mission enabling community-owned AGI by creating standards and tools to advance the bleeding edge of LLM capability and empower knowledge transfer, research, and development.</p>
+                                        <ul class="actions">
+                                            <li><a href="blog/several-new-releases-to-further-our-mission.html" class="button">Learn more</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+                            <br>
+                            <section data-tags="announcement, model" class="blog-post">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <span class="image main">
+                                            <img src="images/blog.png">
+                                        </span>
+                                    </div>
+                                    <div class="col-7">
+                                        <h3>Introducing LLM360: Fully Transparent Open-Source LLMs</h3>
+                                        <ul class="tags">
+                                            <li> <a class="tag" data-tag="announcement">announcement</a></li>
+                                            <li> <a class="tag" data-tag="model">model</a></li>
+                                        </ul>
+                                        <p>In recent months, the open-source large language model (LLM) community has seen tremendous model contributions. However, model weight releases and overview technical reports do not contain enough information to cover the complexity of LLM training, which hinders openness and transparency, the mechanisms behind trustworthy and innovative research and science for decades.</p>
+                                        <ul class="actions">
+                                            <li><a href="blog/introducing-llm360-fully-transparent-open-source-llms.html" class="button">Learn more</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
                     </div>
 
                 </div>
             </section>
 
+            <!-- LLM360 Suites -->
+<!--            <section id="two" class="wrapper style4 fade-up">-->
+<!--                <div class="inner">-->
+<!--                    <h1>LLM360 Suites</h1>-->
+<!--                    <div class="features three">-->
+<!--                        <section>-->
+<!--                            <h3>LLM360 Research Suite</h3>-->
+<!--                            <p>The Research Suite is a comprehensive set of large language model (LLM) artifacts from each of our models, for academic and industry researchers to explore LLM training dynamics.</p>-->
+<!--                            <ul class="actions">-->
+<!--                                <li><a href="research.html" class="button bottom">Learn more</a></li>-->
+<!--                            </ul>-->
+<!--                        </section>-->
+<!--                        <section>-->
+<!--                            <h3>LLM360  Pretraining Suite</h3>-->
+<!--                            <p>The Pretraining Suite is a series of step-by-step guides to reproduce each of our models, for tech enthusiasts, AI practitioners, and academic or industry researchers, to transfer knowledge on LLM pretraining techniques.</p>-->
+<!--                            <ul class="actions">-->
+<!--                                <li><a href="pretraining.html" class="button bottom">Learn more</a></li>-->
+<!--                            </ul>-->
+<!--                        </section>-->
+<!--                        <section>-->
+<!--                            <h3>LLM360 Developer Suite</h3>-->
+<!--                            <p>The Developer Suite is a series of fine-tuning and inference tutorials for tech enthusiasts, AI practitioners, and academic or industry researchers, who are interested in general model usage or downstream task evaluation and research.</p>-->
+<!--                            <ul class="actions">-->
+<!--                                <li><a href="developer.html" class="button bottom">Learn more</a></li>-->
+<!--                            </ul>-->
+<!--                        </section>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </section>-->
+
             <!-- Four -->
-            <section id="six" class="wrapper style4 fade-up">
+            <section id="six" class="wrapper style1 fade-up">
                 <div class="inner">
-                    <h2>Connect with Us</h2>
+                    <h2><strong>Connect with Us</strong></h2>
                     <p>The LLM360 team is here to solve the most challenging AI problems. Reach out if you'd like to discuss.</p>
                     <section>
                         <form method="post" action="https://formspree.io/f/xqkvrzyy" name="Contact Form">
@@ -329,7 +391,7 @@
                             </div>
                             <ul class="actions">
                                 <li><a href="" class="button submit">Send Message</a></li>
-                                <li><input type="reset" value="Reset" /></li>
+                                <li><input type="reset" value="Reset" class="button primary" /></li>
                             </ul>
                         </form>
                     </section>
@@ -348,6 +410,7 @@
                     </p>
                     <ul class="actions">
                         <li><a href="https://twitter.com/llm360" target="_blank" class="icon brands circle fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="https://discord.gg/jFPq9AycBu" target="_blank" class="icon brands circle fa-discord"><span class="label">Discord</span></a></li>
                         <li><a href="https://github.com/LLM360" target="_blank" class="icon brands circle fa-github"><span class="label">Github</span></a></li>
                         <li><a href="mailto:team@llm360.ai" target="_blank" class="icon circle fa-envelope"><span class="label">Email</span></a></li>
                     </ul>

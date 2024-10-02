@@ -226,6 +226,34 @@
 		document.documentElement.scrollTop = 0;
 	};
 
+	//  Tag click and display
+	document.addEventListener('DOMContentLoaded', function () {
+		const tags = document.querySelectorAll('.tag');
+		const blogPosts = document.querySelectorAll('.blog-post');
+
+		// Show all blog posts initially
+		showPostsByTag('all');
+
+		// Add click event listeners to all tags
+		tags.forEach(tag => {
+			tag.addEventListener('click', function () {
+				const tagValue = this.getAttribute('data-tag');
+				showPostsByTag(tagValue);
+			});
+		});
+
+		function showPostsByTag(tag) {
+			blogPosts.forEach(post => {
+				const postTags = post.getAttribute('data-tags');
+				if (tag === 'all' || postTags.includes(tag)) {
+					post.style.display = 'block'; // Show post
+				} else {
+					post.style.display = 'none';  // Hide post
+				}
+			});
+		}
+	});
+
 	// Scroll to see all pictures in the gallery
 	document.addEventListener('DOMContentLoaded', function () {
 		function setupGalleryNavigation(galleryId, prevButtonId, nextButtonId) {
