@@ -76,6 +76,13 @@
         <!-- Style -->
         <link rel="stylesheet" href="assets/css/main.css" />
     </head>
+    <style>
+        body{
+            background-image:url("images/background1.png");
+            background-repeat: repeat;
+            background-size: 100%;
+        }
+    </style>
     <body class="is-preload">
 
         <!-- Sidebar -->
@@ -94,12 +101,10 @@
                         <li><a href="index.html#models">Models</a></li>
                         <li><a href="index.html#paper">Papers</a></li>
                         <li><a href="index.html#blogs">Blogs</a></li>
-<!--                        <li><a href="index.html#two" >LLM360 Suites</a></li>-->
-                        <li><a href="evaluation.html">Performance and Evaluation</a></li>
-                        <li><a href="community.html">Open-source Communities</a></li>
-                        <li><a href="#top">About Us</a></li>
-                        <li><a href="joinus.html">Join Us</a></li>
-                        <li><a href="index.html#six">Get in touch</a></li>
+<!--                        <li><a href="community.html">Open-source Communities</a></li>-->
+                        <li><a href="#about">About</a></li>
+<!--                        <li><a href="joinus.html">Join Us</a></li>-->
+<!--                        <li><a href="index.html#six">Get in touch</a></li>-->
                     </ul>
                 </nav>
             </div>
@@ -107,9 +112,11 @@
 
         <!-- Wrapper -->
         <div id="wrapper">
-
+            <div  id="alertBanner">
+<!--                <a href="https://huggingface.co/spaces/LLM360/TxT360" target="_blank">Announcing our first dataset <strong>TxT360</strong>: Learn More Here.</a>-->
+            </div>
             <!-- Intro -->
-            <section id="top" class="wrapper fullscreen fade-up">
+            <section id="about" class="wrapper style2 fade-up">
                 <div class="inner">
                     <h1>About Us</h1>
                     <h4>Mission and Vision</h4>
@@ -145,7 +152,7 @@
                             <a class="image main" href="https://www.snowflake.com/en/" target="_blank"><img src="images/Snowflake_Logo.svg.png" alt="" /></a>
                         </div>
                     </div>
-                    <h3>Contact us:</h3>
+                    <h3>Stay tuned:</h3>
                     <ul>
                         <li>Follow us on <a href="https://x.com/llm360" target="_blank">X</a></li>
                         <li>Join our <a href="https://discord.gg/jFPq9AycBu" target="_blank">Discord</a> community </li>
@@ -153,7 +160,133 @@
                     </ul>
                 </div>
             </section>
+            <section id="community" class="wrapper style2 fade-up">
+                <div class="inner">
+                    <h1>Open-source Communities</h1>
+                    <p>LLM360 is dedicated to developing open-source models while actively fostering collaboration with other AI research teams.
+                        Our commitment extends to building and strengthening the entire open-source communities.
+                        As you follow our progress, we encourage you to explore other exciting AI research.</p>
+                    <div class="box alt">
+                        <div class="row gtr-200">
+                            <div class="col-3">
+                                <a class="image main" href="https://allenai.org/" target="_blank">
+                                    <img alt="AI2 Allen Institute for AI" src="images/ai2_logo.png" />
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://alignmentlab.ai/" target="_blank">
+                                    <img alt="Alignment Lab AI" src="images/alignment_logo.png"/>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://transformer-circuits.pub/" target="_blank">
+                                    <img alt="Anthropic" src="images/Anthropic_logo.png"/>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://cohere.com/research" target="_blank">
+                                    <img alt="Cohere" src="images/cohere_logo.svg"/>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://contextual.ai/" target="_blank">
+                                    <img alt="Contextual.ai" src="images/contextual_logo.jpg"/>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://www.eleuther.ai/" target="_blank">
+                                    <img alt="EleutherAI" src="images/eleutherai_logo.png" />
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://lil.law.harvard.edu/" target="_blank">
+                                    <img alt="Library Innovation Lab" src="images/harvardlab_logo.png"/>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://huggingface.co/" target="_blank">
+                                    <img alt="Hugging Face" src="images/huggingface_logo.png" />
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://lmsys.org/" target="_blank">
+                                    <img alt="LMSYS Large Model Systems Organization" src="images/lmsys_logo.png"/>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://maitrix.org/" target="_blank">
+                                    <img alt="Maitrix.org" src="images/maitrix_logo.png" />
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://mila.quebec/en" target="_blank">
+                                    <img alt="Mila" src="images/mila_logo.svg"/>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://www.mozilla.org/en-US/" target="_blank">
+                                    <img alt="Mozilla" src="images/mozilla_logo.svg"/>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://mistral.ai/" target="_blank">
+                                    <img alt="Mistral AI" src="images/mistral_logo.jpg"/>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://www.cs.cmu.edu/~neulab/" target="_blank">
+                                    <img alt="Neulab" src="images/neulab_logo.png"/>
+                                </a>
+                            </div>
+                            <div class="col-3 ">
+                                <a class="image main" href="https://www.rwkv.com/" target="_blank">
+                                    <img alt="RWKV Language Model" src="images/rwkv_logo.png"/>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://github.com/sgl-project/sglang" target="_blank">
+                                    <img alt="SGL" src="images/sgl_logo.png"/>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a class="image main" href="https://www.synthlabs.ai/" target="_blank">
+                                    <img alt="Synth Labs" src="images/synth_logo.png"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="joinus" class="wrapper style1 fade-up">
+                <div class="inner">
+                    <h1><strong>Contact Us</strong></h1>
+                    <p>The LLM360 team is growing, and we’re looking for enthusiastic individuals with a passion for large language models (LLMs). If you're interested in joining us or have any suggestions, feel free to share your information!</p>
+                    <section>
+                        <form method="post" action="https://formspree.io/f/xqkvrzyy" name="Contact Form">
+                            <div class="fields">
+                                <div class="field half">
+                                    <input type="text" name="name" id="name" placeholder="Name" required/>
+                                </div>
+                                <div class="field half">
+                                    <input type="text" name="email" id="email" placeholder="Email" required/>
+                                </div>
+                                <div class="field">
+                                    <textarea name="message" id="message" rows="5" placeholder="Message" required></textarea>
+                                </div>
+                            </div>
+                            <ul class="actions">
+                                <li><a href="" class="button submit">Send Message</a></li>
+                                <li><input type="reset" value="Reset" class="button primary" /></li>
+                            </ul>
+                        </form>
+                    </section>
+                </div>
+            </section>
         </div>
+
+
+
 
         <!-- Footer -->
         <footer id="footer" class="wrapper style1-alt">
