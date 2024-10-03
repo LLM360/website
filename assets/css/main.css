@@ -2851,11 +2851,12 @@ input, select, textarea {
 			max-width: 25%;
 			float: right;
 			margin: 1em 0 0 1.5em;
+			padding: 1em;
 		}
 
 			.image.right img {
 				width: 100%;
-				box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+				/*box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);*/
 			}
 
 		@media screen and (max-width: 2680px) {
