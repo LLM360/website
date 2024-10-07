@@ -3629,6 +3629,10 @@ input, select, textarea {
 			background-image: radial-gradient(circle, rgba(255, 255, 255, 1) 70%, rgba(255, 255, 255, 0) 100%), linear-gradient(to left bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
 			border-image: linear-gradient(to right bottom, rgba(238, 113, 207, 0.5),rgba(255, 255, 255, 0.1), rgba(231, 107, 32, 0.5)) 1;
 		}
+		.wrapper.style2:nth-child(7) {
+			background-image: radial-gradient(circle, rgba(255, 255, 255, 1) 70%, rgba(255, 255, 255, 0) 100%), linear-gradient(to left bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+			border-image: linear-gradient(to right bottom, rgba(238, 113, 207, 0.5),rgba(255, 255, 255, 0.1), rgba(231, 107, 32, 0.5)) 1;
+		}
 
 		.wrapper.style2 h1 {
 			font-size: 3.5em;
