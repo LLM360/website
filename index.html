@@ -104,7 +104,7 @@
                     </a>
                     <h2>LLM360</h2>
                     <ul>
-<!--                        <li><a href="#datasets">Datasets</a></li>-->
+                        <li><a href="#datasets">Datasets</a></li>
                         <li><a href="#models">Models</a></li>
                         <li><a href="#paper">Papers</a></li>
                         <li><a href="#blogs">Blogs</a></li>
@@ -123,7 +123,13 @@
 <!--            <div class="alert-banner" id="alertBanner">-->
 <!--                <a href="https://huggingface.co/spaces/LLM360/TxT360" target="_blank">Announcing our first dataset <strong>TxT360</strong>: Learn More Here.</a>-->
 <!--            </div>-->
-
+            <div class="alert-banner" id="alertBanner">
+                <a href="https://huggingface.co/spaces/LLM360/TxT360" target="_blank" id="bannerContent">
+                    Announcing our first dataset <strong>TxT360</strong>: Learn More Here.
+                </a>
+                <a id="prevBtn" class="arrow-btn">&#9664;</a> <!-- Left arrow -->
+                <a id="nextBtn" class="arrow-btn">&#9654;</a> <!-- Right arrow -->
+            </div>
             <!-- Intro -->
             <section id="intro" class="wrapper style1 fullscreen fade-up">
                 <div class="inner">
@@ -138,27 +144,25 @@
             </section>
 
             <!-- Datasets -->
-<!--            <section id="datasets" class="wrapper style2 spotlights">-->
-<!--                <div class="inner">-->
-<!--                    <h1>Datasets</h1>-->
-<!--                </div>-->
-<!--                <section id="txt360">-->
-<!--                    <span class="image">-->
-<!--                        <img src="images/txt360_logo.png" alt=""/>-->
-<!--                    </span>-->
-<!--                    <div class="content">-->
-<!--                        <h3><strong>TxT360</strong>: the most comprehensive, highest quality, and production ready pretraining dataset</h3>-->
-<!--                        <p>-->
-<!--                            Pretraining performant large language models (LLMs) requires trillions of tokens of high quality data. Many prior work, including our previous pretraining projects Amber-7B, Crystal-7B, and K2-65B have demonstrated how data curation is a ‘make-or-break’ decision for model quality and capability.-->
-<!--                            <br>-->
-<!--                            We present TxT360, the Trillion eXtracted Text corpus, a 5.7T token dataset for pretraining projects.-->
-<!--                        </p>-->
-<!--                        <ul class="actions">-->
-<!--                            <li><a href="https://huggingface.co/spaces/LLM360/TxT360" target="_blank" class="button">Learn more</a></li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </section>-->
-<!--            </section>-->
+            <section id="datasets" class="wrapper style2 spotlights">
+                <div class="inner">
+                    <h1>Datasets</h1>
+                </div>
+                <section id="txt360">
+                    <span class="image">
+                        <img src="images/txt360_logo.png" alt=""/>
+                    </span>
+                    <div class="content">
+                        <h2>TxT360</h2>
+                        <p>
+                            We introduce <strong>TxT360 (Trillion eXtracted Text)</strong>, the <strong>first</strong> dataset to <strong>globally deduplicate</strong> 99 CommonCrawl snapshots and 14 high-quality data sources from diverse domains (e.g., FreeLaw, PG-19, etc.). The large-scale deduplication process and rich metadata stored enables precise control over data distribution.
+                        </p>
+                        <ul class="actions">
+                            <li><a href="https://huggingface.co/spaces/LLM360/TxT360" target="_blank" class="button">Learn more</a></li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
 
             <!-- Models -->
             <section id="models" class="wrapper style2 spotlights">

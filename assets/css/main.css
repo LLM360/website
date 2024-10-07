@@ -4429,17 +4429,57 @@ body.is-preload #sidebar > .inner {
 	}
 }
 
+/*.alert-banner {*/
+/*	background-image: linear-gradient(to right, rgba(136, 215, 17, 0.95), rgba(4, 103, 229, 0.95));*/
+/*	color: white; !* White text *!*/
+/*	padding: 10px; !* Some padding *!*/
+/*	text-align: center; !* Centered text *!*/
+/*	position: relative; !* Relative positioning *!*/
+/*	width: 100%; !* Full width *!*/
+/*	top: 0; !* Stick to top *!*/
+/*	left: 0; !* Align to the left *!*/
+/*	box-shadow: 0 4px 8px rgba(0,0,0,0.1); !* Add a subtle shadow *!*/
+/*	z-index: 1000; !* Ensure it's on top *!*/
+/*}*/
 .alert-banner {
 	background-image: linear-gradient(to right, rgba(136, 215, 17, 0.95), rgba(4, 103, 229, 0.95));
-	color: white; /* White text */
-	padding: 10px; /* Some padding */
-	text-align: center; /* Centered text */
-	position: relative; /* Relative positioning */
-	width: 100%; /* Full width */
-	top: 0; /* Stick to top */
-	left: 0; /* Align to the left */
-	box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add a subtle shadow */
-	z-index: 1000; /* Ensure it's on top */
+	color: white;
+	padding: 10px;
+	text-align: center;
+	position: relative;
+	width: 100%;
+	top: 0;
+	left: 0;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	z-index: 1000;
+}
+
+.alert-banner a {
+	color: white; /* Ensures link text is white */
+	text-decoration: none;
+}
+
+.arrow-btn {
+	background-color: transparent;
+	color: white;
+	border: none;
+	font-size: 18px;
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+#prevBtn {
+	left: 10px; /* Left arrow button */
+}
+
+#nextBtn {
+	right: 10px; /* Right arrow button */
+}
+
+.arrow-btn:hover {
+	color: rgba(255, 255, 255, 0.8); /* Slight hover effect */
 }
 
 .tags {

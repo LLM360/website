@@ -253,6 +253,38 @@
 			});
 		}
 	});
+	
+	// making news banner change
+	const bannerContent = document.getElementById("bannerContent");
+	const messages = [
+		{
+			text: 'Announcing our first dataset <strong>TxT360</strong>: Learn More Here.',
+			link: 'https://huggingface.co/spaces/LLM360/TxT360'
+		},
+		{
+			text: 'The Institute of Foundation Model is <strong>hiring</strong> !',
+			link: 'https://mbzuai.ac.ae/institute-of-foundation-models/' // Change this to your hiring link
+		}
+	];
+
+	let currentIndex = 0;
+
+	function updateBanner() {
+		bannerContent.innerHTML = messages[currentIndex].text;
+		bannerContent.href = messages[currentIndex].link;
+	}
+
+// Previous button action
+	document.getElementById("prevBtn").addEventListener("click", () => {
+		currentIndex = (currentIndex === 0) ? messages.length - 1 : currentIndex - 1;
+		updateBanner();
+	});
+
+// Next button action
+	document.getElementById("nextBtn").addEventListener("click", () => {
+		currentIndex = (currentIndex === messages.length - 1) ? 0 : currentIndex + 1;
+		updateBanner();
+	});
 
 	// Scroll to see all pictures in the gallery
 	document.addEventListener('DOMContentLoaded', function () {
