@@ -253,7 +253,7 @@
 			});
 		}
 	});
-	
+
 	// making news banner change
 	const bannerContent = document.getElementById("bannerContent");
 	const messages = [
