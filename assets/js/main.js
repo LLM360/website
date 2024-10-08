@@ -262,9 +262,14 @@
 			link: 'https://huggingface.co/spaces/LLM360/TxT360'
 		},
 		{
+			text: 'Announcing <strong>Analysis360</strong>: Open Implementations of LLM Analyses',
+			link: 'https://github.com/LLM360/Analysis360' // Change this to your hiring link
+		},
+		{
 			text: 'The Institute of Foundation Model is <strong>hiring</strong> !',
 			link: 'https://mbzuai.ac.ae/institute-of-foundation-models/' // Change this to your hiring link
 		}
+
 	];
 
 	let currentIndex = 0;
