@@ -2211,15 +2211,15 @@ input, select, textarea {
 				top: -2em;
 				left: 10%;
 				width: 80%;
-				border-top: solid 2px #f1f4f7;
+				/*border-top: solid 2px #f1f4f7;*/
 			}
 
 			.features section:nth-child(5) {
-				border-left: solid 2px #f1f4f7;
+				/*border-left: solid 2px #f1f4f7;*/
 			}
 
 			.features section:nth-child(6) {
-				border-left: solid 2px #f1f4f7;
+				/*border-left: solid 2px #f1f4f7;*/
 			}
 
 			.features section .icon {
@@ -2558,7 +2558,6 @@ input, select, textarea {
 		display: block;
 		font-size: 1.1em;
 	}
-
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
