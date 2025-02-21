@@ -1,0 +1,432 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0FFN6N7318"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-0FFN6N7318');
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <!-- MathJAX -->
+    <script type="text/javascript" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script type="text/javascript">
+        MathJax = {
+          tex: {
+            macros: {
+              argmax: "\\mathop{\\rm arg\\,max}"
+            }
+          }
+        };
+    </script>
+
+    <!-- SEO -->
+    <title>TxT360: A Top-Quality LLM Pre-training Dataset Requires the Perfect Blend | LLM360</title>
+    <meta name="description" content="We introduce TxT360 (Trillion eXtracted Text), the first dataset to globally deduplicate 99 CommonCrawl snapshots and 14 high-quality data sources from diverse domains (e.g., FreeLaw, PG-19, etc.)."/>
+    <link rel="canonical" href="https://www.llm360.ai/blog/txt360-logpost.html" />
+    <meta name="keywords" content="TxT360, Open Source AI, Artificial General Intelligence, LLM360, AI Research, Amber-7B, CrystalCoder-7B, LLM Training"/>
+    <meta name="author" content="LLM360"/>
+    <meta name="robots" content="index, follow"/>
+
+    <!-- Open Graph Protocol -->
+    <meta property="og:title" content="TxT360: A Top-Quality LLM Pre-training Dataset Requires the Perfect Blend | LLM360"/>
+    <meta property="og:description" content="We introduce TxT360 (Trillion eXtracted Text), the first dataset to globally deduplicate 99 CommonCrawl snapshots and 14 high-quality data sources from diverse domains (e.g., FreeLaw, PG-19, etc.)."/>
+    <meta property="og:type" content="website"/>
+    <meta text property="og:url" content="https://www.llm360.ai/blog/txt360-logpost.html"/>
+    <meta property="og:image" content="https://www.llm360.ai/images/open-graph-image.jpg"/>
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@llm360">
+    <meta name="twitter:title" content="TxT360: A Top-Quality LLM Pre-training Dataset Requires the Perfect Blend | LLM360">
+    <meta name="twitter:description" content="We introduce TxT360 (Trillion eXtracted Text), the first dataset to globally deduplicate 99 CommonCrawl snapshots and 14 high-quality data sources from diverse domains (e.g., FreeLaw, PG-19, etc.).">
+    <meta name="twitter:image" content="https://www.llm360.ai/images/open-graph-image.jpg">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "TxT360: A Top-Quality LLM Pre-training Dataset Requires the Perfect Blend | LLM360",
+        "description": "LLM360 is excited to announce the release of TxT360 (Trillion eXtracted Text), the first dataset to globally deduplicate 99 CommonCrawl snapshots and 14 high-quality data sources from diverse domains (e.g., FreeLaw, PG-19, etc.).",
+        "image": "https://www.llm360.ai/images/open-graph-image.jpg",
+        "keywords": "TxT360, Open Source AI, Artificial General Intelligence, LLM360, AI Research, Amber-7B, CrystalCoder-7B, LLM Training",
+        "articleSection": "Artificial Intelligence",
+        "datePublished": "2024-10-07",
+        "url": "https://www.llm360.ai/blog/txt360-logpost.html",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LLM360",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.llm360.ai/images/logo-highres.png"
+            },
+            "sameAs": [
+                "https://twitter.com/llm360",
+                "https://github.com/LLM360",
+                "https://arxiv.org/abs/2312.06550"
+            ]
+        },
+        "articleBody": "LLM360 is excited to announce several new releases to further our mission enabling community-owned AGI by creating standards and tools to advance the bleeding edge of LLM capability and empower knowledge transfer, research, and development. K2-65B, the first fully reproducible large language model to outperform Llama 2 70B, using 35% less compute, has demonstrated on par reasoning and text generation capabilities with strong domain knowledge in medicine, coding, and math..."
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/favicon/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <!-- <link rel="manifest" href="/site.webmanifest"> -->
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+<!-- Sidebar -->
+<button class="toggle-btn" id="toggleBtn">☰</button>
+<section id="sidebar" class="sidebar">
+    <div class="inner">
+        <nav>
+            <a class="alt" href="../index.html">
+                <figure class="hover-rotate">
+                    <img src="../images/logo-highres.png" alt="logo" />
+                </figure>
+            </a>
+            <h2>LLM360</h2>
+            <ul>
+                <li><a href="../index.html#datasets">Datasets</a></li>
+                <li><a href="../index.html#models">Models</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#paper">Papers</a></li>
+                <li><a href="../index.html#blogs">Blogs</a></li>
+<!--                <li><a href="../community.html">Open-source Communities</a></li>-->
+                <li><a href="../about.html">About</a></li>
+<!--                <li><a href="../joinus.html">Join Us</a></li>-->
+<!--                <li><a href="../index.html#six">Get in touch</a></li>-->
+            </ul>
+        </nav>
+    </div>
+</section>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Intro -->
+    <section id="seven" class="wrapper fullscreen fade-up">
+        <div class="inner">
+            <!-- <h1><strong>AgentModel</strong>:  A General Goal-Oriented Architecture for Machine Super Intelligence Based on LLMs</h1> -->
+            <!-- <h1>Towards Superintelligent Goal-Oriented Agent: An Architecture for Generalized Agentic Reasoning via World Model Simulation</h1> -->
+            <h1>Towards Superintelligent Goal-Oriented Agent: An Architecture for Generalized Agentic Reasoning via World Model Simulation</h1>
+            <h1>Towards General Goal-Oriented Agent via Simulational Reasoning with LLM-Based World Model</h1>
+            <p>LLM360 Team  &nbsp | &nbsp Feb XX, 2025</p>
+            <!-- <h4>
+                Read the full blogpost <a href="https://huggingface.co/spaces/LLM360/TxT360" target="_blank">here</a>
+            </h4> -->
+            <br>
+            <div class="content">
+                <!-- <h2>About TxT360</h2> -->
+                <!-- <span class="image right">
+						<img src="../images/txt360_logo.png" alt="" />
+                </span> -->
+                <!-- <p>
+                    TL;DR We introduce TxT360 (Trillion eXtracted Text), the first dataset to globally deduplicate 99 CommonCrawl snapshots and 14 high-quality data sources from diverse domains (e.g., FreeLaw, PG-19, etc.). The large-scale deduplication process and rich metadata stored enables precise control over data distribution. We demonstrate a simple but effective upsampling recipe that creates a 15+ trillion-token corpus, outperforming FineWeb 15T on several key metrics. With the information, TxT360 empowers pre-trainers to explore more advanced weighting techniques, a feature not commonly available in previous pre-training datasets. Our findings highlight the importance of both high-quality data sources and appropriate weighting for optimal blending in LLM training.
+                    In line with our 360° open source spirit, we document all detailed steps, reasons of our decisions, detailed statistics, our code (stay tuned!), analysis results and more, in additional to the dataset itself. We hope this can serve as a useful resource for future developers.
+                </p> -->
+
+                <p>
+                    <b>TL;DR</b>: 
+                    
+                    We introduce AgentModel, a general architecture for goal-oriented agents, with each component implemented using LLM.
+                    Compared to typical approaches which tailor agents to specific tasks, AgentModel is a general architecture that can be applied to a wide range of environments.
+                    Based on a principled formulation of optimal agents in any environment, AgentModel overcomes the limitations of LLM autoregressive reasoning by introducing world model for planning via simulation. 
+                    Experiments on difficult web browsing tasks show that AgentModel improves the success of flight search from 0% to 32.2%, while world model planning shows consistent advantage of up to 124% over autoregressive planning, which demonstrates the advantage of world model simulation as a reasoning paradigm. 
+                    We have made the resulting web agent excited to support more environments and develop training strategies going forward.
+                    We are excited to move towards training a single, general agent model that can act superintelligent in all environments.
+                    To start, we release ReasonerAgent-Web, a web agent built in our architecture with pretrained LLMs, as a research demo for public testing. 
+                </p>
+
+                <ul class="actions fit">
+                    <li><a href="https://reasoner-agent.maitrix.org/" target="_blank" class="button">Web Agent Blog Post</a></li>
+                    <li><a href="https://easyweb.maitrix.org/" target="_blank" class="button">Web Agent Public Demo</a></li>
+                </ul>
+
+                <h2>Overview</h2>
+                <p>
+                    AI agents powered by large language models (LLMs) have the potential to make immense impact in a wide range of applications. 
+                    Existing work, however, typically develops agent architectures and multi-agent workflows tailored to specific tasks (see below for examples, e.g., social agent is developed for social simulation, and web agent for web automation).
+                </p>
+                <span class="image fit">
+                    <img src="../images/agent-model-1.png" alt="" />
+                    <p style="text-align:center; font-size:0.8em"><b>Figure 1</b>: Current approaches typically develop specific agents and multi-agent workflows tailored to specific tasks. </p>
+                </span>
+                <p>
+                    Such a one-task-one-agent approach <b>economically</b> falls short of scalability, <b>intellectually</b> offers no clear path towards general intelligence, and <b>technically </b>is fundamentally constrained by autoregressive LLMs. 
+                </p>
+                <p>
+                    On the other hand, humans are generalists with a single cognitive architecture, but can nevertheless achieve goals in diverse environments (<b>left</b> in the figure below).
+                    Furthermore, human reasoning is not limited to linear, autoregressive reasoning, but also forward-looking, simulation-based reasoning using an internal world model (<b>right</b> in the figure below).
+                </p>
+                <span class="image fit">
+                    <img src="../images/agent-model-2.png" alt="" />
+                    <p style="text-align:center; font-size:0.8em"><b>Figure 2</b>: Humans are general agents who can act in diverse environments; in particular, humans can adapt to novel situations through reasoning by simulating different courses of action mentally. </p>
+                </span>
+
+                <p>
+                    To bridge this gap, we present <b>AgentModel</b>, a general architecture for goal-oriented agents, with each component implemented using LLM. 
+                    In particular, we overcome the limitations of LLM autoregressive reasoning by introducing world model for planning via simulation. 
+                    Because simulating the full details of the world is infeasible, we propose to extract only the relevant information using natural language as a compact but complete representation, and simulate the next world in this latent space.
+                    AgentModel improves performance substantially in experiments on web browsing, increasing the success rate of flight search from 0% to 32.2%, with reasoning by world model simulation outperforming LLM autoregressive reasoning by up to 124%. 
+                    We have made the resulting web agent available to the public as <b><a href="https://github.com/maitrix-org/llm-reasoners/tree/main/examples/ReasonerAgent-Web">ReasonerAgent-Web</a></b>, with more details described in a <a href="https://reasoner-agent.maitrix.org/">blogpost</a> and the agent available for testing in a <a href="https://easyweb.maitrix.org/">public demo</a>. 
+                </p>
+
+                <h2>Architecture for Optimal Goal-Oriented Agent</h2>
+
+                <h3>Formulation of Agent-Environment Model</h3>
+                <p>
+                    We consider an agent with identity \(i\) (e.g., name, description, and goal \(g\)) acting in environment \(e\) (e.g., web browser),
+                    with action space \(\mathcal{A}\) and observation space \(\mathcal{O}\). At each time step \(t\):
+                    <ol>
+                        <li>The <b>agent</b> interacts with the environment by taking action \(a_t \in \mathcal{A}\) following distribution \(\pi_i\).</li>
+                        <li>The <b>environment</b> returns the next observation \(o_t \in \mathcal{O}\) following distribution \(\mu_e\).</li>
+                    </ol>
+                    We denote the interaction history up to time step \(t\) as \(ao_{1:t} := a_1 o_1 \dots a_t o_t\), and write the distribution over agent trajectory as below:
+                    
+                </p>
+
+                <div>
+                    \[
+                        ^{\pi_i}_{\mu_e}(ao_{1:t}) = \prod_{t'=1}^t {\underbrace {\textstyle \pi_i(a_{t'} | ao_{&lt;t'})}_{\text{ agent }} } \ {\underbrace {\textstyle \mu_e(o_{t'} | ao_{&lt;t'}, a_{t'})}_{\text{ environment }} }
+                    \]
+                </div>
+
+                <p>
+                    Due to its goal-oriented nature, the agent's priority is to maximize the probability of achieving its goal(s), which we denote as \(\beta(g) \leq 1\), given the history \(ao_{1:t}\). 
+                    Specifically, we evaluate the agent's success by the <b>expected goal-achieving probability</b> over all possible future trajectories \(ao_{t:m}\), with the planning horizon \(m \rightarrow \infty\). 
+                    Due to the conceptual similarity, we will use the term interchangeably with <b>value function</b> from reinforcement learning. 
+                    We also present the recurrence satisfied by the value function, which is useful for defining optimal agents. We present the formula below:
+                </p>
+
+                <div>
+                    \[
+                        \begin{align*}
+                        V^{\pi_i,\mu_e}_g(ao_{&lt;t}) 
+                        &:= \mathbb{E}_{\pi_i,\mu_e} \left[ \beta(g) | ao_{&lt;t} \right] \\
+                        &= \lim_{m \rightarrow \infty} \sum_{ao_{t:m}} {\underbrace {\textstyle \beta(g | ao_{1:m}) }_{ \text{goal} } } \ {\underbrace {\textstyle ^{\pi_i}_{\mu_e}(ao_{t:m} | ao_{&lt;t})}_{ \text{trajectory} } } \\
+                        &= \sum_{ao_t} {\underbrace {V^{\pi_i,\mu_e}_g(ao_{1:t})}_{ \begin{array}{c}  \text{value function} \\  \text{of the next step} \end{array}} } \ {\underbrace {^{\pi_i}_{\mu_e}(ao_{t} | ao_{&lt;t})}_{ \begin{array}{c}  \text{probability of} \\  \text{the next step} \end{array} } }
+                        \end{align*}
+                    \]
+                </div>
+
+                <h3>Definition of Optimal Agent</h3>
+
+                <p>
+                    The optimal agent with identity \(i\) for environment \(e\) is thus the agent \(\pi^*_{i,e}\) that maximizes the expected goal-achieving probability: \(\pi^*_{i,e} := \argmax_{\pi} V^{\pi, \mu_e}_g\). 
+                    Specifically, given interaction history \(ao_{&lt;t}\), the optimal agent will always choose the action \(a^*_t\) that maximizes the value function.
+                    Assuming the agent chooses from actions sampled from a proposal distribution \(\tilde{\pi}_{i,e}\) and omitting the index of \((\pi, \mu)\) for the value function, we can formalize the decision-making process as below:
+                </p>
+
+                <div>
+                    \[
+                    a_t^* = {\underbrace {\argmax_{ a_t \sim \tilde{\pi}_{i,e}(\cdot | ao_{&lt;t}) } }_{\begin{array}{c} \textbf{policy}\text{: propose} \\ \text{next actions} \end{array} } } 
+                    \sum_{o_t} {\underbrace {V_g(ao_{1:t})}_{\begin{array}{c} \textbf{critic}\text{: evaluate} \\ \text{goal achievement} \end{array}} } \ 
+                    {\underbrace {\mu_e(o_t | ao_{&lt;t}, a_t)}_{\begin{array}{c} \textbf{dynamics}\text{: predict} \\ \text{action  outcomes} \end{array}} }
+                    \]
+                </div>
+
+                <h3>Design of General Agent Architecture</h3>
+
+                
+                <p>
+                    In this subsection, we describe in detail our proposed implementation of the optimal agent model for general applicability and robust decision-making across environments.
+                    The components and workflow of the architecture are illustrated in Figure 3 below, followed by discussions of the key design choices.
+
+                    <div class="row aln-center">
+                        <span class="image fit" style="width:60%;margin: 0 0 1em 0;">
+                            <img src="../images/agent-model-3.png" alt=""/>
+                            <br>
+                            <p style="text-align:center; font-size:0.8em"><b>Figure 3</b>: Illustration of the General Agent Architecture Design.</p>
+                        </span>
+                    </div>
+                    
+                    <ol>
+                        <li> 
+                            <b>Approximate Environment Dynamics with World Model</b>: In practice, the agent often has no access to the environment dynamic \(\mu\). 
+                            Furthermore, basing planning on each individual environment offers no way towards a general agent. 
+                            Therefore, we learn a ML model \(\hat{\mu}(o_t | ao_{&lt;t}, a_t)\) to approximate the environment dynamics, a.k.a., a <b>world model</b>. 
+                            The core challenge is thus to build a general world model that can be applied to diverse environments.
+                        </li>
+                        <li> 
+                            <b>General Next-World Prediction in Latent Space Using LLM</b>: Learning to predict the next raw observation \(o_t\) generally, however, is not only practically challenging but also theoretically intractable. 
+                            To address this challenge, we propose to instead predict the agent's <b>belief state</b> \(x_t\) in using a world model over an abstract latent space \(\xi(x_t | ax_{&lt;t}, a_t)\).
+                            Combined with an <b>encoder</b> \(\sigma(x_{&lt;t} | ao_{&lt;t})\) to translate past observations into their respective belief states, all the other modules may operate on this more structured latent space, which reduces hallucination and enables more robust reasoning in practice.
+                        </li>
+                        <li> <b>Simplified Long-Horizon Decisions via Hierarchical Planning</b>: Long-horizon planning is challenging due to the exponentially expanding search space and inevitable error accumulations as the agent simulates many decision steps into the future. 
+                            To mitigate these issues, we introduce hierarchical planning over <b>plans</b> \(z_t\) which represents actions over multiple steps. 
+                            The optimized plans are then translated into actions using an <b>actor</b> \(\nu_i(a_t | ao_{&lt;t}, zs_{&lt;t}, z_t)\).
+                            By optimizing over higher-level plans instead of low-level actions \(a_t\), we trade off action granularity for shorter planning horizon, which is more efficient and less error-prone in practice. </li>
+                    </ol>
+                    Putting the above together, the agent model's decision-making process amounts to solving a multi-level optimization problem, which we present below:
+                </p>
+                <div>
+                    \[
+                    \begin{align*}
+                        x^*_{t-1} &= \argmax_{x_{t-1}} \ {\underbrace {\sigma(x_{&lt;t} | ao_{&lt;t}, zx_{&lt;t-1})}_{  \begin{array}{c} \text{encoder}\text{} \end{array} } } & \text{(Update Belief)}  \\
+                        z^*_t &= {\underbrace {\argmax_{z_t \sim \tilde{\pi}_i(z_t | zx_{&lt;t})}}_{\text{policy}\text{}} }  \sum_{x_t} {\underbrace {V_g(zx_{1:t})}_{\text{critic}} } \
+                            {\underbrace {\xi_e(x_t | zx_{&lt;t}, z_t)}_{ \begin{array}{c} \text{world model}\text{} \end{array} } }  & \text{(Find the Best Plan)} \\
+                        a_t^* &= \argmax_{a_t} \ {\underbrace {\nu(a_t | ao_{&lt;t}, zx_{&lt;t}, z^*_t)}_{ \begin{array}{c} \text{actor}\text{} \end{array} } }  & \text{(Select Next Action)}
+                        \end{align*}
+                    \]
+                </div>
+
+                <h3>Implementation Using LLMs</h3>
+
+                <p>
+                    We implement each component in the architecture using LLM due to its versatility. 
+                    In particular, we adopt model-generated natural language as the latent space due to its flexibility, compositionality, hierarchical structure, and richness in concepts. During experiments, we observe that agent reasoning based on our proposed latent space tends to result in fewer hallucinations (e.g., assuming an action is successful even though it failed), and plan to compare more rigorously going forward.
+                </p>
+
+                <p>
+                    We are working on a technical report which will discuss the design choices and describe implementations in more detail. Stay tuned! 
+                </p>
+
+                <h2>Experiments</h2>
+                <p>
+                    The AgentModel architecture is generally applicable to various environments and tasks. As our first step, we evaluate our implementation on web browsing as an example due to both its practical value and its technical challenge. Specifically, we evaluate the resulting agent named <b>ReasonerAgent-Web</b> on complex website navigation (e.g., search for flights), multi-hop, multi-website QA (e.g., research 5 different US Presidents), and general web automation (e.g., shop for a lawn mower). For the baselines, we compare against:
+                    <ol>
+                        <li>BrowsingAgent from OpenHands, a representative open-web agent which generates chain-of-thought before selecting an action</li>
+                        <li>ReasonerAgent with autoregressive planning (i.e., commit to the first sample from our policy module)</li>
+                    </ol>
+
+                    We present an overview of our results in [the figure] below. Across all 3 categories of tasks, ReasonerAgent shows a clear advantage over the baseline BrowsingAgent, specifically increase the success rate on complex website navigation from 0% to 32.2%. Our proposed world model reasoning for planning also consistently improves over simple planning with autoregressive LLMs by up to 124%. 
+                </p>
+
+                <div class="row aln-center">
+                    <span class="image fit" style="width:70%;margin: 0 0 1em 0;">
+                        <img src="../images/agent-model-4.png" alt=""/>
+                        <p style="text-align:center; font-size:0.8em"><b>Figure 4</b>: Overview of performance comparison between AgentModel and baselines.</p>
+                    </span>
+                </div>
+
+                <p>
+                    We further compare the reasoning abilities of autoregressive and world-model-based planners by visualizing the correct % vs. number of constraints in [the figure] below. Results show world model planning enjoying consistent advantage over autoregressive planning, showing signs of improved reasoning ability. 
+                </p>
+
+                <div class="row aln-center">
+                    <span class="image fit" style="width:70%;margin: 0 0 1em 0;">
+                        <img src="../images/agent-model-5.png" alt=""/>
+                        <p style="text-align:center; font-size:0.8em"><b>Figure 5</b>: % correct vs. number of constraints for FlightQA.</p>
+                    </span>
+                </div>
+
+                <p>
+                    We describe further evaluation details in the <a href="https://reasoner-agent.maitrix.org/">blog post</a> for ReasonerAgent and will present more in the upcoming technical report.
+                </p>
+
+                <h2>Limitations and Next Steps</h2>
+
+                <p>
+                    While AgentModel is a general architecture, our current implementation is still based on prompting pretrained LMs, which benefits from crafting prompts for each environment. The pretrained models may not have knowledge of certain environment dynamics, leading to occasional inaccuracies. To address these issues, we plan to develop training strategies for the base LLM to perform optimally in a wide range of environments. Whereas our experiments currently focus on web browsing in the digital world, we aim to extend our implementation to more complex worlds such as physical environments and multi-agent interactions.
+                </p>
+
+                <h2>Conclusion</h2>
+
+                <p>
+                    We have presented AgentModel, a general goal-oriented architecture for optimal agent decision-making. Empowered by simulation-based planning using world model and modeling of agent mental activities using natural language as latent representation, we see significant and strong improvements on a range of tasks in web browsing, with world model-based planning showing improved reasoning capacity compared to LLM autoregressive reasoning.
+                </p>
+
+                <p>
+                    We are very excited about the possibilities for a single, general, superintelligent agent, but are also keenly aware of the risks for individuals and societies. On the capability side, we are working towards training a general agent model in environments such as physical world and multi-agent interactions. On the safety and alignment side, we look forward to engaging the community in discussions about how to ensure such an agent stays aligned with our shared values, priorities, and welfare.
+                </p>
+                
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="wrapper style1-alt">
+    <div class="inner">
+        <ul class="menu">
+            <p>
+                LLM360, proudly sponsored by Petuum and MBZUAI, is dedicated to advancing the field of AI by providing comprehensive access to large language models.<br>
+                LLM360 enables community-owned AGI by creating standards and tools to advance the bleeding edge of LLM capability and empower knowledge transfer, research, and development.
+            </p>
+            <ul class="actions">
+                <li><a href="https://twitter.com/llm360" target="_blank" class="icon brands circle fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="https://discord.gg/jFPq9AycBu" target="_blank" class="icon brands circle fa-discord"><span class="label">Discord</span></a></li>
+                <li><a href="https://github.com/LLM360" target="_blank" class="icon brands circle fa-github"><span class="label">Github</span></a></li>
+                <li><a href="mailto:team@llm360.ai" target="_blank" class="icon circle fa-envelope"><span class="label">Email</span></a></li>
+            </ul>
+            <p class="copyright">&copy; LLM360 2023-2024. All rights reserved.</p>
+        </ul>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/jquery.scrollex.min.js"></script>
+<script src="../assets/js/jquery.scrolly.min.js"></script>
+<script src="../assets/js/browser.min.js"></script>
+<script src="../assets/js/breakpoints.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const content = document.getElementById('content');
+
+        toggleBtn.addEventListener('click', function () {
+            sidebar.classList.toggle('hidden');
+            content.classList.toggle('expanded');
+        });
+
+        function checkScreenSize() {
+            if (window.innerWidth < 1280) {
+                sidebar.classList.add('hidden');
+            } else {
+                sidebar.classList.remove('hidden');
+            }
+        }
+
+        window.addEventListener('resize', checkScreenSize);
+        checkScreenSize(); // Initial check
+    });
+
+    // Create the button element
+    const backToTopButton = document.createElement('button');
+    backToTopButton.id = 'back-to-top';
+    backToTopButton.textContent = 'Top';
+    document.body.appendChild(backToTopButton);
+
+    // Show or hide the button based on scroll position
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    };
+
+    // Scroll to the top when the button is clicked
+    backToTopButton.onclick = function() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    };
+</script>
+
+</body>
+</html>
