@@ -304,13 +304,14 @@
 
                 <h2>Experiments</h2>
                 <p>
-                    The AgentModel architecture is generally applicable to various environments and tasks. As our first step, we evaluate our implementation on web browsing as an example due to both its practical value and its technical challenge. Specifically, we evaluate the resulting agent named <b>ReasonerAgent-Web</b> on complex website navigation (e.g., search for flights), multi-hop, multi-website QA (e.g., research 5 different US Presidents), and general web automation (e.g., shop for a lawn mower). For the baselines, we compare against:
+                    The AgentModel architecture is generally applicable to various environments and tasks. As our first step, we evaluate our implementation on web browsing as an example due to both its practical value and its technical challenge. Specifically, we evaluate the resulting agent named <b>ReasonerAgent-Web</b> on complex website navigation (e.g., search for flights), multi-hop, multi-website QA (e.g., research 5 different US Presidents), and general web automation (e.g., shop for a lawn mower). Across all 3 categories of tasks, ReasonerAgent-Web shows a clear advantage over the baselines, specifically increase the success rate on complex website navigation from 0% to 32.2%. Our proposed world model reasoning for planning also consistently improves over simple planning with autoregressive LLMs by up to 124%.
+                    <!-- For the baselines, we compare against:
                     <ol>
                         <li>BrowsingAgent from OpenHands, a representative open-web agent which generates chain-of-thought before selecting an action</li>
                         <li>ReasonerAgent with autoregressive planning (i.e., commit to the first sample from our policy module)</li>
-                    </ol>
+                    </ol> -->
 
-                    We present an overview of our results in [the figure] below. Across all 3 categories of tasks, ReasonerAgent shows a clear advantage over the baseline BrowsingAgent, specifically increase the success rate on complex website navigation from 0% to 32.2%. Our proposed world model reasoning for planning also consistently improves over simple planning with autoregressive LLMs by up to 124%. 
+                    <!-- We present an overview of our results in [the figure] below. Across all 3 categories of tasks, ReasonerAgent shows a clear advantage over the baseline BrowsingAgent, specifically increase the success rate on complex website navigation from 0% to 32.2%. Our proposed world model reasoning for planning also consistently improves over simple planning with autoregressive LLMs by up to 124%.  -->
                 </p>
 
                 <div class="row aln-center">
@@ -320,7 +321,7 @@
                     </span>
                 </div>
 
-                <p>
+                <!-- <p>
                     We further compare the reasoning abilities of autoregressive and world-model-based planners by visualizing the correct % vs. number of constraints in [the figure] below. Results show world model planning enjoying consistent advantage over autoregressive planning, showing signs of improved reasoning ability. 
                 </p>
 
@@ -329,7 +330,7 @@
                         <img src="../images/agent-model-5.png" alt=""/>
                         <p style="text-align:center; font-size:0.8em"><b>Figure 5</b>: % correct vs. number of constraints for FlightQA.</p>
                     </span>
-                </div>
+                </div> -->
 
                 <p>
                     We describe further evaluation details in the <a href="https://reasoner-agent.maitrix.org/">blog post</a> for ReasonerAgent and will present more in the upcoming technical report.
