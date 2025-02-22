@@ -127,24 +127,10 @@
     <!-- Intro -->
     <section id="seven" class="wrapper fullscreen fade-up">
         <div class="inner">
-            <!-- <h1><strong>AgentModel</strong>:  A General Goal-Oriented Architecture for Machine Super Intelligence Based on LLMs</h1> -->
-            <!-- <h1>Towards Superintelligent Goal-Oriented Agent: An Architecture for Generalized Agentic Reasoning via World Model Simulation</h1> -->
-            <!-- <h1>Towards Superintelligent Goal-Oriented Agent: An Architecture for Generalized Agentic Reasoning via World Model Simulation</h1> -->
             <h1><strong>SimuRA</strong>: Towards General Goal-Oriented Agent via Simulative Reasoning Architecture with LLM-Based World Model</h1>
             <p>LLM360 Team  &nbsp | &nbsp Feb 21, 2025</p>
-            <!-- <h4>
-                Read the full blogpost <a href="https://huggingface.co/spaces/LLM360/TxT360" target="_blank">here</a>
-            </h4> -->
             <br>
             <div class="content">
-                <!-- <h2>About TxT360</h2> -->
-                <!-- <span class="image right">
-						<img src="../images/txt360_logo.png" alt="" />
-                </span> -->
-                <!-- <p>
-                    TL;DR We introduce TxT360 (Trillion eXtracted Text), the first dataset to globally deduplicate 99 CommonCrawl snapshots and 14 high-quality data sources from diverse domains (e.g., FreeLaw, PG-19, etc.). The large-scale deduplication process and rich metadata stored enables precise control over data distribution. We demonstrate a simple but effective upsampling recipe that creates a 15+ trillion-token corpus, outperforming FineWeb 15T on several key metrics. With the information, TxT360 empowers pre-trainers to explore more advanced weighting techniques, a feature not commonly available in previous pre-training datasets. Our findings highlight the importance of both high-quality data sources and appropriate weighting for optimal blending in LLM training.
-                    In line with our 360° open source spirit, we document all detailed steps, reasons of our decisions, detailed statistics, our code (stay tuned!), analysis results and more, in additional to the dataset itself. We hope this can serve as a useful resource for future developers.
-                </p> -->
 
                 <p style="color: red;">
                     <b>Update</b>: SimuRA has won 2nd place in the Fundamental Track (<b>2 of ~3,000</b> participants) at the <a href="https://rdi.berkeley.edu/llm-agents-hackathon/">Berkeley LLM Agents Hackathon</a>!
@@ -172,42 +158,6 @@
                     To start, we publish <b>ReasonerAgent-Web</b>, a web-browsing agent built on SimuRA with pretrained LLMs, from Maitrix.org as a research demo for public testing. 
                 </p>
 
-                <!-- <h3>Task Example for ReasonerAgent-Web, a Web Agent Built on SimuRA with Pretrained LLMs</h3>
-                <div 
-                    style="
-                        display: block;
-                        margin-left: 5%;
-                        margin-right: 5%;
-                        margin-bottom: 1em;
-                        position: relative; 
-                        width: 90%; 
-                        height: 0; 
-                        padding-bottom: 50.625%; /* 16:9 ratio => 9 / 16 = 0.5625 => 56.25% */ 
-                        overflow: hidden;"
-                >
-                    <iframe
-                        src="https://www.youtube.com/embed/KUlf0hZuCXQ"
-                        frameborder="0" 
-                        allowfullscreen
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        loading="lazy"
-                        style="
-                        text-align: center;
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;"
-                    ></iframe>
-                </div>
-
-
-                <h3>Links to ReasonerAgent-Web</h4>
-                <ul class="actions fit">
-                    <li><a href="https://github.com/maitrix-org/llm-reasoners/tree/main/examples/ReasonerAgent-Web" target="_blank" class="button">Code</a></li>
-                    <li><a href="https://reasoner-agent.maitrix.org/" target="_blank" class="button">Blog Post</a></li>
-                    <li><a href="https://easyweb.maitrix.org/" target="_blank" class="button">Research Demo</a></li>
-                </ul> -->
 
                 <h2>Introduction</h2>
                 <p>
@@ -219,7 +169,7 @@
                     <p style="text-align:center; font-size:0.8em"><b>Figure 1</b>: Current approaches typically develop specific agents and multi-agent workflows tailored to specific tasks. </p>
                 </span>
                 <p>
-                    Such a one-task-one-agent approach <b>economically</b> falls short of scalability, <b>intellectually</b> offers no clear path towards general intelligence, and <b>technically </b>is fundamentally constrained by autoregressive LLMs. 
+                    Such a one-task-one-agent approach <b>economically</b> falls short of scalability, <b>intellectually</b> offers no clear path towards general intelligence, and <b>technically </b>is fundamentally constrained by autoregressive LLMs which struggle with recovering from previous mistakes. 
                 </p>
                 <p>
                     On the other hand, humans are generalists with a single cognitive architecture, but can nevertheless achieve goals in diverse environments (<b>left</b> in the figure below).
@@ -351,13 +301,6 @@
                 <h2>Experiments</h2>
                 <p>
                     The SimuRA architecture is generally applicable to various environments and tasks. As our first step, we evaluate our implementation on web browsing as an example due to both its practical value and its technical challenge. Specifically, we evaluate the resulting agent named <b>ReasonerAgent-Web</b> on complex website navigation (e.g., search for flights), multi-hop, multi-website QA (e.g., research 5 different US Presidents), and general web automation (e.g., shop for a lawn mower). Across all 3 categories of tasks, ReasonerAgent-Web shows a clear advantage over the baselines, specifically increase the success rate on complex website navigation from 0% to 32.2%. Our proposed world model reasoning for planning also consistently improves over simple planning with autoregressive LLMs by up to 124%.
-                    <!-- For the baselines, we compare against:
-                    <ol>
-                        <li>BrowsingAgent from OpenHands, a representative open-web agent which generates chain-of-thought before selecting an action</li>
-                        <li>ReasonerAgent with autoregressive planning (i.e., commit to the first sample from our policy module)</li>
-                    </ol> -->
-
-                    <!-- We present an overview of our results in [the figure] below. Across all 3 categories of tasks, ReasonerAgent shows a clear advantage over the baseline BrowsingAgent, specifically increase the success rate on complex website navigation from 0% to 32.2%. Our proposed world model reasoning for planning also consistently improves over simple planning with autoregressive LLMs by up to 124%.  -->
                 </p>
 
                 <div class="row aln-center">
@@ -367,19 +310,8 @@
                     </span>
                 </div>
 
-                <!-- <p>
-                    We further compare the reasoning abilities of autoregressive and world-model-based planners by visualizing the correct % vs. number of constraints in [the figure] below. Results show world model planning enjoying consistent advantage over autoregressive planning, showing signs of improved reasoning ability. 
-                </p>
-
-                <div class="row aln-center">
-                    <span class="image fit" style="width:70%;margin: 0 0 1em 0;">
-                        <img src="../images/agent-model-5.png" alt=""/>
-                        <p style="text-align:center; font-size:0.8em"><b>Figure 5</b>: % correct vs. number of constraints for FlightQA.</p>
-                    </span>
-                </div> -->
-
                 <p>
-                    We describe further evaluation details in the <a href="https://reasoner-agent.maitrix.org/">blog post</a> for ReasonerAgent and will present more in the upcoming technical report.
+                    We describe further evaluation details in the <a href="https://reasoner-agent.maitrix.org/">blog post</a> for ReasonerAgent-Web and will present more in the upcoming technical report.
                 </p>
 
                 <h2>Limitations and Next Steps</h2>
@@ -401,6 +333,7 @@
                 <h2>Acknowledgment</h2>
 
                 <p>
+                    We would like to thank Li Erran Li from AWS for the insightful comments and feedback.
                     Mingkai Deng is supported by Samsung GRO Project “Efficient Designs for Generative and Agent LLM Development”. 
                     Any opinions, findings, and conclusions or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of Samsung.
                 </p>
@@ -408,21 +341,28 @@
                 <h2>Team</h2>
 
                 <p>
-                    This is a joint effort with collaborators from CMU, UC San Diego, MBZUAI, LLM360, Samsung, AWS, and All Hands AI. 
+                    This is a joint effort with collaborators from CMU, UC San Diego, MBZUAI, LLM360, Samsung, and All Hands AI. 
                 </p>
 
                 <ul>
                     <li>
-                        <b>Leads</b>: Mingkai Deng, Jinyu Hou
+                        <b>Leads (alphabetical order)</b>: Mingkai Deng, Jinyu Hou
                     </li>
                     <li>
-                        <b>Advisors</b>: Zhiting Hu, Hongxia Jin, Li Erran Li, Graham Neubig, Yilin Shen, Eric P. Xing
+                        <b>Advisors (alphabetical order)</b>: Zhiting Hu, Hongxia Jin, Graham Neubig, Yilin Shen, Eric P. Xing
                     </li>
                 </ul>
 
                 <p>
                     Correspondence to <a href="mingkaid34@gmail.com">Mingkai Deng</a>, <a href="hou.jinyu@outlook.com">Jinyu Hou</a>, and <a href="eric.xing@mbzuai.ac.ae">Eric P. Xing</a>
                 </p>
+
+                <h2>Resources on ReasonerAgent-Web</h2>
+                <ul>
+                    <li> <a href="https://github.com/maitrix-org/llm-reasoners/tree/main/examples/ReasonerAgent-Web">Code Base</a> </li>
+                    <li> <a href="https://reasoner-agent.maitrix.org/">Blog Post</a> </li>
+                    <li> <a href="https://easyweb.maitrix.org/">Research Demo</a> </li>
+                </ul>
 
                 <h2>Citation</h2>
                 <p> For attribution in academic contexts, please cite this work as: </p>
@@ -432,7 +372,7 @@
                         <textarea style="margin-bottom:1em" id="citation" rows="9" cols="50" readonly>
 @misc{simura2025,
     title={SimuRA: Towards General Goal-Oriented Agent via Simulative Reasoning Architecture with LLM-Based World Model},
-    author={Mingkai Deng AND Jinyu Hou AND Zhiting Hu AND Hongxia Jin AND Li Erran Li AND Graham Neubig AND Yilin Shen AND Eric P. Xing},
+    author={Mingkai Deng AND Jinyu Hou AND Zhiting Hu AND Hongxia Jin AND Graham Neubig AND Yilin Shen AND Eric P. Xing},
     year=2025,
     month=2,
     url={https://www.llm360.ai/blog/simura-general-ai-agent-llm-world-model.html}
