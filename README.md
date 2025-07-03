@@ -4,37 +4,14 @@
 
 # LLM360 |  Open-source LLMs for Transparency, Trust, and Collaborative Research 🚀
 
-Welcome to the official GitHub repository for LLM360's website, a collaborative initiative between Petuum, MBZUAI, and Cerebras. This project is dedicated to open-sourcing Large Language Models (LLMs) to promote transparency, trust, and collaborative research in the AI community.
+Welcome to the official GitHub repository for LLM360's website. This project is dedicated to open-sourcing Large Language Models (LLMs) to promote transparency, trust, and collaborative research in the AI community.
 
 ## Introduction
-LLM360 aims to redefine open-source in machine learning by providing unprecedented access to the entire training process of LLMs. We release all the intermediate checkpoints, training data, source code, logs, and metrics associated with each model. Our first releases under this initiative are the Amber-7B and CrystalCoder-7B models.
+LLM360 aims to redefine open-source in machine learning by providing unprecedented access to the entire training process of LLMs. We release all the intermediate checkpoints, training data, source code, logs, and metrics associated with each model.
 
-## Models
-### Amber-7B
-- **Details**: Trained on 1.2 trillion tokens, Amber-7B offers insights into the learning dynamics of LLMs.
-- **Resources**:
-  - [Model](https://huggingface.co/LLM360/Amber)
-  - [Metrics](https://wandb.ai/llm360/Amber)
-  - [Data](https://huggingface.co/datasets/LLM360/AmberDatasets)
-  - [Code](https://github.com/orgs/LLM360/repositories/Amber)
+This repository builds llm360.ai.
 
-### CrystalCoder-7B
-- **Details**: A unique model combining text and coding capabilities, trained on 1.4 trillion tokens.
-- **Resources**:
-  - [Model](https://huggingface.co/LLM360/CrystalCoder)
-  - [Metrics](https://wandb.ai/llm360/CrystalCoder)
-  - [Data](https://huggingface.co/datasets/LLM360/CrystalCoderDatasets)
-  - [Code](https://github.com/orgs/LLM360/repositories/CrystalCoder)
-
-## Community and Collaboration
-We encourage community involvement and contributions. Here are ways you can engage with LLM360:
-- **GitHub**: Explore and contribute to our [GitHub repository](https://github.com/orgs/LLM360).
-- **HuggingFace**: Access and download our models on [HuggingFace](https://huggingface.co/LLM360).
-- **Research Contributions**: Share your research findings using our models.
-- **Feedback and Suggestions**: Provide your valuable input using our [Feedback Form](https://short.llm360.ai/feedback).
-
-## Acknowledgments
-This project would not be possible without the support of Petuum, MBZUAI, and Cerebras. We also extend our gratitude to the broader AI research community for their contributions and feedback.
+# How to build 
 
 ## Contact Us
 For inquiries or collaborations, feel free to reach out through our [Contact Page](https://short.llm360.ai/contact).
