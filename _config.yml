@@ -25,18 +25,14 @@ plugins:
   # - jekyll-twitter-plugin
 
 # --- Site Settings (Customize these for your specific site) ---
-title: [YOUR PERSONAL WEBSITE TITLE] # e.g., "Hector Liu's Website"
-description: [A short description of your site for social media and search engines.]
-author: [Your Full Name Here] # e.g., "Hector Liu"
-email: [your.email@example.com]
-
-first_name: [Your First Name] # e.g., Hector
-middle_name: # e.g., R. (Optional)
-last_name: [Your Last Name] # e.g., Liu
+title: [LLM360] # e.g., "Hector Liu's Website"
+description: [Open and transparent LLM resaearch for the community.]
+author: [The LLM360 Team] # e.g., "Hector Liu"
+email: [team@llm360.ai]
 
 # Custom Domain Specifics (Crucial if you have a custom domain)
 baseurl: "" # Keep as "" if deploying to a custom domain at the root (e.g., yourdomain.com)
-url: "https://www.yourdomain.com" # <<< REPLACE WITH YOUR ACTUAL CUSTOM DOMAIN
+url: "https://www.llm360.ai" # <<< REPLACE WITH YOUR ACTUAL CUSTOM DOMAIN
 
 lang: en # Language of your site
 icon: 💡 # Emoji favicon, or specify path to image like /assets/img/favicon.png
@@ -55,10 +51,10 @@ max_width: "800px" # This was the one causing your previous SCSS error. Keep as 
 # -----------------------------------------------------------------------------
 # Blog Settings (CRUCIAL FOR YOUR BLOG POSTS TO APPEAR)
 # -----------------------------------------------------------------------------
-blog_name: [Your Blog's Full Name] # e.g., "Hector's Musings on AI"
+blog_name: [The LLM360 Blog] # e.g., "Hector's Musings on AI"
 blog_nav_title: Blog # Title for the blog link in the navigation bar
-blog_description: [A short description for your blog page.]
-#permalink: /blog/:year/:title/ # This sets the permalink structure for blog posts
+blog_description: [Interesting findings from the LLM360 team]
+permalink: /blog/:year/:title/ # This sets the permalink structure for blog posts
 
 # Pagination (CRUCIAL for blog listing page)
 pagination:
@@ -85,29 +81,6 @@ related_blog_posts:
 #   lang: en
 
 # -----------------------------------------------------------------------------
-# Collections (Enable if you plan to use _news or _projects etc.)
-# -----------------------------------------------------------------------------
-collections:
-  news:
-    defaults:
-      layout: post # or 'default' if using standard Jekyll layout
-    output: true
-    permalink: /news/:path/
-  projects:
-    output: true
-    permalink: /projects/:path/
-
-news:
-  enabled: true
-  scrollable: true
-  limit: 5
-
-latest_posts:
-  enabled: true
-  scrollable: true
-  limit: 3
-
-# -----------------------------------------------------------------------------
 # Jekyll Defaults (from al-folio's config)
 # -----------------------------------------------------------------------------
 markdown: kramdown
@@ -129,6 +102,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - news/
 keep_files:
   - CNAME
   - .nojekyll
