@@ -9,6 +9,8 @@ math: true # Keep this to test math rendering
 
 ## Welcome to My Distill-Inspired Blog!
 
+[Test pull request preview function]
+
 This is a test post to verify that the basic setup for a Distill-style blog on your GitHub Pages site is working correctly with the `al-folio` theme. If you're reading this, it means Jekyll has successfully processed your `_config.yml`, loaded the `al-folio` theme, and rendered this Markdown file into a beautiful HTML page.
 
 <div class="margin-note">
