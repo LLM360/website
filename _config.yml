@@ -1,0 +1,181 @@
+# _config.yml
+# This is the primary configuration file for Jekyll.
+
+# --- Theme Configuration ---
+remote_theme: al-folio/al-folio@master
+# remote_theme_url: https://github.com/al-folio/al-folio/archive/refs/heads/master.zip # Optional fallback
+
+# --- Jekyll Plugins ---
+plugins:
+  - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  # Add these essential al-folio plugins:
+  - jekyll-archives
+  - jekyll-paginate-v2 # Crucial for blog listing and pagination
+  - jemoji # For emoji support
+  # Optional al-folio plugins (add these if you plan to use their features)
+  # - jekyll-diagrams
+  # - jekyll-email-protect
+  # - jekyll-imagemagick
+  # - jekyll-minifier
+  # - jekyll/scholar
+  # - jekyll-link-attributes
+  # - jekyll-twitter-plugin
+
+# --- Site Settings (Customize these for your specific site) ---
+title: [LLM360] # e.g., "Hector Liu's Website"
+description: [Open and transparent LLM resaearch for the community.]
+author: [The LLM360 Team] # e.g., "Hector Liu"
+email: [team@llm360.ai]
+
+# Custom Domain Specifics (Crucial if you have a custom domain)
+baseurl: "" # Keep as "" if deploying to a custom domain at the root (e.g., yourdomain.com)
+url: "https://www.llm360.ai" # <<< REPLACE WITH YOUR ACTUAL CUSTOM DOMAIN
+
+lang: en # Language of your site
+icon: 💡 # Emoji favicon, or specify path to image like /assets/img/favicon.png
+last_updated: false # Set to true to display last updated in footer
+footer_text: >
+  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
+  Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+
+# -----------------------------------------------------------------------------
+# Layout Settings (from al-folio's config)
+# -----------------------------------------------------------------------------
+navbar_fixed: true
+footer_fixed: true
+max_width: "800px" # This was the one causing your previous SCSS error. Keep as string with units.
+
+# -----------------------------------------------------------------------------
+# Blog Settings (CRUCIAL FOR YOUR BLOG POSTS TO APPEAR)
+# -----------------------------------------------------------------------------
+blog_name: [The LLM360 Blog] # e.g., "Hector's Musings on AI"
+blog_nav_title: Blog # Title for the blog link in the navigation bar
+blog_description: [Interesting findings from the LLM360 team]
+permalink: /blog/:year/:title/ # This sets the permalink structure for blog posts
+
+# Pagination (CRUCIAL for blog listing page)
+pagination:
+  enabled: true
+  per_page: 5 # Number of posts per page on the blog index
+  permalink: '/blog/page/:num/' # Permalink structure for pagination pages
+
+related_blog_posts:
+  enabled: true
+  max_related: 5
+
+# If you want comments, enable and configure Giscus (recommended for al-folio)
+# giscus:
+#   repo: [your-github-username]/[your-github-repo-name] # e.g., hectorliu/llm360-website
+#   repo_id: [your-repo-id] # Get this from giscus.app setup
+#   category: Comments
+#   category_id: [your-category-id] # Get this from giscus.app setup
+#   mapping: title
+#   strict: 1
+#   reactions_enabled: 1
+#   input_position: bottom
+#   theme: preferred_color_scheme
+#   emit_metadata: 0
+#   lang: en
+
+# -----------------------------------------------------------------------------
+# Jekyll Defaults (from al-folio's config)
+# -----------------------------------------------------------------------------
+markdown: kramdown
+highlighter: rouge # This was missing, crucial for code highlighting
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+      start_line: 1
+
+# Includes & Excludes
+include: ['_pages']
+exclude:
+  - bin
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - news/
+keep_files:
+  - CNAME
+  - .nojekyll
+  - .git
+
+# Sitemap settings
+defaults:
+  - scope:
+      path: "assets"
+    values:
+      sitemap: false
+
+# -----------------------------------------------------------------------------
+# Optional Features (from al-folio's config)
+# -----------------------------------------------------------------------------
+enable_math: true # For MathJax support (LaTeX equations)
+enable_darkmode: true # Light/Dark mode toggle
+enable_medium_zoom: true # Image zoom on click
+enable_progressbar: true # Scroll progress bar
+# Add other 'enable_' flags from al-folio's config as desired
+# enable_google_analytics: false
+# enable_panelbear_analytics: false
+# enable_google_verification: false
+# enable_bing_verification: false
+# enable_masonry: true
+# enable_tooltips: false
+# enable_navbar_social: false
+# enable_project_categories: true
+
+# -----------------------------------------------------------------------------
+# Library versions (Crucial for external assets)
+# -----------------------------------------------------------------------------
+academicons:
+  version: "1.9.1"
+  integrity: "sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg="
+bootstrap:
+  version: "4.6.1"
+  integrity:
+    css: "sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY="
+    js: "sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8="
+fontawesome:
+  version: "5.15.4"
+  integrity: "sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4="
+jquery:
+  version: "3.6.0"
+  integrity: "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+mathjax:
+  version: "3.2.0"
+masonry:
+  version: "4.2.2"
+  integrity: "sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI="
+mdb:
+  version: "4.20.0"
+  integrity:
+    css: "sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw="
+    js: "sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA="
+medium_zoom:
+  version: "1.0.8"
+  integrity: "sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8="
+
+# -----------------------------------------------------------------------------
+# Jekyll Archives
+# -----------------------------------------------------------------------------
+
+jekyll-archives:
+  enabled: [year, tags, categories] # Make sure 'categories' and 'tags' are enabled
+  layouts:
+    year: archive-year
+    tag: archive-tag
+    category: archive-category # This tells jekyll-archives to use _layouts/archive-category.html
+  permalinks:
+    year: '/blog/:year/'
+    tag: '/blog/tag/:name/' # This creates /blog/tag/test/ and /blog/tag/setup/
+    category: '/blog/category/:name/' # This creates /blog/category/test/ and /blog/category/setup/
+
+display_tags: [] # You can leave this empty for now, or add specific tags you want to highlight
