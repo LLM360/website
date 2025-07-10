@@ -1,0 +1,144 @@
+# This workflow builds your Jekyll site and deploys it to GitHub Pages.
+# It handles both the main site deployment (from 'main' branch)
+# and temporary Pull Request preview deployments.
+
+name: Jekyll Build and Deploy
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on pushes to the main branch (for main site deployment)
+  push:
+    branches:
+      - main
+  # Triggers the workflow on pull request events (for PR previews)
+  pull_request:
+    branches:
+      - main # PRs targeting the main branch
+  # Allows you to run this workflow manually from the Actions tab in GitHub.
+  workflow_dispatch:
+    inputs:
+      target_ref:
+        description: 'Branch name (e.g., feature/my-branch) or PR number (e.g., 123) to build/deploy.'
+        required: false
+        type: string
+        # Default to current branch for manual runs if no specific target is given
+        default: ${{ github.ref }}
+      cleanup_only:
+        description: 'Set to true to only perform cleanup, skipping build/deploy.'
+        required: false
+        type: boolean
+        default: false
+
+# Define jobs
+jobs:
+  # Job to perform the build and deploy
+  deploy_site:
+    # Only run if cleanup_only is not true
+    if: github.event_name != 'workflow_dispatch' || github.event.inputs.cleanup_only == false
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read # Allows checking out code
+      pages: write   # Allows deploying to GitHub Pages
+      id-token: write # Required for OIDC authentication with GitHub Pages
+
+    environment:
+      name: github-pages # The default environment for GitHub Pages
+      url: ${{ steps.deployment.outputs.page_url }} # Output URL of the deployed site
+
+    steps:
+      - name: Determine Ref for Checkout
+        id: determine_ref
+        run: |
+          # Logic to determine the correct ref to checkout based on event type and inputs
+          # For pull_request event, checkout the head ref of the PR
+          # For push event, checkout the main branch
+          # For workflow_dispatch:
+          #   If target_ref is a PR number (e.g., "123"), checkout 'refs/pull/123/merge'
+          #   Else (if target_ref is a branch name or empty), checkout that ref
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "CHECKOUT_REF=${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event_name }}" == "push" ]]; then
+            echo "CHECKOUT_REF=${{ github.ref }}" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            INPUT_REF="${{ github.event.inputs.target_ref }}"
+            if [[ "$INPUT_REF" =~ ^[0-9]+$ ]]; then # Check if input is a number (PR number)
+              echo "CHECKOUT_REF=refs/pull/${INPUT_REF}/merge" >> $GITHUB_OUTPUT
+            else # Assume it's a branch name or default ref
+              echo "CHECKOUT_REF=${INPUT_REF}" >> $GITHUB_OUTPUT
+            fi
+          fi
+          echo "Determined checkout ref: ${{ steps.determine_ref.outputs.CHECKOUT_REF }}"
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.determine_ref.outputs.CHECKOUT_REF }}
+          fetch-depth: 0 # Fetch all history for Jekyll (if needed by some plugins)
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.2' # IMPORTANT: Ensure this matches your local Ruby version
+          bundler-cache: true # Caches installed gems for faster builds
+
+      - name: Install Jekyll dependencies
+        run: bundle install
+
+      - name: Build Jekyll site
+        # When GitHub Pages is configured to use GitHub Actions,
+        # 'actions/configure-pages' and 'actions/deploy-pages'
+        # automatically handle the baseurl for PR previews.
+        # For the main branch deployment, Jekyll will correctly assume root.
+        run: bundle exec jekyll build --trace
+
+      - name: Setup Pages
+        # This action configures the GitHub Pages environment for deployment.
+        # It sets up necessary environment variables like GITHUB_PAGES_URL.
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        # Uploads the '_site' directory (your built Jekyll site) as an artifact.
+        # This artifact will then be used by the deploy-pages action.
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './_site' # The directory where Jekyll builds your site
+
+      - name: Deploy to GitHub Pages
+        # Deploys the uploaded artifact to GitHub Pages.
+        # The 'id' allows us to reference its outputs, like the page_url.
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # Job to perform cleanup for specific manual deployments (not automatically cleaned up by GitHub)
+  cleanup_deployment:
+    # Only run if cleanup_only is true and a target_ref is provided
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.cleanup_only == true && github.event.inputs.target_ref
+    runs-on: ubuntu-latest
+
+    permissions:
+      deployments: write # Needed for deleting deployments via the API
+
+    steps:
+      - name: Determine Cleanup Reference
+        id: determine_cleanup_ref
+        run: |
+          CLEANUP_INPUT="${{ github.event.inputs.target_ref }}"
+          if [[ "$CLEANUP_INPUT" =~ ^[0-9]+$ ]]; then
+            # Input is a PR number, cleanup target is the merge ref
+            CLEANUP_REF="refs/pull/${CLEANUP_INPUT}/merge"
+          else
+            # Input is a branch name, cleanup target is the head ref
+            CLEANUP_REF="refs/heads/${CLEANUP_INPUT}"
+          fi
+          echo "CLEANUP_REF=$CLEANUP_REF" >> $GITHUB_OUTPUT
+          echo "Determined cleanup reference: $CLEANUP_REF"
+
+      - name: Delete GitHub Pages Deployment
+        # This action deletes a GitHub Pages deployment for a specific reference (branch/PR).
+        # It's crucial for cleaning up manual deployments not tied to a PR lifecycle.
+        uses: strumwolf/delete-deployment-environment@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: github-pages # The environment name for GitHub Pages
+          ref: ${{ steps.determine_cleanup_ref.outputs.CLEANUP_REF }} # The branch/PR ref whose deployment you want to delete
