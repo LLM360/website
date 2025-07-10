@@ -22,7 +22,7 @@ on:
         required: false
         type: string
         # Default to current branch for manual runs if no specific target is given
-        default: ${{ github.ref }}
+        default: ${{ github.ref_name }}
       cleanup_only:
         description: 'Set to true to only perform cleanup, skipping build/deploy.'
         required: false
