@@ -18,11 +18,10 @@ on:
   workflow_dispatch:
     inputs:
       target_ref:
-        description: 'Branch name (e.g., feature/my-branch) or PR number (e.g., 123) to build/deploy.'
+        description: 'Branch name (e.g., feature/my-branch) or PR number (e.g., 123) to build/deploy. Leave empty to use the current branch.'
         required: false
         type: string
-        # Default to current branch for manual runs if no specific target is given
-        default: ${{ github.ref }}
+        # Removed: default: ${{ github.ref_name }} - This caused the "github not found" error
       cleanup_only:
         description: 'Set to true to only perform cleanup, skipping build/deploy.'
         required: false
@@ -62,10 +61,12 @@ jobs:
             echo "CHECKOUT_REF=${{ github.ref }}" >> $GITHUB_OUTPUT
           elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             INPUT_REF="${{ github.event.inputs.target_ref }}"
-            if [[ "$INPUT_REF" =~ ^[0-9]+$ ]]; then # Check if input is a number (PR number)
+            if [[ -z "$INPUT_REF" ]]; then # If target_ref is empty, use the current branch
+              echo "CHECKOUT_REF=${{ github.ref }}" >> $GITHUB_OUTPUT # Use github.ref for the actual branch ref
+            elif [[ "$INPUT_REF" =~ ^[0-9]+$ ]]; then # Check if input is a number (PR number)
               echo "CHECKOUT_REF=refs/pull/${INPUT_REF}/merge" >> $GITHUB_OUTPUT
-            else # Assume it's a branch name or default ref
-              echo "CHECKOUT_REF=${INPUT_REF}" >> $GITHUB_OUTPUT
+            else # Assume it's a branch name
+              echo "CHECKOUT_REF=refs/heads/${INPUT_REF}" >> $GITHUB_OUTPUT
             fi
           fi
           echo "Determined checkout ref: ${{ steps.determine_ref.outputs.CHECKOUT_REF }}"
