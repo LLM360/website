@@ -30,6 +30,19 @@ on:
 
 # Define jobs
 jobs:
+  # --- TEMPORARY DEBUG JOB ---
+  debug_inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Workflow Dispatch Inputs
+        run: |
+          echo "github.event_name: ${{ github.event_name }}"
+          echo "github.event.inputs.target_ref: '${{ github.event.inputs.target_ref }}'"
+          echo "github.event.inputs.cleanup_only: '${{ github.event.inputs.cleanup_only }}'"
+          echo "Type of cleanup_only: $(jq -r '.inputs.cleanup_only | type' <<< '${{ toJSON(github.event) }}')"
+          echo "Value of cleanup_only in condition: ${{ github.event.inputs.cleanup_only == true }}"
+  # --- END TEMPORARY DEBUG JOB ---
+
   # Job to perform the build and deploy
   deploy_site:
     # Only run if cleanup_only is not true
