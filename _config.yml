@@ -1,181 +1,103 @@
-# _config.yml
-# This is the primary configuration file for Jekyll.
+# This workflow builds your Jekyll site and deploys it to GitHub Pages.
+# It handles both the main site deployment (from 'main' branch)
+# and temporary Pull Request preview deployments.
 
-# --- Theme Configuration ---
-remote_theme: al-folio/al-folio@master
-# remote_theme_url: https://github.com/al-folio/al-folio/archive/refs/heads/master.zip # Optional fallback
+name: Jekyll Build and Deploy
 
-# --- Jekyll Plugins ---
-plugins:
-  - jekyll-remote-theme
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
-  # Add these essential al-folio plugins:
-  - jekyll-archives
-  - jekyll-paginate-v2 # Crucial for blog listing and pagination
-  - jemoji # For emoji support
-  # Optional al-folio plugins (add these if you plan to use their features)
-  # - jekyll-diagrams
-  # - jekyll-email-protect
-  # - jekyll-imagemagick
-  # - jekyll-minifier
-  # - jekyll/scholar
-  # - jekyll-link-attributes
-  # - jekyll-twitter-plugin
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on pushes to the main branch (for main site deployment)
+  push:
+    branches:
+      - main
+  # Triggers the workflow on pull request events (for PR previews)
+  pull_request:
+    branches:
+      - main # PRs targeting the main branch
+  # Allows you to run this workflow manually from the Actions tab in GitHub.
+  workflow_dispatch:
+    inputs:
+      target_ref:
+        description: 'Branch name (e.g., feature/my-branch) or PR number (e.g., 123) to build/deploy. Leave empty to use the current branch.'
+        required: false
+        type: string
 
-# --- Site Settings (Customize these for your specific site) ---
-title: [LLM360] # e.g., "Hector Liu's Website"
-description: [Open and transparent LLM resaearch for the community.]
-author: [The LLM360 Team] # e.g., "Hector Liu"
-email: [team@llm360.ai]
+# Define jobs
+jobs:
+  # Job to perform the build and deploy
+  deploy_site:
+    # This job will always run on push/pull_request, or manually via workflow_dispatch
+    runs-on: ubuntu-latest
 
-# Custom Domain Specifics (Crucial if you have a custom domain)
-baseurl: "" # Keep as "" if deploying to a custom domain at the root (e.g., yourdomain.com)
-url: "https://www.llm360.ai" # <<< REPLACE WITH YOUR ACTUAL CUSTOM DOMAIN
+    permissions:
+      contents: read # Allows checking out code
+      pages: write   # Allows deploying to GitHub Pages
+      id-token: write # Required for OIDC authentication with GitHub Pages
 
-lang: en # Language of your site
-icon: 💡 # Emoji favicon, or specify path to image like /assets/img/favicon.png
-last_updated: false # Set to true to display last updated in footer
-footer_text: >
-  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
-  Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+    environment:
+      name: github-pages # The default environment for GitHub Pages
+      url: ${{ steps.deployment.outputs.page_url }} # Output URL of the deployed site
 
-# -----------------------------------------------------------------------------
-# Layout Settings (from al-folio's config)
-# -----------------------------------------------------------------------------
-navbar_fixed: true
-footer_fixed: true
-max_width: "800px" # This was the one causing your previous SCSS error. Keep as string with units.
+    steps:
+      - name: Determine Ref for Checkout
+        id: determine_ref
+        run: |
+          # Logic to determine the correct ref to checkout based on event type and inputs
+          # For pull_request event, checkout the head ref of the PR
+          # For push event, checkout the main branch
+          # For workflow_dispatch:
+          #   If target_ref is a PR number (e.g., "123"), checkout 'refs/pull/123/merge'
+          #   Else (if target_ref is a branch name or empty), checkout that ref
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "CHECKOUT_REF=${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event_name }}" == "push" ]]; then
+            echo "CHECKOUT_REF=${{ github.ref }}" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            INPUT_REF="${{ github.event.inputs.target_ref }}"
+            if [[ -z "$INPUT_REF" ]]; then # If target_ref is empty, use the current branch
+              echo "CHECKOUT_REF=${{ github.ref }}" >> $GITHUB_OUTPUT # Use github.ref for the actual branch ref
+            elif [[ "$INPUT_REF" =~ ^[0-9]+$ ]]; then # Check if input is a number (PR number)
+              echo "CHECKOUT_REF=refs/pull/${INPUT_REF}/merge" >> $GITHUB_OUTPUT
+            else # Assume it's a branch name
+              echo "CHECKOUT_REF=refs/heads/${INPUT_REF}" >> $GITHUB_OUTPUT
+            fi
+          fi
+          echo "Determined checkout ref: ${{ steps.determine_ref.outputs.CHECKOUT_REF }}"
 
-# -----------------------------------------------------------------------------
-# Blog Settings (CRUCIAL FOR YOUR BLOG POSTS TO APPEAR)
-# -----------------------------------------------------------------------------
-blog_name: [The LLM360 Blog] # e.g., "Hector's Musings on AI"
-blog_nav_title: Blog # Title for the blog link in the navigation bar
-blog_description: [Interesting findings from the LLM360 team]
-permalink: /blog/:year/:title/ # This sets the permalink structure for blog posts
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.determine_ref.outputs.CHECKOUT_REF }}
+          fetch-depth: 0 # Fetch all history for Jekyll (if needed by some plugins)
 
-# Pagination (CRUCIAL for blog listing page)
-pagination:
-  enabled: true
-  per_page: 5 # Number of posts per page on the blog index
-  permalink: '/blog/page/:num/' # Permalink structure for pagination pages
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.2' # IMPORTANT: Ensure this matches your local Ruby version
+          bundler-cache: true # Caches installed gems for faster builds
 
-related_blog_posts:
-  enabled: true
-  max_related: 5
+      - name: Install Jekyll dependencies
+        run: bundle install
 
-# If you want comments, enable and configure Giscus (recommended for al-folio)
-# giscus:
-#   repo: [your-github-username]/[your-github-repo-name] # e.g., hectorliu/llm360-website
-#   repo_id: [your-repo-id] # Get this from giscus.app setup
-#   category: Comments
-#   category_id: [your-category-id] # Get this from giscus.app setup
-#   mapping: title
-#   strict: 1
-#   reactions_enabled: 1
-#   input_position: bottom
-#   theme: preferred_color_scheme
-#   emit_metadata: 0
-#   lang: en
+      - name: Setup Pages
+        # This action configures the GitHub Pages environment for deployment.
+        # It sets up necessary environment variables like GITHUB_PAGES_URL.
+        id: pages_setup # Added an ID to access its outputs
+        uses: actions/configure-pages@v3
 
-# -----------------------------------------------------------------------------
-# Jekyll Defaults (from al-folio's config)
-# -----------------------------------------------------------------------------
-markdown: kramdown
-highlighter: rouge # This was missing, crucial for code highlighting
-kramdown:
-  input: GFM
-  syntax_highlighter_opts:
-    css_class: 'highlight'
-    span:
-      line_numbers: false
-    block:
-      line_numbers: false
-      start_line: 1
+      - name: Build Jekyll site
+        # CRITICAL FIX: Explicitly pass the baseurl to Jekyll build using the output from Setup Pages
+        run: bundle exec jekyll build --trace --baseurl "${{ steps.pages_setup.outputs.base_url }}"
 
-# Includes & Excludes
-include: ['_pages']
-exclude:
-  - bin
-  - Gemfile
-  - Gemfile.lock
-  - vendor
-  - news/
-keep_files:
-  - CNAME
-  - .nojekyll
-  - .git
+      - name: Upload artifact
+        # Uploads the '_site' directory (your built Jekyll site) as an artifact.
+        # This artifact will then be used by the deploy-pages action.
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './_site' # The directory where Jekyll builds your site
 
-# Sitemap settings
-defaults:
-  - scope:
-      path: "assets"
-    values:
-      sitemap: false
-
-# -----------------------------------------------------------------------------
-# Optional Features (from al-folio's config)
-# -----------------------------------------------------------------------------
-enable_math: true # For MathJax support (LaTeX equations)
-enable_darkmode: true # Light/Dark mode toggle
-enable_medium_zoom: true # Image zoom on click
-enable_progressbar: true # Scroll progress bar
-# Add other 'enable_' flags from al-folio's config as desired
-# enable_google_analytics: false
-# enable_panelbear_analytics: false
-# enable_google_verification: false
-# enable_bing_verification: false
-# enable_masonry: true
-# enable_tooltips: false
-# enable_navbar_social: false
-# enable_project_categories: true
-
-# -----------------------------------------------------------------------------
-# Library versions (Crucial for external assets)
-# -----------------------------------------------------------------------------
-academicons:
-  version: "1.9.1"
-  integrity: "sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg="
-bootstrap:
-  version: "4.6.1"
-  integrity:
-    css: "sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY="
-    js: "sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8="
-fontawesome:
-  version: "5.15.4"
-  integrity: "sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4="
-jquery:
-  version: "3.6.0"
-  integrity: "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-mathjax:
-  version: "3.2.0"
-masonry:
-  version: "4.2.2"
-  integrity: "sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI="
-mdb:
-  version: "4.20.0"
-  integrity:
-    css: "sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw="
-    js: "sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA="
-medium_zoom:
-  version: "1.0.8"
-  integrity: "sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8="
-
-# -----------------------------------------------------------------------------
-# Jekyll Archives
-# -----------------------------------------------------------------------------
-
-jekyll-archives:
-  enabled: [year, tags, categories] # Make sure 'categories' and 'tags' are enabled
-  layouts:
-    year: archive-year
-    tag: archive-tag
-    category: archive-category # This tells jekyll-archives to use _layouts/archive-category.html
-  permalinks:
-    year: '/blog/:year/'
-    tag: '/blog/tag/:name/' # This creates /blog/tag/test/ and /blog/tag/setup/
-    category: '/blog/category/:name/' # This creates /blog/category/test/ and /blog/category/setup/
-
-display_tags: [] # You can leave this empty for now, or add specific tags you want to highlight
+      - name: Deploy to GitHub Pages
+        # Deploys the uploaded artifact to GitHub Pages.
+        # The 'id' allows us to reference its outputs, like the page_url.
+        id: deployment
+        uses: actions/deploy-pages@v4
