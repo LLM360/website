@@ -21,7 +21,6 @@ on:
         description: 'Branch name (e.g., feature/my-branch) or PR number (e.g., 123) to build/deploy. Leave empty to use the current branch.'
         required: false
         type: string
-        # Removed: default: ${{ github.ref_name }} - This caused the "github not found" error
       cleanup_only:
         description: 'Set to true to only perform cleanup, skipping build/deploy.'
         required: false
@@ -31,6 +30,7 @@ on:
 # Define jobs
 jobs:
   # --- TEMPORARY DEBUG JOB ---
+  # This job is for debugging inputs and can be removed once the workflow is stable.
   debug_inputs:
     runs-on: ubuntu-latest
     steps:
@@ -40,13 +40,13 @@ jobs:
           echo "github.event.inputs.target_ref: '${{ github.event.inputs.target_ref }}'"
           echo "github.event.inputs.cleanup_only: '${{ github.event.inputs.cleanup_only }}'"
           echo "Type of cleanup_only: $(jq -r '.inputs.cleanup_only | type' <<< '${{ toJSON(github.event) }}')"
-          echo "Value of cleanup_only in condition: ${{ github.event.inputs.cleanup_only == true }}"
+          echo "Value of cleanup_only in condition: ${{ fromJSON(github.event.inputs.cleanup_only) == true }}"
   # --- END TEMPORARY DEBUG JOB ---
 
   # Job to perform the build and deploy
   deploy_site:
-    # Only run if cleanup_only is not true
-    if: github.event_name != 'workflow_dispatch' || github.event.inputs.cleanup_only == false
+    # Only run if cleanup_only is not true (after converting to boolean)
+    if: github.event_name != 'workflow_dispatch' || fromJSON(github.event.inputs.cleanup_only) == false
     runs-on: ubuntu-latest
 
     permissions:
@@ -126,8 +126,8 @@ jobs:
 
   # Job to perform cleanup for specific manual deployments (not automatically cleaned up by GitHub)
   cleanup_deployment:
-    # Only run if cleanup_only is true and a target_ref is provided
-    if: github.event.inputs.cleanup_only == true
+    # Only run if cleanup_only is true AND a target_ref is provided AND it's a workflow_dispatch event
+    if: github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.cleanup_only) == true && github.event.inputs.target_ref != ''
     runs-on: ubuntu-latest
 
     permissions:
