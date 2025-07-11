@@ -114,7 +114,7 @@ jobs:
   # Job to perform cleanup for specific manual deployments (not automatically cleaned up by GitHub)
   cleanup_deployment:
     # Only run if cleanup_only is true and a target_ref is provided
-    if: github.event_name == 'workflow_dispatch' && github.event.inputs.cleanup_only == true && github.event.inputs.target_ref
+    if: github.event.inputs.cleanup_only == true
     runs-on: ubuntu-latest
 
     permissions:
