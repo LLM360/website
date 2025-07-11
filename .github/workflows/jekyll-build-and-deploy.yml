@@ -21,32 +21,13 @@ on:
         description: 'Branch name (e.g., feature/my-branch) or PR number (e.g., 123) to build/deploy. Leave empty to use the current branch.'
         required: false
         type: string
-      cleanup_only:
-        description: 'Set to true to only perform cleanup, skipping build/deploy.'
-        required: false
-        type: boolean
-        default: false
+      # Removed cleanup_only input as the cleanup job is being removed
 
 # Define jobs
 jobs:
-  # --- TEMPORARY DEBUG JOB ---
-  # This job is for debugging inputs and can be removed once the workflow is stable.
-  debug_inputs:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print Workflow Dispatch Inputs
-        run: |
-          echo "github.event_name: ${{ github.event_name }}"
-          echo "github.event.inputs.target_ref: '${{ github.event.inputs.target_ref }}'"
-          echo "github.event.inputs.cleanup_only: '${{ github.event.inputs.cleanup_only }}'"
-          echo "Type of cleanup_only: $(jq -r '.inputs.cleanup_only | type' <<< '${{ toJSON(github.event) }}')"
-          echo "Value of cleanup_only in condition: ${{ fromJSON(github.event.inputs.cleanup_only) == true }}"
-  # --- END TEMPORARY DEBUG JOB ---
-
   # Job to perform the build and deploy
   deploy_site:
-    # Only run if cleanup_only is not true (after converting to boolean)
-    if: github.event_name != 'workflow_dispatch' || fromJSON(github.event.inputs.cleanup_only) == false
+    # This job will always run on push/pull_request, or manually via workflow_dispatch
     runs-on: ubuntu-latest
 
     permissions:
@@ -123,36 +104,3 @@ jobs:
         # The 'id' allows us to reference its outputs, like the page_url.
         id: deployment
         uses: actions/deploy-pages@v4
-
-  # Job to perform cleanup for specific manual deployments (not automatically cleaned up by GitHub)
-  cleanup_deployment:
-    # Only run if cleanup_only is true AND a target_ref is provided AND it's a workflow_dispatch event
-    if: github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.cleanup_only) == true && github.event.inputs.target_ref != ''
-    runs-on: ubuntu-latest
-
-    permissions:
-      deployments: write # Needed for deleting deployments via the API
-
-    steps:
-      - name: Determine Cleanup Reference
-        id: determine_cleanup_ref
-        run: |
-          CLEANUP_INPUT="${{ github.event.inputs.target_ref }}"
-          if [[ "$CLEANUP_INPUT" =~ ^[0-9]+$ ]]; then
-            # Input is a PR number, cleanup target is the merge ref
-            CLEANUP_REF="refs/pull/${CLEANUP_INPUT}/merge"
-          else
-            # Input is a branch name, cleanup target is the head ref
-            CLEANUP_REF="refs/heads/${CLEANUP_INPUT}"
-          fi
-          echo "CLEANUP_REF=$CLEANUP_REF" >> $GITHUB_OUTPUT
-          echo "Determined cleanup reference: $CLEANUP_REF"
-
-      - name: Delete GitHub Pages Deployment
-        # This action deletes a GitHub Pages deployment for a specific reference (branch/PR).
-        # It's crucial for cleaning up manual deployments not tied to a PR lifecycle.
-        uses: strumwolf/delete-deployment-environment@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          environment: github-pages # The environment name for GitHub Pages
-          ref: ${{ steps.determine_cleanup_ref.outputs.CLEANUP_REF }} # The branch/PR ref whose deployment you want to delete
