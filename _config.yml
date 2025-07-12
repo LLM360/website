@@ -3,7 +3,6 @@
 
 # --- Theme Configuration ---
 remote_theme: al-folio/al-folio@master
-# remote_theme_url: https://github.com/al-folio/al-folio/archive/refs/heads/master.zip # Optional fallback
 
 # --- Jekyll Plugins ---
 plugins:
@@ -84,7 +83,9 @@ related_blog_posts:
 # Jekyll Defaults (from al-folio's config)
 # -----------------------------------------------------------------------------
 markdown: kramdown
-highlighter: rouge # This was missing, crucial for code highlighting
+# highlighter: rouge # This was missing, crucial for code highlighting
+# highlighter_theme: github # <--- ADD OR CORRECT THIS LINE
+
 kramdown:
   input: GFM
   syntax_highlighter_opts:
