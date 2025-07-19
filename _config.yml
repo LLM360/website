@@ -103,7 +103,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
-  - news/
 keep_files:
   - CNAME
   - .nojekyll
