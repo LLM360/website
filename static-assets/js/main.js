@@ -61,7 +61,7 @@
 			.each(function() {
 
 				var	$this = $(this),
-					id = $this.attr('href'),
+					id = $this.attr('href');
 					// IMPORTANT FIX: Only process links that are valid internal anchor links for Scrollex
 					// 1. Must start with '#'
 					// 2. Must not be just '#' (empty anchor, not a target for scrollex)
