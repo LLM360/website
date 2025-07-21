@@ -48,15 +48,6 @@
 			.on('click', function() {
 
 				var $this = $(this);
-
-				// IMPORTANT FIX: Only process links that are valid internal anchor links for Scrollex
-				// 1. Must start with '#'
-				// 2. Must not be just '#' (empty anchor, not a target for scrollex)
-				// 3. Must not be just '/' (root path, which is not a valid scrollex target)
-				// 4. Must not be a relative path to another page (e.g., 'index.html', 'blog', 'about.html')
-				if (!href || href.charAt(0) !== '#' || href === '#' || href === '/') {
-					return; // Skip this link if it's not a valid internal anchor for scrollex
-				}
 				
 				// Deactivate all links.
 				$sidebar_a.removeClass('active');
@@ -71,6 +62,15 @@
 
 				var	$this = $(this),
 					id = $this.attr('href'),
+					// IMPORTANT FIX: Only process links that are valid internal anchor links for Scrollex
+					// 1. Must start with '#'
+					// 2. Must not be just '#' (empty anchor, not a target for scrollex)
+					// 3. Must not be just '/' (root path, which is not a valid scrollex target)
+					// 4. Must not be a relative path to another page (e.g., 'index.html', 'blog', 'about.html')
+					if (!id || id.charAt(0) !== '#' || id === '#' || id === '/') { // <--- THIS IS THE CORRECTED LINE
+						return; // Skip this link if it's not a valid internal anchor for scrollex
+					}
+					
 					$section = $(id);
 
 				// No section for this link? Bail.
