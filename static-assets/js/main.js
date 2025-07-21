@@ -49,10 +49,15 @@
 
 				var $this = $(this);
 
-				// External link? Bail.
-				if ($this.attr('href').charAt(0) != '#')
-					return;
-
+				// IMPORTANT FIX: Only process links that are valid internal anchor links for Scrollex
+				// 1. Must start with '#'
+				// 2. Must not be just '#' (empty anchor, not a target for scrollex)
+				// 3. Must not be just '/' (root path, which is not a valid scrollex target)
+				// 4. Must not be a relative path to another page (e.g., 'index.html', 'blog', 'about.html')
+				if (!href || href.charAt(0) !== '#' || href === '#' || href === '/') {
+					return; // Skip this link if it's not a valid internal anchor for scrollex
+				}
+				
 				// Deactivate all links.
 				$sidebar_a.removeClass('active');
 
