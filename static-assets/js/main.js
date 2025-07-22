@@ -59,20 +59,23 @@
 
 			})
 			.each(function() {
+				var $this = $(this),
+                    id = $this.attr('href'); // This is the variable that holds the problematic value
 
-				var	$this = $(this),
-					id = $this.attr('href');
-					// IMPORTANT FIX: Only process links that are valid internal anchor links for Scrollex
-					// 1. Must start with '#'
-					// 2. Must not be just '#' (empty anchor, not a target for scrollex)
-					// 3. Must not be just '/' (root path, which is not a valid scrollex target)
-					// 4. Must not be a relative path to another page (e.g., 'index.html', 'blog', 'about.html')
-					if (!id || id.charAt(0) !== '#' || id === '#' || id === '/') { // <--- THIS IS THE CORRECTED LINE
-						return; // Skip this link if it's not a valid internal anchor for scrollex
-					}
+                var $section;
+                try {
+                    // Attempt to select the section. This will throw the error if 'id' is invalid.
+                    $section = $(id);
+                } catch (e) {
+                    // If a syntax error occurs (e.g., trying to select '/'), skip this link.
+                    if (e instanceof Error && e.message.includes('Syntax error, unrecognized expression')) {
+                        // console.warn(`Skipping invalid selector for scrollex: ${id}`);
+                        return; // Skip this iteration, move to the next link
+                    }
+                    // Re-throw other errors if they are unexpected
+                    throw e;
+                }
 					
-					$section = $(id);
-
 				// No section for this link? Bail.
 				if ($section.length < 1)
 					return;
@@ -263,18 +266,17 @@
 	const bannerContent = document.getElementById("bannerContent");
 	const messages = [
 		{
+			text: 'The Institute of Foundation Model is <strong>hiring</strong> !',
+			link: 'https://mbzuai.ac.ae/institute-of-foundation-models/' // Change this to your hiring link
+		},
+		{
 			text: 'Announcing our first dataset <strong>TxT360</strong>: Learn More Here.',
 			link: 'https://huggingface.co/spaces/LLM360/TxT360'
 		},
 		{
 			text: 'Announcing <strong>Analysis360</strong>: Open Implementations of LLM Analyses',
-			link: 'https://github.com/LLM360/Analysis360' // Change this to your hiring link
-		},
-		{
-			text: 'The Institute of Foundation Model is <strong>hiring</strong> !',
-			link: 'https://mbzuai.ac.ae/institute-of-foundation-models/' // Change this to your hiring link
+			link: 'https://github.com/LLM360/Analysis360'
 		}
-
 	];
 
 	let currentIndex = 0;
@@ -284,17 +286,21 @@
 		bannerContent.href = messages[currentIndex].link;
 	}
 
-// Previous button action
+	// Previous button action
 	document.getElementById("prevBtn").addEventListener("click", () => {
 		currentIndex = (currentIndex === 0) ? messages.length - 1 : currentIndex - 1;
 		updateBanner();
 	});
 
-// Next button action
+	// Next button action
 	document.getElementById("nextBtn").addEventListener("click", () => {
 		currentIndex = (currentIndex === messages.length - 1) ? 0 : currentIndex + 1;
 		updateBanner();
 	});
+
+    // Call updateBanner() here to set the initial message when the script loads
+    updateBanner();
+
 
 	// Scroll to see all pictures in the gallery
 	document.addEventListener('DOMContentLoaded', function () {
@@ -302,6 +308,13 @@
 			const gallery = document.getElementById(galleryId);
 			const prevButton = document.getElementById(prevButtonId);
 			const nextButton = document.getElementById(nextButtonId);
+
+			// FIX: Add this null check to prevent errors if elements are not found
+            if (!gallery || !prevButton || !nextButton) {
+                // console.warn(`Gallery navigation setup skipped for ${galleryId}: missing elements.`); // Optional: for debugging
+                return; // Exit the function if any required element is null
+            }
+
 			let scrollAmount = 0;
 			let scrollPerClick = gallery.clientWidth;
 			let maxScroll = gallery.scrollWidth - gallery.clientWidth;
