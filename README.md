@@ -1,7 +1,6 @@
 # LLM360 Website
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/39f6e2df-b25c-4da5-9c44-759490483f1a/deploy-status)](https://app.netlify.com/projects/jovial-starlight-aef006/deploys)
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/39f6e2df-b25c-4da5-9c44-759490483f1a/deploy-status)](https://app.netlify.com/projects/llm360-website/deploys)
 
 This repository contains the source code for the LLM360 website, built with Jekyll and utilizing the `al-folio` theme for its blog section.
 
