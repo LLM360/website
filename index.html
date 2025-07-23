@@ -18,8 +18,8 @@
         <title>LLM360 | Open-Source LLMs towards Community-Driven AGI 🚀</title>
         <meta name="description" content="Join LLM360 in advancing community-owned AGi with open-source resources for transparent and ethical LLM development. Explore pretraining suites and more."/>
         <link rel="canonical" href="https://www.llm360.ai/" />
-        <meta name="keywords" content="LLM360, Open Source AI, Community AGI, Large Language Models, AI Research, Petuum, CMU, USC, MBZUAI, Amber LLM, CrystalCoder, NLP, Language Processing"/>
-        <meta name="author" content="Petuum, Carnegie Mellon University, University of Southern California, Mohamed bin Zayed University of Artificial Intelligence"/>
+        <meta name="keywords" content="LLM360, Open Source AI, Community AGI, Large Language Models, AI Research, CMU, USC, MBZUAI, Amber LLM, CrystalCoder, NLP, Language Processing"/>
+        <meta name="author" content="Institute of Foundation Models, Carnegie Mellon University, University of Southern California, Mohamed bin Zayed University of Artificial Intelligence"/>
         <meta name="robots" content="index, follow"/>
 
         <!-- Open Graph Protocol -->
@@ -69,18 +69,18 @@
       	<!-- /SEO -->
 
         <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-chrome-192x192.png">
-        <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/android-chrome-512x512.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/x-icon" href="static-assets/favicon/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="192x192" href="static-assets/favicon/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="static-assets/favicon/android-chrome-512x512.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="static-assets/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="static-assets/favicon/favicon-16x16.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="static-assets/favicon/apple-touch-icon.png">
         <!-- <link rel="manifest" href="/site.webmanifest"> -->
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
 
         <!-- Style -->
-        <link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="static-assets/css/main.css" />
 
     </head>
     <style>
@@ -104,14 +104,13 @@
                     </a>
                     <h2>LLM360</h2>
                     <ul>
-                        <li><a href="#datasets">Datasets</a></li>
-                        <li><a href="#models">Models</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#paper">Papers</a></li>
-                        <li><a href="#blogs">Blogs</a></li>
+                        <li><a href="blog"><span style="color: #FF6347; font-weight: bold;">(New!)</span> ✨ Blog</a></li>
+                        <li><a href="index.html#datasets">Datasets</a></li>
+                        <li><a href="index.html#models">Models</a></li>
+                        <li><a href="index.html#projects">Projects</a></li>
+                        <li><a href="index.html#paper">Papers</a></li>
+                        <li><a href="index.html#news">News</a></li>
                         <li><a href="about.html">About</a></li>
-<!--                        <li><a href="joinus.html">Join Us</a></li>-->
-<!--                        <li><a href="#six">Get in touch</a></li>-->
                     </ul>
                 </nav>
             </div>
@@ -120,13 +119,13 @@
 
         <!-- Wrapper -->
         <div id="wrapper">
-<!--            <div class="alert-banner" id="alertBanner">-->
-<!--                <a href="https://huggingface.co/spaces/LLM360/TxT360" target="_blank">Announcing our first dataset <strong>TxT360</strong>: Learn More Here.</a>-->
-<!--            </div>-->
             <div class="alert-banner" id="alertBanner">
-                <a href="https://huggingface.co/spaces/LLM360/TxT360" target="_blank" id="bannerContent">
+                <!-- <a href="https://huggingface.co/spaces/LLM360/TxT360" target="_blank" id="bannerContent">
                     Announcing our first dataset <strong>TxT360</strong>: Learn More Here.
+                </a> -->
+                <a href="#" target="_blank" id="bannerContent">
                 </a>
+
                 <a id="prevBtn" class="arrow-btn">&#9664;</a> <!-- Left arrow -->
                 <a id="nextBtn" class="arrow-btn">&#9654;</a> <!-- Right arrow -->
             </div>
@@ -158,7 +157,7 @@
                             A Top-Quality LLM Pre-training Dataset Requires the Perfect Blend. The <strong>first</strong> dataset to <strong>globally deduplicate 99</strong>  CommonCrawl snapshots and <strong>14</strong> high-quality data sources from diverse domains (e.g., FreeLaw, PG-19, etc.). The <strong>large-scale</strong> deduplication process and rich metadata stored enables <strong>precise control</strong> over data distribution.
                         </p>
                         <ul class="actions">
-                            <li><a href="blog/txt360-logpost.html" class="button">Learn more</a></li>
+                            <li><a href="news/txt360-logpost.html" class="button">Learn more</a></li>
                             <li><a href="https://huggingface.co/datasets/LLM360/TxT360" target="_blank" class="button">Dataset</a></li>
                         </ul>
                     </div>
@@ -279,7 +278,7 @@
                                     <h3>LLM360 K2: Building a 65B 360-Open-Source Large Language Model from Scratch</h3>
                                     <p>In this paper, we present LLM360 K2-65B, the most powerful fully transparent open-source large language model (LLM) released to date. K2 is a 65 billion parameter LLM, which follows best practices for reproducibility from the LLM360 project. Despite numerous efforts to develop and release open-source LLMs, full transparency around the training process still remains limited... </p>
                                     <ul class="actions">
-                                        <li><a href="K2_tech_report.pdf" target="_blank" class="button">Learn more</a></li>
+                                        <li><a href="reports/K2_tech_report.pdf" target="_blank" class="button">Learn more</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -300,7 +299,7 @@
                                         weights or inference code, and technical reports increasingly limit their scope to
                                         high-level design choices and surface statistics... </p>
                                     <ul class="actions">
-                                        <li><a href="LLM360-Towards-Fully-Transparent-Open-Source-LLMs.pdf" target="_blank" class="button">Learn more</a></li>
+                                        <li><a href="reports/LLM360-Towards-Fully-Transparent-Open-Source-LLMs.pdf" target="_blank" class="button">Learn more</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -320,10 +319,10 @@
                 </div>
             </section>
 
-            <!-- Blog -->
-            <section id="blogs" class="wrapper style2 fade-up">
+            <!-- news (originally Blog) -->
+            <section id="news" class="wrapper style2 fade-up">
                 <div class="inner">
-                    <h1>Blogs</h1>
+                    <h1>News</h1>
                     <div class="features alt">
 <!--                        <ul class="tags">-->
 <!--                            <li> <a class="tag" data-tag="all">All</a></li>-->
@@ -354,7 +353,7 @@
                                         </p>
                                         <p style="color: red;">2nd Place, <a href="https://rdi.berkeley.edu/llm-agents-hackathon/">Berkeley LLM Agents Hackathon</a> <br> (Fundamentals Track, <b>2 of ~3,000</b> Participants)</p>
                                         <ul class="actions">
-                                            <li><a href="blog/simura-general-ai-agent-llm-world-model.html" class="button" target="_blank">Learn more</a></li>
+                                            <li><a href="news/simura-general-ai-agent-llm-world-model.html" class="button" target="_blank">Learn more</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -418,7 +417,7 @@
                                         </ul>
                                         <p>LLM360 is excited to announce several new releases to further our mission enabling community-owned AGI by creating standards and tools to advance the bleeding edge of LLM capability and empower knowledge transfer, research, and development.</p>
                                         <ul class="actions">
-                                            <li><a href="blog/several-new-releases-to-further-our-mission.html" class="button">Learn more</a></li>
+                                            <li><a href="news/several-new-releases-to-further-our-mission.html" class="button">Learn more</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -439,7 +438,7 @@
                                         </ul>
                                         <p>In recent months, the open-source large language model (LLM) community has seen tremendous model contributions. However, model weight releases and overview technical reports do not contain enough information to cover the complexity of LLM training, which hinders openness and transparency, the mechanisms behind trustworthy and innovative research and science for decades.</p>
                                         <ul class="actions">
-                                            <li><a href="blog/introducing-llm360-fully-transparent-open-source-llms.html" class="button">Learn more</a></li>
+                                            <li><a href="news/introducing-llm360-fully-transparent-open-source-llms.html" class="button">Learn more</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -513,7 +512,7 @@
             <div class="inner">
                 <ul class="menu">
                     <p>
-                        LLM360, proudly sponsored by Petuum and MBZUAI, is dedicated to advancing the field of AI by providing comprehensive access to large language models.<br>
+                        LLM360, proudly sponsored by the Institute of Foundation Models (https://ifm.mbzuai.ac.ae/), is dedicated to advancing the field of AI by providing comprehensive access to large language models.<br>
                         LLM360 enables community-owned AGI by creating standards and tools to advance the bleeding edge of LLM capability and empower knowledge transfer, research, and development.
                     </p>
                     <ul class="actions">
@@ -528,13 +527,13 @@
         </footer>
 
         <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="static-assets/js/jquery.min.js"></script>
+        <script src="static-assets/js/jquery.scrollex.min.js"></script>
+        <script src="static-assets/js/jquery.scrolly.min.js"></script>
+        <script src="static-assets/js/browser.min.js"></script>
+        <script src="static-assets/js/breakpoints.min.js"></script>
+        <script src="static-assets/js/util.js"></script>
+        <script src="static-assets/js/main.js?v=2025072102"></script>
 
     </body>
 </html>
