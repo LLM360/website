@@ -2,7 +2,79 @@
 
 This repository contains the source code for the LLM360 website, built with Jekyll and utilizing the `al-folio` theme for its blog section.
 
-## 🚀 Website Layout (URL Structure)
+## ✍️ For Contributing a Blog Post
+
+New blog posts are created as Markdown files within the `_posts` directory.
+
+1.  **Create a New File:**
+    Navigate to the `_posts` directory in your project. Create a new Markdown file with the following naming convention:
+    `YYYY-MM-DD-your-post-title.md`
+
+      * `YYYY-MM-DD`: The full date of the post. 
+
+      * `your-post-title`: A descriptive title using hyphens instead of spaces.
+
+    **Example:** `_posts/2025-07-15-my-new-research-update.md`
+
+2.  **Add YAML Front Matter:**
+    Every blog post **must** start with a YAML Front Matter block. This provides metadata for Jekyll and the `al-folio` theme.
+
+    ````yaml
+    ---
+    layout: post
+    title: "Your Awesome New Post Title Here"
+    date: 2025-07-15 10:30:00 -0700
+    description: "A short summary or excerpt for your post." 
+    categories: [category1, category2] # List categories relevant to your post
+    tags: [tag1, tag2, tag3] # List specific keywords/tags
+    # Optional: Add an image for social media previews. These images should be placed in the 'assets/img/posts/' folder (al-folio's asset directory).
+    # image: /assets/img/posts/your-post-image.jpg
+    ---
+
+    Note that the blog post will be published after the time specified in the YAML.
+
+    ## Your Post Content Starts Here
+
+    This is where you write the main content of your blog post using Markdown.
+
+    You can include:
+    * Text with **bold** and *italics*.
+    * [Links](https://example.com).
+    * Code blocks:
+        ```python
+        def hello_world():
+            print("Hello, Blog!")
+        ```
+    * Images: `![Alt Text](/assets/img/your-image.png)` (ensure image path is correct relative to root, usually `assets/img/` for theme-managed images)
+    * LaTeX for math (if enabled in `_config.yml`): `$$E=mc^2$$`
+
+    ---
+    # End of your post content
+    ````
+
+3.  **Submit via Pull Request (PR):**
+    Once you've created and saved your new blog post file:
+
+      * **Commit your changes:**
+
+        ```bash
+        git add _posts/YYYY-MM-DD-your-post-title.md
+        git commit -m "feat: Add new blog post: Your Post Title"
+        ```
+
+      * **Push your changes to your branch:**
+
+        ```bash
+        git push origin your-feature-branch-name
+        ```
+
+      * **Open a Pull Request (PR)** on GitHub from your branch to the `main` (or `master`) branch of the repository. Describe your changes clearly.
+
+    After the PR is merged, GitHub Pages will automatically rebuild the site, and your new blog post will appear on the live website.
+
+
+# Website Deverlopers, Keep Reading. 
+## 🚀 Website Layout
 
 This website is designed with a hybrid approach, where Jekyll generates specific URL paths for different content sections:
 
@@ -111,73 +183,3 @@ Jekyll uses specific folders, typically prefixed with an underscore (`_`), for d
   * **`_pages/`**: Contains standalone Markdown or HTML pages that Jekyll processes (like your `blog.md` file that generates the `/blog/` index page).
 
   * **`_sass/`**: Holds Sass/SCSS files that Jekyll compiles into CSS. This is where `al-folio`'s core styles reside, and where you'd place `_custom.scss` for theme overrides.
-
-## ✍️ How to Create a New Blog Post
-
-New blog posts are created as Markdown files within the `_posts` directory.
-
-1.  **Create a New File:**
-    Navigate to the `_posts` directory in your project. Create a new Markdown file with the following naming convention:
-    `YYYY-MM-DD-your-post-title.md`
-
-      * `YYYY-MM-DD`: The full date of the post.
-
-      * `your-post-title`: A descriptive title using hyphens instead of spaces.
-
-    **Example:** `_posts/2025-07-15-my-new-research-update.md`
-
-2.  **Add YAML Front Matter:**
-    Every blog post **must** start with a YAML Front Matter block. This provides metadata for Jekyll and the `al-folio` theme.
-
-    ````yaml
-    ---
-    layout: post
-    title: "Your Awesome New Post Title Here"
-    date: 2025-07-15 10:30:00 -0700 # e.g., 2025-07-15 10:30:00 -0700 (date and time with timezone offset)
-    description: "A short summary or excerpt for your post." # Optional, for social media cards/listings
-    categories: [category1, category2] # List categories relevant to your post
-    tags: [tag1, tag2, tag3] # List specific keywords/tags
-    # Optional: Add an image for social media previews. These images should be placed in the 'assets/img/posts/' folder (al-folio's asset directory).
-    # image: /assets/img/posts/your-post-image.jpg
-    ---
-
-    ## Your Post Content Starts Here
-
-    This is where you write the main content of your blog post using Markdown.
-
-    You can include:
-    * Text with **bold** and *italics*.
-    * [Links](https://example.com).
-    * Code blocks:
-        ```python
-        def hello_world():
-            print("Hello, Blog!")
-        ```
-    * Images: `![Alt Text](/assets/img/your-image.png)` (ensure image path is correct relative to root, usually `assets/img/` for theme-managed images)
-    * LaTeX for math (if enabled in `_config.yml`): `$$E=mc^2$$`
-
-    ---
-    # End of your post content
-    ````
-
-3.  **Submit via Pull Request (PR):**
-    Once you've created and saved your new blog post file:
-
-      * **Commit your changes:**
-
-        ```bash
-        git add _posts/YYYY-MM-DD-your-post-title.md
-        git commit -m "feat: Add new blog post: Your Post Title"
-        ```
-
-      * **Push your changes to your branch:**
-
-        ```bash
-        git push origin your-feature-branch-name
-        ```
-
-      * **Open a Pull Request (PR)** on GitHub from your branch to the `main` (or `master`) branch of the repository. Describe your changes clearly.
-
-    After the PR is merged, GitHub Pages will automatically rebuild the site, and your new blog post will appear on the live website.
-
-<!-- end list -->
