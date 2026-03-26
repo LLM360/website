@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: blog
 permalink: /blog/ # <--- ADD THIS LINE! This is for the first page: /blog/
 
@@ -52,7 +52,7 @@ pagination:
     <li>
       <h3>
         {% if post.redirect == blank %}
-          <a class="post-title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
         {% else %}
           {% if post.redirect contains '://' %}
             <a class="post-title" href="{{ post.redirect }}" target="_blank">{{ post.title }}</a>
@@ -73,13 +73,13 @@ pagination:
         {%- endif %}
       </p>
       <p class="post-tags">
-        <a href="{{ year | prepend: '/blog/' | prepend: site.baseurl}}">
+        <a href="{{ year | prepend: '/blog/' | relative_url }}">
           <i class="fas fa-calendar fa-sm"></i> {{ year }} </a>
 
           {% if tags != "" %}
           &nbsp; &middot; &nbsp;
             {% for tag in post.tags %}
-            <a href="{{ tag | slugify | prepend: '/blog/tag/' | prepend: site.baseurl}}">
+            <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}">
               <i class="fas fa-hashtag fa-sm"></i> {{ tag }}</a> &nbsp;
               {% endfor %}
           {% endif %}
@@ -87,7 +87,7 @@ pagination:
           {% if categories != "" %}
           &nbsp; &middot; &nbsp;
             {% for category in post.categories %}
-            <a href="{{ category | slugify | prepend: '/blog/category/' | prepend: site.baseurl}}">
+            <a href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}">
               <i class="fas fa-tag fa-sm"></i> {{ category }}</a> &nbsp;
               {% endfor %}
           {% endif %}

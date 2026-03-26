@@ -77,8 +77,14 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Build Jekyll site
-        # CRITICAL FIX: Explicitly pass the baseurl to Jekyll build using the output from Setup Pages
-        run: bundle exec jekyll build --trace --baseurl "${{ steps.pages_setup.outputs.base_url }}"
+        # Only override baseurl when Pages is serving from an actual subpath.
+        run: |
+          BASE_URL="${{ steps.pages_setup.outputs.base_url }}"
+          if [[ -n "$BASE_URL" && "$BASE_URL" != "/" ]]; then
+            bundle exec jekyll build --trace --baseurl "$BASE_URL"
+          else
+            bundle exec jekyll build --trace
+          fi
 
       - name: Upload artifact
         # Uploads the '_site' directory (your built Jekyll site) as an artifact.
