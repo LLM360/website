@@ -22,6 +22,23 @@ This post explains why, shows the correct formulation, sketches the algorithm, a
 
 ---
 
+### Contents
+
+- [Why this matters for ML teams](#why-this-matters-for-ml-teams)
+- [Pipeline context](#pipeline-context-what-changes-and-what-does-not)
+- [Where transitive bucket unionization fails](#where-transitive-bucket-unionization-fails-in-multi-band)
+- [Correct formulation](#correct-formulation-bucket-hypergraph--strong-independence)
+- [Key theorems](#two-key-theorems-the-practical-ones)
+- [Algorithm sketch](#algorithm-sketch-greedy-minimum-bucket-weight-clustering)
+- [Complexity and memory](#complexity-and-memory-behavior)
+- [Multi-seed extension](#multi-seed-dedup-as-a-first-class-extension)
+- [Query-side extension](#query-side-extension-different-task-same-design-philosophy)
+- [Case studies](#case-studies-at-billion-scale)
+- [Migration checklist](#practical-migration-checklist)
+- [Limitations and future work](#limitations-and-open-directions)
+
+---
+
 ## TL;DR
 
 - In multi-band MinHash-LSH, bucket overlap is **not** a transitive duplicate relation.
@@ -32,7 +49,7 @@ This post explains why, shows the correct formulation, sketches the algorithm, a
 
 ---
 
-## 1) Why this matters for ML teams
+## Why this matters for ML teams
 
 Large language model training quality depends heavily on data curation quality. If clustering over-merges, we lose useful diversity and discard too many documents. If clustering under-merges, we leak near-duplicates and waste token budget. The importance of strong dedup signals for LLM training quality has been demonstrated repeatedly in practice and ablations.[^lee2022][^penedo2023][^redpajama2024]
 
@@ -42,7 +59,7 @@ This is why we focus on stage 3 as a targeted, high-leverage change.
 
 ---
 
-## 2) Pipeline context: what changes and what does not
+## Pipeline context: what changes and what does not
 
 We keep the standard 4-stage structure:
 
@@ -59,7 +76,7 @@ We keep the same MinHash-LSH candidate-generation foundations and only change cl
 
 ---
 
-## 3) Where transitive bucket unionization fails in multi-band
+## Where transitive bucket unionization fails in multi-band
 
 ### 3.1 Local clique vs global transitivity
 
@@ -71,7 +88,7 @@ You can have:
 - $y, z$ together in another bucket
 - $x, z$ sharing no bucket at all
 
-Connected-components clustering still merges $x, y, z$ and keeps one representative, which is stronger than the true feasibility requirement.
+Legacy transitive bucket unionization still merges $x, y, z$ and keeps one representative, which is stronger than the true feasibility requirement.
 
 ### 3.2 Worst-case gap can be unbounded
 
@@ -88,7 +105,7 @@ So transitive-union retention can be $1/k$ of feasible optimum, tending to 0 as 
 
 ---
 
-## 4) Correct formulation: bucket hypergraph + strong independence
+## Correct formulation: bucket hypergraph + strong independence
 
 Let:
 
@@ -112,7 +129,7 @@ That is exactly maximum strong independent set in this hypergraph.[^halldorsson2
 
 ---
 
-## 5) Two key theorems (the practical ones)
+## Two key theorems (the practical ones)
 
 ### Theorem A: Explicit upper bound from bucket incidences
 
@@ -138,7 +155,7 @@ This refinement is key for meaningful empirical "closeness to bound" diagnostics
 
 ---
 
-## 6) Algorithm sketch: Greedy minimum-bucket-weight clustering
+## Algorithm sketch: Greedy minimum-bucket-weight clustering
 
 Below is the implementation-oriented sketch (matching the paper logic):
 
@@ -177,7 +194,7 @@ Output: root set R, cluster map phi
 
 ---
 
-## 7) Complexity and memory behavior
+## Complexity and memory behavior
 
 Let:
 
@@ -200,7 +217,7 @@ Practical memory profile is output-state dominated: beyond transient bucket/heap
 
 ---
 
-## 8) Multi-seed dedup as a first-class extension
+## Multi-seed dedup as a first-class extension
 
 Run the same dedup pipeline for $T$ independent seeds and aggregate constraints.
 
@@ -216,15 +233,21 @@ So merged-signature view and multi-round independent-seed view are probabilistic
 
 ### Figure: multi-seed acceptance curves (linear)
 
-<img src="/assets/img/posts/lsh-minhash-dedup/lsh_minhash_curves.png" alt="Multi-seed match probability (linear)" style="max-width: 900px; width: 100%; height: auto;" />
+<figure style="margin: 1rem 0 1.5rem 0; text-align: center;">
+  <img src="/assets/img/posts/lsh-minhash-dedup/lsh_minhash_curves.png" alt="Multi-seed match probability (linear)" style="max-width: 900px; width: 100%; height: auto;" />
+  <figcaption style="font-size: 0.95em;">Figure 1: Multi-seed single-band match probability (linear scale).</figcaption>
+</figure>
 
 ### Figure: multi-seed acceptance curves (log scale)
 
-<img src="/assets/img/posts/lsh-minhash-dedup/lsh_minhash_curves_logy.png" alt="Multi-seed match probability (log scale)" style="max-width: 900px; width: 100%; height: auto;" />
+<figure style="margin: 1rem 0 1.5rem 0; text-align: center;">
+  <img src="/assets/img/posts/lsh-minhash-dedup/lsh_minhash_curves_logy.png" alt="Multi-seed match probability (log scale)" style="max-width: 900px; width: 100%; height: auto;" />
+  <figcaption style="font-size: 0.95em;">Figure 2: Multi-seed single-band match probability (log scale), highlighting low-similarity tail suppression.</figcaption>
+</figure>
 
 ---
 
-## 9) Query-side extension (different task, same design philosophy)
+## Query-side extension (different task, same design philosophy)
 
 For query-time LSH, there is no global clustering. We only decide whether to accept a candidate.
 
@@ -237,15 +260,21 @@ These are defined for MinHash-style multi-value signatures. They are not directl
 
 ### Figure: query probability (linear)
 
-<img src="/assets/img/posts/lsh-minhash-dedup/lsh_matched_linear.png" alt="Query probability linear" style="max-width: 900px; width: 100%; height: auto;" />
+<figure style="margin: 1rem 0 1.5rem 0; text-align: center;">
+  <img src="/assets/img/posts/lsh-minhash-dedup/lsh_matched_linear.png" alt="Query probability linear" style="max-width: 900px; width: 100%; height: auto;" />
+  <figcaption style="font-size: 0.95em;">Figure 3: Query acceptance probability (linear scale).</figcaption>
+</figure>
 
 ### Figure: query probability (log scale)
 
-<img src="/assets/img/posts/lsh-minhash-dedup/lsh_matched_logy.png" alt="Query probability log" style="max-width: 900px; width: 100%; height: auto;" />
+<figure style="margin: 1rem 0 1.5rem 0; text-align: center;">
+  <img src="/assets/img/posts/lsh-minhash-dedup/lsh_matched_logy.png" alt="Query probability log" style="max-width: 900px; width: 100%; height: auto;" />
+  <figcaption style="font-size: 0.95em;">Figure 4: Query acceptance probability (log scale) for low-similarity false-positive analysis.</figcaption>
+</figure>
 
 ---
 
-## 10) Case studies at billion scale
+## Case studies at billion scale
 
 Datasets:
 
@@ -272,15 +301,21 @@ These deeper-round percentages are the practical signal we care about: the greed
 
 ### Figure: retained-document fraction
 
-<img src="/assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png" alt="Retained-document fraction" style="max-width: 900px; width: 100%; height: auto;" />
+<figure style="margin: 1rem 0 1.5rem 0; text-align: center;">
+  <img src="/assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png" alt="Retained-document fraction" style="max-width: 900px; width: 100%; height: auto;" />
+  <figcaption style="font-size: 0.95em;">Figure 5: Retained-document fraction across dedup variants.</figcaption>
+</figure>
 
 ### Figure: maximum cluster size (log scale)
 
-<img src="/assets/img/posts/lsh-minhash-dedup/case_study_max_cluster.png" alt="Maximum cluster size (log)" style="max-width: 900px; width: 100%; height: auto;" />
+<figure style="margin: 1rem 0 1.5rem 0; text-align: center;">
+  <img src="/assets/img/posts/lsh-minhash-dedup/case_study_max_cluster.png" alt="Maximum cluster size (log)" style="max-width: 900px; width: 100%; height: auto;" />
+  <figcaption style="font-size: 0.95em;">Figure 6: Maximum cluster size (log scale); legacy unionization induces giant clusters.</figcaption>
+</figure>
 
 ---
 
-## 11) Why this is deployable, not just theoretical
+## Why this is deployable, not just theoretical
 
 From an engineering perspective, this proposal is attractive because:
 
@@ -293,7 +328,7 @@ In short: **same pipeline skeleton, better objective**.
 
 ---
 
-## 12) Practical migration checklist
+## Practical migration checklist
 
 If your current dedup stage uses transitive bucket unionization, migration can be done incrementally:
 
@@ -310,7 +345,7 @@ If your current dedup stage uses transitive bucket unionization, migration can b
 
 ---
 
-## 13) Limitations and open directions
+## Limitations and open directions
 
 Important caveats:
 
@@ -326,7 +361,7 @@ High-value next steps:
 
 ---
 
-## 14) Closing
+## Closing
 
 Legacy bucket unionization is a transitive convenience, not the right semantics for multi-band MinHash dedup.
 
