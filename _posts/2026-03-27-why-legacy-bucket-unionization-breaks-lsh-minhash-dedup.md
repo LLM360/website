@@ -10,6 +10,29 @@ math: true
 image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
 ---
 
+<style>
+  .post h2 { margin-top: 2.2rem; padding-bottom: 0.35rem; border-bottom: 2px solid #e5e7eb; font-size: 1.7rem; }
+  .post h3 { margin-top: 1.45rem; font-size: 1.26rem; color: #111827; }
+  .post p, .post li { line-height: 1.78; }
+  .post table { display: block; overflow-x: auto; white-space: nowrap; }
+  .lsh-side-refs {
+    float: right;
+    width: 290px;
+    margin: 0 0 1rem 1.35rem;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #f9fafb;
+    position: sticky;
+    top: 82px;
+  }
+  .lsh-side-refs h4 { margin: 0 0 0.55rem 0; font-size: 1rem; }
+  .lsh-side-refs ul { margin: 0; padding-left: 1.1rem; font-size: 0.93rem; line-height: 1.5; }
+  @media (max-width: 1100px) {
+    .lsh-side-refs { float: none; width: auto; margin: 0.65rem 0 1.1rem 0; position: static; }
+  }
+</style>
+
 Most MinHash-LSH dedup pipelines still do this in stage 3:
 
 1. Build duplicate buckets from band collisions.
@@ -20,12 +43,25 @@ That is simple and often fast. In multi-band dedup, it is also the wrong objecti
 
 This post explains why, shows the correct formulation, sketches the algorithm, and summarizes the empirical impact on billion-scale corpora.
 
+<aside class="lsh-side-refs">
+  <h4>Quick References</h4>
+  <ul>
+    <li><a href="https://github.com/huggingface/datatrove" target="_blank" rel="noopener">DataTrove pipeline</a></li>
+    <li><a href="https://aclanthology.org/2022.acl-long.577/" target="_blank" rel="noopener">Dedup improves LLMs (Lee et al.)</a></li>
+    <li><a href="https://doi.org/10.1109/SEQUEN.1997.666900" target="_blank" rel="noopener">MinHash foundations (Broder)</a></li>
+    <li><a href="https://doi.org/10.1145/509907.509965" target="_blank" rel="noopener">LSH foundations (Charikar)</a></li>
+    <li><a href="https://doi.org/10.1016/j.dam.2008.11.013" target="_blank" rel="noopener">Hypergraph independence</a></li>
+  </ul>
+</aside>
+
 ---
 
 ### Contents
 
 - [Why this matters for ML teams](#why-this-matters-for-ml-teams)
+- [Formal thesis and violated invariant](#formal-thesis-what-legacy-unionization-adds-and-why-invalid)
 - [Pipeline context](#pipeline-context-what-changes-and-what-does-not)
+- [Pipeline diagram: hold vs break](#pipeline-diagram-where-assumptions-hold-vs-break)
 - [Where transitive bucket unionization fails](#where-transitive-bucket-unionization-fails-in-multi-band)
 - [Correct formulation](#correct-formulation-bucket-hypergraph--strong-independence)
 - [Key theorems](#two-key-theorems-the-practical-ones)
@@ -34,6 +70,7 @@ This post explains why, shows the correct formulation, sketches the algorithm, a
 - [Multi-seed extension](#multi-seed-dedup-as-a-first-class-extension)
 - [Query-side extension](#query-side-extension-different-task-same-design-philosophy)
 - [Case studies](#case-studies-at-billion-scale)
+- [Interactive exploration](#interactive-exploration)
 - [Migration checklist](#practical-migration-checklist)
 - [Limitations and future work](#limitations-and-open-directions)
 
@@ -46,6 +83,28 @@ This post explains why, shows the correct formulation, sketches the algorithm, a
 - This is a strong-independent-set problem on a bucket hypergraph.
 - A bucket-native greedy algorithm plus weight-1 preprocessing yields strong practical behavior at scale.
 - Multi-seed dedup sharpens acceptance and lowers low-similarity false positives while reusing the same pipeline workflow.
+
+---
+
+## Formal thesis: what legacy unionization adds (and why invalid)
+
+Let bucket evidence be represented by a deduplicated hyperedge family $\mathcal{B}$. The native LSH feasibility region is:
+
+$$
+\mathcal{F}_{\mathrm{LSH}} := \{R \subseteq V : |R \cap B| \le 1,\ \forall B \in \mathcal{B}\}.
+$$
+
+Legacy bucket unionization first forms transitive overlap components and then enforces one representative per component; call that region $\mathcal{F}_{\mathrm{union}}$.
+
+By construction,
+
+$$
+\mathcal{F}_{\mathrm{union}} \subseteq \mathcal{F}_{\mathrm{LSH}},
+$$
+
+and the inclusion can be strict.
+
+The key violated invariant is: **LSH emits local collision evidence, not transitive global equivalence classes**. Legacy unionization adds constraints not entailed by emitted buckets.
 
 ---
 
@@ -73,6 +132,15 @@ Only stage 3 changes.[^datatrove]
 This is important operationally: no need to replace your hash family, bucketing framework, or filtering pipeline.
 
 We keep the same MinHash-LSH candidate-generation foundations and only change clustering semantics.[^broder1997][^charikar2002]
+
+---
+
+## Pipeline diagram: where assumptions hold vs break
+
+<figure style="margin: 1rem 0 1.5rem 0; text-align: center;">
+  <img src="/assets/img/posts/lsh-minhash-dedup/pipeline-assumptions.svg" alt="Pipeline assumptions diagram" style="max-width: 1000px; width: 100%; height: auto;" />
+  <figcaption style="font-size: 0.95em;">Figure 0: Signature generation and bucketing preserve local evidence assumptions; legacy transitive unionization in Stage 3 is where extra, non-LSH constraints are introduced.</figcaption>
+</figure>
 
 ---
 
@@ -312,6 +380,14 @@ These deeper-round percentages are the practical signal we care about: the greed
   <img src="/assets/img/posts/lsh-minhash-dedup/case_study_max_cluster.png" alt="Maximum cluster size (log)" style="max-width: 900px; width: 100%; height: auto;" />
   <figcaption style="font-size: 0.95em;">Figure 6: Maximum cluster size (log scale); legacy unionization induces giant clusters.</figcaption>
 </figure>
+
+---
+
+## Interactive exploration
+
+The interactive panel below lets readers vary $(b,r,T)$ and a min+max proxy coefficient $\kappa$ to inspect curve shape, cutoff steepness, and low-similarity tails.
+
+<iframe src="/assets/img/posts/lsh-minhash-dedup/interactive-curves.html" title="Interactive LSH curves" style="width: 100%; height: 760px; border: 1px solid #e5e7eb; border-radius: 10px;"></iframe>
 
 ---
 
