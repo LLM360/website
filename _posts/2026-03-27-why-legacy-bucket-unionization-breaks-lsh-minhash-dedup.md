@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Why Legacy Bucket Unionization Breaks LSH-MinHash Dedup
+author: Cody Wu
 date: 2026-03-27 10:30:00 -0700
 description: A long-form technical note on why transitive bucket unionization is the wrong stage-3 objective in multi-band LSH-MinHash dedup, and what to use instead.
 categories: [deduplication, lsh-minhash]
