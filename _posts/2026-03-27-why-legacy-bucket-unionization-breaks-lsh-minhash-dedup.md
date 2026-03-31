@@ -10,6 +10,37 @@ math: true
 image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
 ---
 
+<script>
+  (function () {
+    function typesetNow() {
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise();
+      }
+    }
+
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
+          processEscapes: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      };
+
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.async = true;
+      script.onload = typesetNow;
+      document.head.appendChild(script);
+    } else {
+      typesetNow();
+    }
+  })();
+</script>
+
 <style>
   .post h2 { margin-top: 2.2rem; padding-bottom: 0.35rem; border-bottom: 2px solid #e5e7eb; font-size: 1.7rem; }
   .post h3 { margin-top: 1.45rem; font-size: 1.26rem; color: #111827; }
