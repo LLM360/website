@@ -113,23 +113,27 @@ This post explains why, shows the correct formulation, sketches the algorithm, a
 
 ## Formal thesis: what legacy unionization adds (and why invalid)
 
-Let bucket evidence be represented by a deduplicated hyperedge family $\mathcal{B}$. The native LSH feasibility region is:
+Let bucket evidence be represented by a deduplicated hyperedge family \(\mathcal{B}\). The native LSH feasibility region is:
 
-$$
+
+\[
 \mathcal{F}_{\mathrm{LSH}} := \{R \subseteq V : |R \cap B| \le 1,\ \forall B \in \mathcal{B}\}.
-$$
+\]
 
-Legacy bucket unionization first forms transitive overlap components and then enforces one representative per component; call that region $\mathcal{F}_{\mathrm{union}}$.
+
+Legacy bucket unionization first forms transitive overlap components and then enforces one representative per component; call that region \(\mathcal{F}_{\mathrm{union}}\).
 
 By construction,
 
-$$
+
+\[
 \mathcal{F}_{\mathrm{union}} \subseteq \mathcal{F}_{\mathrm{LSH}},
-$$
+\]
+
 
 and the inclusion can be strict.
 
-The key violated invariant is: **LSH emits local collision evidence, not transitive global equivalence classes**. Legacy unionization adds constraints not entailed by emitted buckets.
+The key violated invariant is: **LSH emits bucket-local collision evidence, not transitive global equivalence classes**. Legacy unionization adds constraints not entailed by emitted buckets.
 
 ---
 
@@ -137,7 +141,7 @@ The key violated invariant is: **LSH emits local collision evidence, not transit
 
 Large language model training quality depends heavily on data curation quality. If clustering over-merges, we lose useful diversity and discard too many documents. If clustering under-merges, we leak near-duplicates and waste token budget. The importance of strong dedup signals for LLM training quality has been demonstrated repeatedly in practice and ablations.[^lee2022][^penedo2023][^redpajama2024]
 
-Many production pipelines have excellent stage-1/2 engineering (signatures + bucketing), but a stage-3 semantic mismatch: transitive bucket unionization in a setting where duplicate evidence is local-by-bucket, not globally transitive.
+Many production pipelines have excellent stage-1/2 engineering (signatures + bucketing), but a stage-3 semantic mismatch: transitive bucket unionization in a setting where duplicate evidence is local-by-bucket, not globally transitive. In dense overlap regions, this can collapse many mutually incompatible candidates into an overly sparse retained representation (often near one representative per large unionized component).
 
 This is why we focus on stage 3 as a targeted, high-leverage change.
 
@@ -177,24 +181,26 @@ Each bucket is a local duplicate clique by construction. But overlap between buc
 
 You can have:
 
-- $x, y$ together in one bucket
-- $y, z$ together in another bucket
-- $x, z$ sharing no bucket at all
+- \(x, y\) together in one bucket
+- \(y, z\) together in another bucket
+- \(x, z\) sharing no bucket at all
 
-Legacy transitive bucket unionization still merges $x, y, z$ and keeps one representative, which is stronger than the true feasibility requirement.
+Legacy transitive bucket unionization still merges \(x, y, z\) and keeps one representative, which is stronger than the true feasibility requirement.
 
 ### 3.2 Worst-case gap can be unbounded
 
 Build a chain of pair buckets:
 
-$$
+
+\[
 B_i=\{x_i,y_i\},\quad E_i=\{y_i,x_{i+1}\},\quad i=1,\dots,k-1.
-$$
+\]
+
 
 Bucket-overlap graph is connected, so transitive-union retention is 1.  
-But $\{x_1,\dots,x_k\}$ is feasible under per-bucket uniqueness, so feasible retention is $k$.
+But \(\{x_1,\dots,x_k\}\) is feasible under per-bucket uniqueness, so feasible retention is \(k\).
 
-So transitive-union retention can be $1/k$ of feasible optimum, tending to 0 as $k\to\infty$.
+So transitive-union retention can be \(1/k\) of feasible optimum, tending to 0 as \(k\to\infty\).
 
 ---
 
@@ -202,21 +208,25 @@ So transitive-union retention can be $1/k$ of feasible optimum, tending to 0 as 
 
 Let:
 
-- $V$: document set
-- $\mathcal{B}$: deduplicated bucket family (identical buckets merged)
-- $H=(V,\mathcal{B})$: hypergraph (bucket = hyperedge)
+- \(V\): document set
+- \(\mathcal{B}\): deduplicated bucket family (identical buckets merged)
+- \(H=(V,\mathcal{B})\): hypergraph (bucket = hyperedge)
 
-A retained set $R\subseteq V$ is feasible iff:
+A retained set \(R\subseteq V\) is feasible iff:
 
-$$
+
+\[
 |R\cap B|\le 1\quad\forall B\in\mathcal{B}.
-$$
+\]
+
 
 The objective is:
 
-$$
+
+\[
 \alpha(\mathcal{B})=\max\{|R|: R\subseteq V,\ |R\cap B|\le 1,\ \forall B\in\mathcal{B}\}.
-$$
+\]
+
 
 That is exactly maximum strong independent set in this hypergraph.[^halldorsson2009] In general, this optimization family is NP-hard, so the goal is not a universal exact solver at billion scale, but a formulation and algorithm that are both faithful and operationally tractable.[^karp1972]
 
@@ -228,21 +238,23 @@ That is exactly maximum strong independent set in this hypergraph.[^halldorsson2
 
 Define:
 
-- document degree: $d(v)=|\{B\in\mathcal{B}:v\in B\}|$
-- minimum bucket weight: $w(B)=\min_{v\in B}d(v)$
+- document degree: \(d(v)=|\{B\in\mathcal{B}:v\in B\}|\)
+- minimum bucket weight: \(w(B)=\min_{v\in B}d(v)\)
 
 Then every feasible retained set satisfies:
 
-$$
+
+\[
 |R|\le \sum_{B\in\mathcal{B}}\frac{1}{w(B)}.
-$$
+\]
+
 
 **Intuition:** each retained doc has one unit of budget spread across its incident buckets.  
-Low-$w(B)$ buckets are most constraining, hence good candidates to process first.
+Low-\(w(B)\) buckets are most constraining, hence good candidates to process first.
 
 ### Theorem B: Weight-1 refinement
 
-Buckets with $w(B)=1$ are structurally special: an optimal solution can be chosen to include a degree-1 representative from each such bucket. Removing those forced assignments and recomputing residual buckets gives a tighter practical upper bound than the raw sum above.
+Buckets with \(w(B)=1\) are structurally special: an optimal solution can be chosen to include a degree-1 representative from each such bucket. Removing those forced assignments and recomputing residual buckets gives a tighter practical upper bound than the raw sum above.
 
 This refinement is key for meaningful empirical "closeness to bound" diagnostics. In other words: the tighter the bound, the more informative your "greedy vs bound" percentage becomes.
 
@@ -291,34 +303,40 @@ Output: root set R, cluster map phi
 
 Let:
 
-$$
+
+\[
 I=\sum_{v\in V}d(v)=\sum_{B\in\mathcal{B}}|B|
-$$
+\]
+
 
 be total bucket-document incidence.
 
-- Preprocessing + weight-1 elimination + residual degree recomputation: $O(I)$.
+- Preprocessing + weight-1 elimination + residual degree recomputation: \(O(I)\).
 - Residual greedy stage:
 
-$$
+
+\[
 O\!\left(J_{\text{res}} + K_{\text{res}}\log M_{\text{res}} + T_{\text{merge}}\right),
-$$
+\]
 
-where $J_{\text{res}}$ is residual incidence scanned over requeues, $K_{\text{res}}$ residual heap visits, and $M_{\text{res}}$ residual bucket count.
 
-Practical memory profile is output-state dominated: beyond transient bucket/heap workspace, resident state is mainly root set $R$ and cluster map $\phi$. This is one reason the method remains practical for very large corpora.
+where \(J_{\text{res}}\) is residual incidence scanned over requeues, \(K_{\text{res}}\) residual heap visits, and \(M_{\text{res}}\) residual bucket count.
+
+Practical memory profile is output-state dominated: beyond transient bucket/heap workspace, resident state is mainly root set \(R\) and cluster map \(\phi\). In contrast, generic hypergraph routines typically require global overlap structures (for example, explicit overlap graphs or adjacency-style induced-subhypergraph state) for search and updates, which becomes infeasible at billion-document scale. This output-state profile is one reason the method remains practical for very large corpora.
 
 ---
 
 ## Multi-seed dedup as a first-class extension
 
-Run the same dedup pipeline for $T$ independent seeds and aggregate constraints.
+Run the same dedup pipeline for \(T\) independent seeds and aggregate constraints.
 
-If $p_{\text{sb}}(s)$ is per-band match probability at similarity $s$, then no-match over $Tb$ merged bands factorizes:
+If \(p_{\text{sb}}(s)\) is per-band match probability at similarity \(s\), then no-match over \(Tb\) merged bands factorizes:
 
-$$
+
+\[
 \Pr[\text{no match on all }Tb\text{ bands}] = (1-p_{\text{sb}}(s))^{Tb}.
-$$
+\]
+
 
 So merged-signature view and multi-round independent-seed view are probabilistically equivalent at candidate-generation level.
 
@@ -410,7 +428,7 @@ These deeper-round percentages are the practical signal we care about: the greed
 
 ## Interactive exploration
 
-The interactive panel below lets readers vary $(b,r,T)$ and a min+max proxy coefficient $\kappa$ to inspect curve shape, cutoff steepness, and low-similarity tails.
+The interactive panel below lets readers vary \((b,r,T)\) and a min+max proxy coefficient \(\kappa\) to inspect curve shape, cutoff steepness, and low-similarity tails.
 
 <iframe src="/assets/img/posts/lsh-minhash-dedup/interactive-curves.html" title="Interactive LSH curves" style="width: 100%; height: 760px; border: 1px solid #e5e7eb; border-radius: 10px;"></iframe>
 
@@ -424,6 +442,7 @@ From an engineering perspective, this proposal is attractive because:
 - it works directly on emitted bucket files
 - it supports rank-aware retention with source-ordered indexing
 - multi-seed mode reuses existing process orchestration
+- query-time LSH can adopt the same min/max-gate idea without changing index construction
 
 In short: **same pipeline skeleton, better objective**.
 
@@ -479,12 +498,12 @@ If you already run MinHash-LSH dedup at scale, this is a high-leverage place to 
 
 ## Appendix A: notation quick reference
 
-- $V$: document set
-- $\mathcal{B}$: deduplicated bucket family (hyperedges)
-- $d(v)$: number of incident buckets for document $v$
-- $w(B)$: minimum degree among docs in bucket $B$
-- $R$: retained root set
-- $\phi$: cluster map (doc $\rightarrow$ root)
+- \(V\): document set
+- \(\mathcal{B}\): deduplicated bucket family (hyperedges)
+- \(d(v)\): number of incident buckets for document \(v\)
+- \(w(B)\): minimum degree among docs in bucket \(B\)
+- \(R\): retained root set
+- \(\phi\): cluster map (doc \(\rightarrow\) root)
 
 ## References
 
