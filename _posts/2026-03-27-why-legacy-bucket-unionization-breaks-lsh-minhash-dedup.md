@@ -28,12 +28,30 @@ image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
   }
   .lsh-side-refs h4 { margin: 0 0 0.55rem 0; font-size: 1rem; }
   .lsh-side-refs ul { margin: 0; padding-left: 1.1rem; font-size: 0.93rem; line-height: 1.5; }
+  .left-chapter-toc {
+    position: fixed;
+    top: 82px;
+    left: max(12px, calc((100vw - 1180px) / 2 - 255px));
+    width: 235px;
+    max-height: calc(100vh - 110px);
+    overflow: auto;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #f9fafb;
+    font-size: 0.93rem;
+    line-height: 1.5;
+  }
+  .left-chapter-toc h4 { margin: 0 0 0.55rem 0; font-size: 1rem; }
+  .left-chapter-toc ul { margin: 0; padding-left: 1.1rem; }
   @media (max-width: 1100px) {
     .lsh-side-refs { float: none; width: auto; margin: 0.65rem 0 1.1rem 0; position: static; }
+    .left-chapter-toc { position: static; width: auto; max-height: none; margin: 0 0 1rem 0; }
   }
 </style>
 
 <p><em>A practical hypergraph fix for web-scale LSH-MinHash deduplication and query.</em></p>
+<p><strong>This post summarizes our paper:</strong> <em>LSH-MinHash Deduplication and Query: Hypergraph Formulation, Multi-Seed Extensions, and Min/Max Gates.</em></p>
 
 Most MinHash-LSH dedup pipelines still do this in stage 3:
 
@@ -58,23 +76,28 @@ This post explains why, shows the correct formulation, sketches the algorithm, a
 
 ---
 
-### Contents
-
-- [Why this matters for ML teams](#why-this-matters-for-ml-teams)
-- [Formal thesis and violated invariant](#formal-thesis-what-legacy-unionization-adds-and-why-invalid)
-- [Pipeline context](#pipeline-context-what-changes-and-what-does-not)
-- [Pipeline diagram: hold vs break](#pipeline-diagram-where-assumptions-hold-vs-break)
-- [Where transitive bucket unionization fails](#where-transitive-bucket-unionization-fails-in-multi-band)
-- [Correct formulation](#correct-formulation-bucket-hypergraph--strong-independence)
-- [Key theorems](#two-key-theorems-the-practical-ones)
-- [Algorithm sketch](#algorithm-sketch-greedy-minimum-bucket-weight-clustering)
-- [Complexity and memory](#complexity-and-memory-behavior)
-- [Multi-seed extension](#multi-seed-dedup-as-a-first-class-extension)
-- [Query-side extension](#query-side-extension-different-task-same-design-philosophy)
-- [Case studies](#case-studies-at-billion-scale)
-- [Interactive exploration](#interactive-exploration)
-- [Migration checklist](#practical-migration-checklist)
-- [Limitations and future work](#limitations-and-open-directions)
+<aside class="left-chapter-toc">
+  <h4>Chapter Table</h4>
+  <ul>
+    <li><a href="#formal-thesis-what-legacy-unionization-adds-and-why-invalid">Formal thesis</a></li>
+    <li><a href="#why-this-matters-for-ml-teams">Why this matters</a></li>
+    <li><a href="#pipeline-context-what-changes-and-what-does-not">Pipeline context</a></li>
+    <li><a href="#pipeline-diagram-where-assumptions-hold-vs-break">Pipeline diagram</a></li>
+    <li><a href="#where-transitive-bucket-unionization-fails-in-multi-band">Failure mode</a></li>
+    <li><a href="#correct-formulation-bucket-hypergraph--strong-independence">Correct formulation</a></li>
+    <li><a href="#two-key-theorems-the-practical-ones">Key theorems</a></li>
+    <li><a href="#algorithm-sketch-greedy-minimum-bucket-weight-clustering">Algorithm sketch</a></li>
+    <li><a href="#complexity-and-memory-behavior">Complexity and memory</a></li>
+    <li><a href="#multi-seed-dedup-as-a-first-class-extension">Multi-seed extension</a></li>
+    <li><a href="#query-side-extension-different-task-same-design-philosophy">Query-side extension</a></li>
+    <li><a href="#case-studies-at-billion-scale">Case studies</a></li>
+    <li><a href="#interactive-exploration">Interactive exploration</a></li>
+    <li><a href="#practical-migration-checklist">Migration checklist</a></li>
+    <li><a href="#limitations-and-open-directions">Limitations</a></li>
+    <li><a href="#closing">Closing</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</aside>
 
 ---
 
