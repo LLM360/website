@@ -279,7 +279,7 @@ That is exactly maximum strong independent set in this hypergraph.[^halldorsson2
 
 Define:
 
-- document degree: $d(v)=|\{B\in\mathcal{B}:v\in B\}|$
+- document degree: $d(v)=\lvert\{B\in\mathcal{B}:v\in B\}\rvert$
 - minimum bucket weight: $w(B)=\min_{v\in B}d(v)$
 
 Then every feasible retained set satisfies:
