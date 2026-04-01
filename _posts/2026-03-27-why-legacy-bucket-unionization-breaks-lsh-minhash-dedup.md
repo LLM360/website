@@ -500,14 +500,14 @@ Datasets:
     </thead>
     <tbody>
       <tr>
-        <td>ClueWeb (1.62B)</td>
+        <td>ClueWeb<br>(1.62B)</td>
         <td>1255M retained,<br>max cluster 28,812,792</td>
         <td>1319M retained,<br>max cluster 1,859,458<br>(or 1,681,157 in 3-seed setting)</td>
         <td>+64M</td>
         <td>~15.5x to ~17.1x smaller</td>
       </tr>
       <tr>
-        <td>HPLT (3.98B)</td>
+        <td>HPLT<br>(3.98B)</td>
         <td>2574M retained,<br>max cluster 574,714</td>
         <td>2639M retained,<br>max cluster 3,783</td>
         <td>+65M</td>
