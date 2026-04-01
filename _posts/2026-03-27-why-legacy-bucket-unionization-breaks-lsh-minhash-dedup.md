@@ -503,8 +503,8 @@ Datasets:
     <tbody>
       <tr>
         <td>ClueWeb<br>(1.62B)</td>
-        <td>1255M retained,<br>max cluster 28,812,792</td>
-        <td>1319M retained,<br>max cluster 1,859,458<br>(1,681,157 in 3-seed)</td>
+        <td>retained 1255M,<br>max cluster 28,812,792</td>
+        <td>retained 1319M,<br>max cluster 1,859,458<br>(1,681,157 in 3-seed)</td>
         <td>+64M</td>
         <td>~15.5x<br>17.7x</td>
       </tr>
