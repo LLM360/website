@@ -496,7 +496,7 @@ Datasets:
         <th>Corpus</th>
         <th>Baseline</th>
         <th>Best Reported Multi-Seed Setting</th>
-        <th>Retained Docs Gain</th>
+        <th>Gained<br>Docs</th>
         <th>Max Cluster Reduction</th>
       </tr>
     </thead>
@@ -506,7 +506,7 @@ Datasets:
         <td>1255M retained,<br>max cluster 28,812,792</td>
         <td>1319M retained,<br>max cluster 1,859,458<br>(or 1,681,157 in 3-seed setting)</td>
         <td>+64M</td>
-        <td>~15.5x to ~17.1x smaller</td>
+        <td>~15.5x, 17.7x</td>
       </tr>
       <tr>
         <td>HPLT<br>(3.98B)</td>
