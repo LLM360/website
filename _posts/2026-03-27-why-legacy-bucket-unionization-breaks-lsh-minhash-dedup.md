@@ -53,19 +53,6 @@ image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
   }
   .post mjx-container[jax="CHTML"] { font-size: 0.97em; }
   .post mjx-container[jax="CHTML"][display="true"] { font-size: 1em; }
-  .lsh-side-refs {
-    float: right;
-    width: 290px;
-    margin: 0 0 1rem 1.35rem;
-    padding: 0.8rem 0.9rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    background: #f9fafb;
-    position: sticky;
-    top: 82px;
-  }
-  .lsh-side-refs h4 { margin: 0 0 0.55rem 0; font-size: 1rem; }
-  .lsh-side-refs ul { margin: 0; padding-left: 1.1rem; font-size: 0.93rem; line-height: 1.5; }
   .left-chapter-toc {
     position: fixed;
     top: 82px;
@@ -120,7 +107,6 @@ image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
     text-align: right;
   }
   @media (max-width: 1100px) {
-    .lsh-side-refs { float: none; width: auto; margin: 0.65rem 0 1.1rem 0; position: static; }
     .left-chapter-toc { position: static; width: auto; max-height: none; margin: 0 0 1rem 0; }
   }
 </style>
@@ -137,17 +123,6 @@ Most LSH-MinHash dedup pipelines still do this in stage 3:
 That is simple and often fast. In multi-band dedup, it is also the wrong objective.
 
 This post explains why, shows the correct formulation, sketches the algorithm, and summarizes the empirical impact on billion-scale corpora.
-
-<aside class="lsh-side-refs">
-  <h4>Quick References</h4>
-  <ul>
-    <li><a href="https://github.com/huggingface/datatrove" target="_blank" rel="noopener">DataTrove pipeline</a></li>
-    <li><a href="https://aclanthology.org/2022.acl-long.577/" target="_blank" rel="noopener">Dedup improves LLMs (Lee et al.)</a></li>
-    <li><a href="https://doi.org/10.1109/SEQUEN.1997.666900" target="_blank" rel="noopener">MinHash foundations (Broder)</a></li>
-    <li><a href="https://doi.org/10.1145/509907.509965" target="_blank" rel="noopener">LSH foundations (Charikar)</a></li>
-    <li><a href="https://doi.org/10.1016/j.dam.2008.11.013" target="_blank" rel="noopener">Hypergraph independence</a></li>
-  </ul>
-</aside>
 
 ---
 
