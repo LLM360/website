@@ -5,7 +5,7 @@ author: Cody Wu
 date: 2026-03-27 10:30:00 -0700
 description: A long-form technical note on why transitive bucket unionization is the wrong stage-3 objective in multi-band LSH-MinHash deduplication, and how the same framework extends to query-side min/max gates.
 categories: [deduplication, lsh-minhash]
-tags: [llm-data, hypergraph, minhash, lsh, data-curation, multi-seed]
+tags: [lsh-query, llm-data, hypergraph, minhash, lsh, data-curation, multi-seed]
 math: true
 image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
 ---
