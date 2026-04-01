@@ -45,7 +45,8 @@ image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
   .post h2 { margin-top: 2.2rem; padding-bottom: 0.35rem; border-bottom: 2px solid #e5e7eb; font-size: 1.7rem; }
   .post h3 { margin-top: 1.45rem; font-size: 1.26rem; color: #111827; }
   .post p, .post li { line-height: 1.78; }
-  .post table { display: block; overflow-x: auto; white-space: nowrap; }
+  .post table { width: 100%; border-collapse: collapse; }
+  .post th, .post td { padding: 0.32rem 0.55rem; vertical-align: top; }
   .post mjx-container, .post mjx-container * {
     font-weight: 400 !important;
     color: var(--global-text-color) !important;
@@ -81,6 +82,27 @@ image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
   }
   .left-chapter-toc h4 { margin: 0 0 0.55rem 0; font-size: 1rem; }
   .left-chapter-toc ul { margin: 0; padding-left: 1.1rem; }
+  .table1-wrap { overflow-x: auto; margin: 0.2rem 0 1rem 0; }
+  .table1-readable {
+    min-width: 980px;
+    border-collapse: separate;
+    border-spacing: 10px 0;
+  }
+  .table1-readable th, .table1-readable td {
+    padding: 0.28rem 0.62rem;
+    vertical-align: top;
+  }
+  .table1-readable th:nth-child(4), .table1-readable td:nth-child(4),
+  .table1-readable th:nth-child(5), .table1-readable td:nth-child(5) {
+    text-align: right;
+    white-space: nowrap;
+  }
+  .table1-readable td:nth-child(2),
+  .table1-readable td:nth-child(3),
+  .table1-readable td:nth-child(5) {
+    white-space: normal;
+    line-height: 1.45;
+  }
   .table2-wrap { overflow-x: auto; margin: 0.2rem 0 1rem 0; }
   .table2-spacious {
     min-width: 780px;
@@ -465,10 +487,35 @@ Datasets:
 
 ### Table 1: headline outcomes
 
-| Corpus | Baseline | Best reported multi-seed setting | Retained docs gain | Max cluster reduction |
-|---|---:|---:|---:|---:|
-| ClueWeb (1.62B) | 1255M retained, max cluster 28,812,792 | 1319M retained, max cluster 1,859,458 (or 1,681,157 in 3-seed setting) | +64M | ~15.5x to ~17.1x smaller |
-| HPLT (3.98B) | 2574M retained, max cluster 574,714 | 2639M retained, max cluster 3,783 | +65M | ~151.9x smaller |
+<div class="table1-wrap">
+  <table class="table1-readable">
+    <thead>
+      <tr>
+        <th>Corpus</th>
+        <th>Baseline</th>
+        <th>Best Reported Multi-Seed Setting</th>
+        <th>Retained Docs Gain</th>
+        <th>Max Cluster Reduction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ClueWeb (1.62B)</td>
+        <td>1255M retained,<br>max cluster 28,812,792</td>
+        <td>1319M retained,<br>max cluster 1,859,458<br>(or 1,681,157 in 3-seed setting)</td>
+        <td>+64M</td>
+        <td>~15.5x to ~17.1x smaller</td>
+      </tr>
+      <tr>
+        <td>HPLT (3.98B)</td>
+        <td>2574M retained,<br>max cluster 574,714</td>
+        <td>2639M retained,<br>max cluster 3,783</td>
+        <td>+65M</td>
+        <td>~151.9x smaller</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### Table 2: near-bound behavior in deeper rounds (tightened bound)
 
