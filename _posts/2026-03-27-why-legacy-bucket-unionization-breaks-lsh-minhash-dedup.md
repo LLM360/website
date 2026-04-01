@@ -100,7 +100,7 @@ image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
 <p><em>A practical hypergraph fix for web-scale LSH-MinHash deduplication and query.</em></p>
 <p><strong>This post summarizes our paper:</strong> <em>LSH-MinHash Deduplication and Query: Hypergraph Formulation, Multi-Seed Extensions, and Min/Max Gates.</em></p>
 
-Most MinHash-LSH dedup pipelines still do this in stage 3:
+Most LSH-MinHash dedup pipelines still do this in stage 3:
 
 1. Build duplicate buckets from band collisions.
 2. Merge overlapping buckets transitively (bucket unionization).
@@ -150,7 +150,7 @@ This post explains why, shows the correct formulation, sketches the algorithm, a
 
 ## TL;DR
 
-- In multi-band MinHash-LSH, bucket overlap is **not** a transitive duplicate relation.
+- In multi-band LSH-MinHash, bucket overlap is **not** a transitive duplicate relation.
 - The right stage-3 objective is: keep a maximum set of documents such that every bucket contributes at most one retained document.
 - This is a strong-independent-set problem on a bucket hypergraph.
 - A bucket-native greedy algorithm plus weight-1 preprocessing yields strong practical behavior at scale.
@@ -211,7 +211,7 @@ Only stage 3 changes.[^datatrove]
 
 This is important operationally: no need to replace your hash family, bucketing framework, or filtering pipeline.
 
-We keep the same MinHash-LSH candidate-generation foundations and only change clustering semantics.[^broder1997][^charikar2002]
+We keep the same LSH-MinHash candidate-generation foundations and only change clustering semantics.[^broder1997][^charikar2002]
 
 ---
 
@@ -570,7 +570,7 @@ When we replace transitive merging with bucket-feasible strong independence, we 
 - a scalable stage-3 algorithm,
 - and strong empirical gains on billion-document corpora.
 
-If you already run MinHash-LSH dedup at scale, this is a high-leverage place to improve both data efficiency and retained diversity.
+If you already run LSH-MinHash dedup at scale, this is a high-leverage place to improve both data efficiency and retained diversity.
 
 ---
 
