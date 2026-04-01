@@ -506,7 +506,7 @@ Datasets:
         <td>1255M retained,<br>max cluster 28,812,792</td>
         <td>1319M retained,<br>max cluster 1,859,458<br>(1,681,157 in 3-seed)</td>
         <td>+64M</td>
-        <td>~15.5x, 17.7x</td>
+        <td>~15.5x<br>17.7x</td>
       </tr>
       <tr>
         <td>HPLT<br>(3.98B)</td>
