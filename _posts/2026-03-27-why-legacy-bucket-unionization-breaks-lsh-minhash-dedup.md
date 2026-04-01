@@ -85,27 +85,29 @@ image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
   }
   .right-ref a { color: #1d4ed8; text-decoration: none; }
   .right-ref a:hover { color: #1e40af; text-decoration: underline; }
-  .table1-wrap { overflow-x: auto; margin: 0.2rem 0 1rem 0; }
+  .table1-wrap { overflow-x: visible; margin: 0.2rem 0 1rem 0; }
   .table1-readable {
-    min-width: 980px;
+    width: 100%;
+    table-layout: fixed;
     border-collapse: separate;
-    border-spacing: 10px 0;
+    border-spacing: 6px 0;
   }
   .table1-readable th, .table1-readable td {
     padding: 0.28rem 0.62rem;
     vertical-align: top;
+    white-space: normal;
+    word-break: break-word;
   }
+  .table1-readable th:nth-child(1), .table1-readable td:nth-child(1) { width: 16%; }
+  .table1-readable th:nth-child(2), .table1-readable td:nth-child(2) { width: 24%; }
+  .table1-readable th:nth-child(3), .table1-readable td:nth-child(3) { width: 30%; }
+  .table1-readable th:nth-child(4), .table1-readable td:nth-child(4) { width: 11%; }
+  .table1-readable th:nth-child(5), .table1-readable td:nth-child(5) { width: 19%; }
   .table1-readable th:nth-child(4), .table1-readable td:nth-child(4),
   .table1-readable th:nth-child(5), .table1-readable td:nth-child(5) {
     text-align: right;
-    white-space: nowrap;
   }
-  .table1-readable td:nth-child(2),
-  .table1-readable td:nth-child(3),
-  .table1-readable td:nth-child(5) {
-    white-space: normal;
-    line-height: 1.45;
-  }
+  .table1-readable td:nth-child(2), .table1-readable td:nth-child(3), .table1-readable td:nth-child(5) { line-height: 1.45; }
   .table2-wrap { overflow-x: auto; margin: 0.2rem 0 1rem 0; }
   .table2-spacious {
     min-width: 780px;
