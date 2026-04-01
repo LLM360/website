@@ -510,8 +510,8 @@ Datasets:
       </tr>
       <tr>
         <td>HPLT<br>(3.98B)</td>
-        <td>2574M retained,<br>max cluster 574,714</td>
-        <td>2639M retained,<br>max cluster 3,783</td>
+        <td>retained 2574M,<br>max cluster 574,714</td>
+        <td>retained 2639M,<br>max cluster 3,783</td>
         <td>+65M</td>
         <td>~151.9x</td>
       </tr>
