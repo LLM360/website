@@ -61,22 +61,30 @@ image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
     max-height: calc(100vh - 110px);
     overflow: auto;
     padding: 0.8rem 0.9rem;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #93c5fd;
     border-radius: 12px;
-    background: #f9fafb;
+    background: #eff6ff;
     font-size: 0.93rem;
     line-height: 1.5;
   }
-  .left-chapter-toc h4 { margin: 0 0 0.55rem 0; font-size: 1rem; }
+  .left-chapter-toc h4 { margin: 0 0 0.55rem 0; font-size: 1rem; color: #1d4ed8; }
   .left-chapter-toc ul { margin: 0; padding-left: 1.1rem; }
-  .left-chapter-toc .sidebar-divider {
-    border: 0;
-    border-top: 1px solid #e5e7eb;
-    margin: 0.7rem 0 0.65rem 0;
+  .left-chapter-toc a { color: #1d4ed8; text-decoration: none; }
+  .left-chapter-toc a:hover { color: #1e40af; text-decoration: underline; }
+  .right-ref {
+    float: right;
+    clear: right;
+    width: 300px;
+    margin: 0.15rem 0 0.8rem 1rem;
+    padding: 0.45rem 0.55rem;
+    border-left: 3px solid #93c5fd;
+    background: #f8fbff;
+    font-size: 0.83rem;
+    line-height: 1.35;
+    color: #1e3a8a;
   }
-  .left-chapter-toc .sidebar-subtitle { margin: 0 0 0.5rem 0; font-size: 0.96rem; }
-  .left-chapter-toc .sidebar-refs { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; line-height: 1.4; }
-  .left-chapter-toc .sidebar-refs li { margin: 0.22rem 0; }
+  .right-ref a { color: #1d4ed8; text-decoration: none; }
+  .right-ref a:hover { color: #1e40af; text-decoration: underline; }
   .table1-wrap { overflow-x: auto; margin: 0.2rem 0 1rem 0; }
   .table1-readable {
     min-width: 980px;
@@ -113,6 +121,9 @@ image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
   .table2-spacious th:nth-child(4), .table2-spacious td:nth-child(4),
   .table2-spacious th:nth-child(5), .table2-spacious td:nth-child(5) {
     text-align: right;
+  }
+  @media (max-width: 1400px) {
+    .right-ref { float: none; width: auto; margin: 0.4rem 0 0.8rem 0; }
   }
   @media (max-width: 1100px) {
     .left-chapter-toc { position: static; width: auto; max-height: none; margin: 0 0 1rem 0; }
@@ -154,15 +165,6 @@ This post explains why, shows the correct formulation, sketches the algorithm, a
     <li><a href="#limitations-and-open-directions">Limitations</a></li>
     <li><a href="#closing">Closing</a></li>
     <li><a href="#references">References</a></li>
-  </ul>
-  <hr class="sidebar-divider">
-  <h4 class="sidebar-subtitle">References</h4>
-  <ul class="sidebar-refs">
-    <li><a href="https://github.com/huggingface/datatrove" target="_blank" rel="noopener">DataTrove</a></li>
-    <li><a href="https://aclanthology.org/2022.acl-long.577/" target="_blank" rel="noopener">Lee et al. (ACL 2022)</a></li>
-    <li><a href="https://doi.org/10.1109/SEQUEN.1997.666900" target="_blank" rel="noopener">Broder (1997)</a></li>
-    <li><a href="https://doi.org/10.1145/509907.509965" target="_blank" rel="noopener">Charikar (STOC 2002)</a></li>
-    <li><a href="https://doi.org/10.1016/j.dam.2008.11.013" target="_blank" rel="noopener">Halldorsson and Losievskaja (2009)</a></li>
   </ul>
 </aside>
 
@@ -210,7 +212,8 @@ The key violated invariant is: **LSH emits bucket-local collision evidence, not 
 
 ## Why this matters for ML teams
 
-Large language model training quality depends heavily on data curation quality. If clustering over-merges, we lose useful diversity and discard too many documents. If clustering under-merges, we leak near-duplicates and waste token budget. The importance of strong dedup signals for LLM training quality has been demonstrated repeatedly in practice and ablations.[^lee2022][^penedo2023][^redpajama2024]
+Large language model training quality depends heavily on data curation quality. If clustering over-merges, we lose useful diversity and discard too many documents. If clustering under-merges, we leak near-duplicates and waste token budget. The importance of strong dedup signals for LLM training quality has been demonstrated repeatedly in practice and ablations.
+<aside class="right-ref"><strong>Refs:</strong> <a href="https://aclanthology.org/2022.acl-long.577/" target="_blank" rel="noopener">Lee et al. (ACL 2022)</a>; <a href="https://papers.neurips.cc/paper_files/paper/2023/file/fa3ed726cc5073b9c31e3e49a807789c-Paper-Datasets_and_Benchmarks.pdf" target="_blank" rel="noopener">Penedo et al. (NeurIPS 2023)</a>; <a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/d34497330b1fd6530f7afd86d0df9f76-Paper-Datasets_and_Benchmarks_Track.pdf" target="_blank" rel="noopener">RedPajama (NeurIPS 2024)</a>.</aside>
 
 Many production pipelines have excellent stage-1/2 engineering (signatures + bucketing), but a stage-3 semantic mismatch: transitive bucket unionization in a setting where duplicate evidence is local-by-bucket, not globally transitive. In dense overlap regions, this can collapse many mutually incompatible candidates into an overly sparse retained representation (often near one representative per large unionized component).
 
@@ -227,11 +230,13 @@ We keep the standard 4-stage structure:
 3. Clustering
 4. Filtering
 
-Only stage 3 changes.[^datatrove]
+Only stage 3 changes.
+<aside class="right-ref"><strong>Ref:</strong> <a href="https://github.com/huggingface/datatrove" target="_blank" rel="noopener">Hugging Face DataTrove</a>.</aside>
 
 This is important operationally: no need to replace your hash family, bucketing framework, or filtering pipeline.
 
-We keep the same LSH-MinHash candidate-generation foundations and only change clustering semantics.[^broder1997][^charikar2002]
+We keep the same LSH-MinHash candidate-generation foundations and only change clustering semantics.
+<aside class="right-ref"><strong>Refs:</strong> <a href="https://doi.org/10.1109/SEQUEN.1997.666900" target="_blank" rel="noopener">Broder (1997)</a>; <a href="https://doi.org/10.1145/509907.509965" target="_blank" rel="noopener">Charikar (STOC 2002)</a>.</aside>
 
 ---
 
@@ -305,7 +310,8 @@ $$
 
 
 
-That is exactly maximum strong independent set in this hypergraph.[^halldorsson2009] In general, this optimization family is NP-hard, so the goal is not a universal exact solver at billion scale, but a formulation and algorithm that are both faithful and operationally tractable.[^karp1972]
+That is exactly maximum strong independent set in this hypergraph. In general, this optimization family is NP-hard, so the goal is not a universal exact solver at billion scale, but a formulation and algorithm that are both faithful and operationally tractable.
+<aside class="right-ref"><strong>Refs:</strong> <a href="https://doi.org/10.1016/j.dam.2008.11.013" target="_blank" rel="noopener">Halldorsson and Losievskaja (2009)</a>; <a href="https://doi.org/10.1007/978-1-4684-2001-2_9" target="_blank" rel="noopener">Karp (1972)</a>.</aside>
 
 ---
 
@@ -452,7 +458,8 @@ We evaluate stricter acceptance gates based on:
 - single-band + (min OR max) with at-least-two-band fallback
 - single-band + (min AND max) with at-least-two-band fallback
 
-These are defined for MinHash-style multi-value signatures. They are not directly applicable to 1-bit SimHash, where each hash contributes only one sign bit and does not expose within-band min/max structure.[^charikar2002]
+These are defined for MinHash-style multi-value signatures. They are not directly applicable to 1-bit SimHash, where each hash contributes only one sign bit and does not expose within-band min/max structure.
+<aside class="right-ref"><strong>Ref:</strong> <a href="https://doi.org/10.1145/509907.509965" target="_blank" rel="noopener">Charikar (STOC 2002)</a>.</aside>
 
 ### Figure: query probability (linear)
 
@@ -474,8 +481,9 @@ These are defined for MinHash-style multi-value signatures. They are not directl
 
 Datasets:
 
-- **ClueWeb22 subset** used in this study: 1.62B docs (from original ~10B after cleaning and non-English filtering).[^clueweb22]
-- **HPLT v2 subset** used in this study: 3.98B docs.[^hpltv2]
+- **ClueWeb22 subset** used in this study: 1.62B docs (from original ~10B after cleaning and non-English filtering).
+- **HPLT v2 subset** used in this study: 3.98B docs.
+<aside class="right-ref"><strong>Refs:</strong> <a href="https://lemurproject.org/clueweb22.php" target="_blank" rel="noopener">ClueWeb22</a>; <a href="https://arxiv.org/abs/2503.10267" target="_blank" rel="noopener">HPLT v2 (2025)</a>.</aside>
 
 ### Table 1: headline outcomes
 
