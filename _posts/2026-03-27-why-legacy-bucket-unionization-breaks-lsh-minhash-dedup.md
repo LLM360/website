@@ -170,7 +170,7 @@ $$
 
 
 
-Legacy bucket unionization first forms transitive overlap components and then enforces one representative per component; call that region $\mathcal{F}_{\mathrm{union}}$.
+Legacy bucket unionization first forms transitive overlap components and then enforces one representative per component; call that region \(\mathcal{F}_{\mathrm{union}}\).
 
 By construction,
 
