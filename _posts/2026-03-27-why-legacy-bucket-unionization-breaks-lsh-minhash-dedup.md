@@ -69,6 +69,14 @@ image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
   }
   .left-chapter-toc h4 { margin: 0 0 0.55rem 0; font-size: 1rem; }
   .left-chapter-toc ul { margin: 0; padding-left: 1.1rem; }
+  .left-chapter-toc .sidebar-divider {
+    border: 0;
+    border-top: 1px solid #e5e7eb;
+    margin: 0.7rem 0 0.65rem 0;
+  }
+  .left-chapter-toc .sidebar-subtitle { margin: 0 0 0.5rem 0; font-size: 0.96rem; }
+  .left-chapter-toc .sidebar-refs { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; line-height: 1.4; }
+  .left-chapter-toc .sidebar-refs li { margin: 0.22rem 0; }
   .table1-wrap { overflow-x: auto; margin: 0.2rem 0 1rem 0; }
   .table1-readable {
     min-width: 980px;
@@ -146,6 +154,15 @@ This post explains why, shows the correct formulation, sketches the algorithm, a
     <li><a href="#limitations-and-open-directions">Limitations</a></li>
     <li><a href="#closing">Closing</a></li>
     <li><a href="#references">References</a></li>
+  </ul>
+  <hr class="sidebar-divider">
+  <h4 class="sidebar-subtitle">References</h4>
+  <ul class="sidebar-refs">
+    <li><a href="https://github.com/huggingface/datatrove" target="_blank" rel="noopener">DataTrove</a></li>
+    <li><a href="https://aclanthology.org/2022.acl-long.577/" target="_blank" rel="noopener">Lee et al. (ACL 2022)</a></li>
+    <li><a href="https://doi.org/10.1109/SEQUEN.1997.666900" target="_blank" rel="noopener">Broder (1997)</a></li>
+    <li><a href="https://doi.org/10.1145/509907.509965" target="_blank" rel="noopener">Charikar (STOC 2002)</a></li>
+    <li><a href="https://doi.org/10.1016/j.dam.2008.11.013" target="_blank" rel="noopener">Halldorsson and Losievskaja (2009)</a></li>
   </ul>
 </aside>
 
