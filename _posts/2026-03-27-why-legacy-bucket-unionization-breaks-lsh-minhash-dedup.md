@@ -46,7 +46,12 @@ image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
   .post h3 { margin-top: 1.45rem; font-size: 1.26rem; color: #111827; }
   .post p, .post li { line-height: 1.78; }
   .post table { display: block; overflow-x: auto; white-space: nowrap; }
-  .post mjx-container, .post mjx-container * { font-weight: 400 !important; }
+  .post mjx-container, .post mjx-container * {
+    font-weight: 400 !important;
+    color: var(--global-text-color) !important;
+  }
+  .post mjx-container[jax="CHTML"] { font-size: 0.97em; }
+  .post mjx-container[jax="CHTML"][display="true"] { font-size: 1em; }
   .lsh-side-refs {
     float: right;
     width: 290px;
