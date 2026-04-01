@@ -75,6 +75,22 @@ image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
   }
   .left-chapter-toc h4 { margin: 0 0 0.55rem 0; font-size: 1rem; }
   .left-chapter-toc ul { margin: 0; padding-left: 1.1rem; }
+  .table2-wrap { overflow-x: auto; margin: 0.2rem 0 1rem 0; }
+  .table2-spacious {
+    min-width: 780px;
+    border-collapse: separate;
+    border-spacing: 14px 0;
+  }
+  .table2-spacious th, .table2-spacious td {
+    padding: 0.25rem 0.6rem;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  .table2-spacious th:nth-child(3), .table2-spacious td:nth-child(3),
+  .table2-spacious th:nth-child(4), .table2-spacious td:nth-child(4),
+  .table2-spacious th:nth-child(5), .table2-spacious td:nth-child(5) {
+    text-align: right;
+  }
   @media (max-width: 1100px) {
     .lsh-side-refs { float: none; width: auto; margin: 0.65rem 0 1.1rem 0; position: static; }
     .left-chapter-toc { position: static; width: auto; max-height: none; margin: 0 0 1rem 0; }
@@ -450,12 +466,25 @@ Datasets:
 
 ### Table 2: near-bound behavior in deeper rounds (tightened bound)
 
-| Corpus | Setting | Round | Greedy / Tight Bound (M) | Ratio |
-|---|---|---:|---:|---:|
-| ClueWeb | (10,12,20) x 3 | 3 | 14.18 / 14.23 | 99.65% |
-| ClueWeb | (12,14,20) x 4 | 4 | 9.250 / 9.263 | 99.86% |
-| HPLT | (10,12,20) x 3 | 3 | 26.55 / 26.57 | 99.92% |
-| HPLT | (12,14,20) x 4 | 4 | 16.209 / 16.214 | 99.97% |
+<div class="table2-wrap">
+  <table class="table2-spacious">
+    <thead>
+      <tr>
+        <th>Corpus</th>
+        <th>Setting</th>
+        <th>Round</th>
+        <th>Greedy / Tight Bound (M)</th>
+        <th>Ratio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>ClueWeb</td><td>(10,12,20) x 3</td><td>3</td><td>14.18 / 14.23</td><td>99.65%</td></tr>
+      <tr><td>ClueWeb</td><td>(12,14,20) x 4</td><td>4</td><td>9.250 / 9.263</td><td>99.86%</td></tr>
+      <tr><td>HPLT</td><td>(10,12,20) x 3</td><td>3</td><td>26.55 / 26.57</td><td>99.92%</td></tr>
+      <tr><td>HPLT</td><td>(12,14,20) x 4</td><td>4</td><td>16.209 / 16.214</td><td>99.97%</td></tr>
+    </tbody>
+  </table>
+</div>
 
 These deeper-round percentages are the practical signal we care about: the greedy output is frequently extremely close to the tightened incidence bound.
 
