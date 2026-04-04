@@ -176,6 +176,7 @@ This post explains why, shows the correct formulation, sketches the algorithm, a
 
 - In multi-band LSH-MinHash, bucket overlap is **not** a transitive duplicate relation.
 - The right stage-3 objective is: keep a maximum set of documents such that every bucket contributes at most one retained document.
+- Unified Stage 2.5 redundancy pruning (equality + proper-subset) materially tightens bounds and improves greedy behavior.
 - This is a strong-independent-set problem on a bucket hypergraph.
 - A bucket-native greedy algorithm plus weight-1 preprocessing yields strong practical behavior at scale.
 - Multi-seed dedup sharpens acceptance and lowers low-similarity false positives while reusing the same pipeline workflow.
@@ -289,7 +290,7 @@ So transitive-union retention can be $1/k$ of feasible optimum, tending to 0 as 
 Let:
 
 - $V$: document set
-- $\mathcal{B}$: deduplicated bucket family (identical buckets merged)
+- $\mathcal{B}$: duplicate-bucket family after Stage 2.5 redundancy pruning
 - $H=(V,\mathcal{B})$: hypergraph (bucket = hyperedge)
 
 A retained set $R\subseteq V$ is feasible iff:
@@ -415,6 +416,17 @@ where $J_{\text{res}}$ is residual incidence scanned over requeues, $K_{\text{re
 
 Practical memory profile is output-state dominated: beyond transient bucket/heap workspace, resident state is mainly root set $R$ and cluster map $\phi$. In contrast, generic hypergraph routines typically require global overlap structures (for example, explicit overlap graphs or adjacency-style induced-subhypergraph state) for search and updates, which becomes infeasible at billion-document scale. This output-state profile is one reason the method remains practical for very large corpora.
 
+### Stage 2.5 in practice (unified + distributed)
+
+Stage 2.5 is a unified redundant-bucket pruning pass over stage-2 `.dups` rows:
+
+- Drop bucket $A$ if there exists $B$ with $A\subset B$.
+- Handle equality ($A=B$) as a special case via deterministic UID tie-break.
+- Run distributed by bands: each rank owns one host band and one shard of that band's files.
+- Keep memory shard-local: each rank builds only its host-shard key index and streams other bands for comparisons.
+
+This is exact for the retention objective and gives a substantial practical gain: in our current runs, redundant buckets are about one quarter of pre-Stage-2.5 buckets.
+
 ---
 
 ## Multi-seed dedup as a first-class extension
@@ -533,15 +545,15 @@ Datasets:
       </tr>
     </thead>
     <tbody>
-      <tr><td>ClueWeb</td><td>(10,12,20) x 3</td><td>3</td><td>14.18 / 14.23</td><td>99.65%</td></tr>
-      <tr><td>ClueWeb</td><td>(12,14,20) x 4</td><td>4</td><td>9.250 / 9.263</td><td>99.86%</td></tr>
-      <tr><td>HPLT</td><td>(10,12,20) x 3</td><td>3</td><td>26.55 / 26.57</td><td>99.92%</td></tr>
-      <tr><td>HPLT</td><td>(12,14,20) x 4</td><td>4</td><td>16.209 / 16.214</td><td>99.97%</td></tr>
+      <tr><td>ClueWeb</td><td>(10,12,20) x 3</td><td>3</td><td>14.237 / 14.262</td><td>99.82%</td></tr>
+      <tr><td>ClueWeb</td><td>(12,14,20) x 4</td><td>4</td><td>9.225 / 9.234</td><td>99.91%</td></tr>
+      <tr><td>HPLT</td><td>(10,12,20) x 3</td><td>3</td><td>26.667 / 26.676</td><td>99.97%</td></tr>
+      <tr><td>HPLT</td><td>(12,14,20) x 4</td><td>4</td><td>16.135 / 16.138</td><td>99.98%</td></tr>
     </tbody>
   </table>
 </div>
 
-These deeper-round percentages are the practical signal we care about: the greedy output is frequently extremely close to the tightened incidence bound.
+These deeper-round percentages are the practical signal we care about: the greedy output is frequently near-saturating the tightened incidence bound.
 
 ### Figure: retained-document fraction
 
@@ -586,12 +598,13 @@ In short: **same pipeline skeleton, better objective**.
 If your current dedup stage uses transitive bucket unionization, migration can be done incrementally:
 
 1. Keep current signature and bucket generation untouched.
-2. Deduplicate identical buckets across bands.
+2. Run Stage 2.5 redundancy pruning (equality + proper-subset buckets).
 3. Add weight-1 pre-elimination pass.
 4. Replace CC merge with bucket-feasible greedy routine.
 5. Report both loose and tightened bounds for diagnostics.
 6. Add multi-seed reruns for sharper evidence.
-7. Track three KPIs each run:
+7. Track four KPIs each run:
+   - Stage-2.5 dropped count
    - retained document count
    - max cluster size
    - greedy/tight-bound percentage by round
@@ -632,7 +645,7 @@ If you already run LSH-MinHash dedup at scale, this is a high-leverage place to 
 ## Appendix A: notation quick reference
 
 - $V$: document set
-- $\mathcal{B}$: deduplicated bucket family (hyperedges)
+- $\mathcal{B}$: post-Stage-2.5 duplicate-bucket family (hyperedges)
 - $d(v)$: number of incident buckets for document $v$
 - $w(B)$: minimum degree among docs in bucket $B$
 - $R$: retained root set
