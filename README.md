@@ -74,6 +74,31 @@ New blog posts are created as Markdown files within the `_posts` directory.
 
     After the PR is merged, GitHub Pages will automatically rebuild the site, and your new blog post will appear on the live website.
 
+## 📝 Reviewing a Blog Post
+
+Every blog post PR gets a **Netlify deploy preview** with an inline review overlay. Reviewers can leave comments anchored to specific text — no extra tools needed.
+
+### How to review
+
+1. Open the PR on GitHub. In the status checks at the bottom, click the **"Deploy Preview ready!"** link (the Netlify deploy-preview URL, e.g. `https://deploy-preview-8--llm360-website.netlify.app`).
+2. Navigate to the blog post you want to review.
+3. You'll see a **"REVIEW MODE"** banner at the top and a **comment button** (💬) in the bottom-right corner.
+4. **Select any text** in the post body — a **"Comment"** bubble will appear above your selection.
+5. Click the bubble, type your name and comment, then click **Post**.
+6. Your comment is stored as a reply on a GitHub Issue (auto-created per post). The next reviewer who loads the page will see your comments as **yellow highlights** in the text.
+7. Click the bottom-right button to open the **sidebar** and see all comments. Clicking a comment scrolls to its highlight; clicking a highlight scrolls to its comment.
+
+### How it works under the hood
+
+- The overlay only activates on Netlify deploy-preview builds (`JEKYLL_ENV=preview`). It does **not** appear on the production site.
+- Comments are stored on GitHub Issues, one per post, matched by a stable slug tag in the issue title (e.g. `[review/blog-kickstart]`). The issue is auto-created on the first comment.
+- Text anchoring uses prefix/suffix context so highlights survive minor edits to the post.
+- Comment posting goes through a Netlify serverless function (`netlify/functions/review-comment.js`) that holds a GitHub PAT server-side — reviewers don't need their own tokens.
+- For **local development**, you can test the overlay with `JEKYLL_ENV=preview bundle exec jekyll serve`. Posting will prompt for a personal GitHub PAT (stored in localStorage).
+
+### Reader comments (Giscus)
+
+Published posts have a **Giscus** comment widget at the bottom (backed by GitHub Discussions). This is separate from the review overlay and is visible on the production site. Giscus comments are enabled by default for all posts. To disable for a specific post, add `giscus_comments: false` to its frontmatter.
 
 # Website Deverlopers, Keep Reading. 
 ## 🚀 Website Layout
@@ -185,3 +210,22 @@ Jekyll uses specific folders, typically prefixed with an underscore (`_`), for d
   * **`_pages/`**: Contains standalone Markdown or HTML pages that Jekyll processes (like your `blog.md` file that generates the `/blog/` index page).
 
   * **`_sass/`**: Holds Sass/SCSS files that Jekyll compiles into CSS. This is where `al-folio`'s core styles reside, and where you'd place `_custom.scss` for theme overrides.
+
+## 🔑 Netlify Environment Variables
+
+The review overlay's comment-posting function requires a GitHub PAT stored in Netlify. If the token expires or needs to be rotated:
+
+1. **Create a fine-grained PAT** at [github.com/settings/tokens?type=beta](https://github.com/settings/tokens?type=beta):
+   - Resource owner: `LLM360`
+   - Repository access: Only `LLM360/website`
+   - Permissions: **Issues → Read and write**
+   - Recommended expiration: 90 days
+2. **Add/update it in Netlify** at Site configuration → Environment variables:
+   - Key: `GITHUB_REVIEW_TOKEN`
+   - Scopes: make sure **Functions** is checked
+   - Deploy context: **Deploy previews** (production doesn't need it)
+3. **Redeploy** any open PR preview for the new token to take effect (push a commit or click "Retry deploy" in the Netlify dashboard).
+
+| Variable | Purpose | Required scopes | Deploy context |
+|---|---|---|---|
+| `GITHUB_REVIEW_TOKEN` | Post review comments to GitHub Issues via the serverless function | Functions | Deploy previews only |
