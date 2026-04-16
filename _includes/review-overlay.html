@@ -1,12 +1,9 @@
-{% if page.review_issue %}
 <link rel="stylesheet" href="{{ '/assets/css/review-overlay.css' | relative_url }}">
 <script>
   window.__REVIEW_CONFIG = {
-    issueNumber: {{ page.review_issue }},
     repo: "{{ site.giscus.repo | default: 'LLM360/website' }}",
     postTitle: {{ page.title | jsonify }},
     functionUrl: "/.netlify/functions/review-comment"
   };
 </script>
 <script defer src="{{ '/assets/js/review-overlay.js' | relative_url }}"></script>
-{% endif %}

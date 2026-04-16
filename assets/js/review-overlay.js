@@ -5,11 +5,12 @@
   "use strict";
 
   var CFG = window.__REVIEW_CONFIG;
-  if (!CFG || !CFG.issueNumber) return;
+  if (!CFG || !CFG.postTitle) return;
 
   var REPO = CFG.repo || "LLM360/website";
-  var ISSUE = CFG.issueNumber;
+  var POST_TITLE = CFG.postTitle;
   var FN_URL = CFG.functionUrl || "/.netlify/functions/review-comment";
+  var issueNumber = null; // discovered at load time
 
   // Content container — al-folio wraps post body in <article class="post-content">
   var CONTENT_SELECTOR = "article.post-content";
@@ -109,11 +110,27 @@
   // ═══════════════════════════════════════════════════════════════
 
   function fetchComments() {
+    var searchTitle = "Review: " + POST_TITLE;
+    var q = encodeURIComponent(searchTitle) + "+repo:" + REPO + "+is:issue+is:open";
+
     return fetch(
-      "https://api.github.com/repos/" + REPO + "/issues/" + ISSUE + "/comments?per_page=100",
+      "https://api.github.com/search/issues?q=" + q + "&per_page=5",
       { headers: { Accept: "application/vnd.github.v3+json" } }
     )
-      .then(function (r) { return r.ok ? r.json() : []; })
+      .then(function (r) { return r.ok ? r.json() : { items: [] }; })
+      .then(function (data) {
+        var match = (data.items || []).find(function (i) { return i.title === searchTitle; });
+        if (!match) return []; // no review issue yet — that's fine
+        issueNumber = match.number;
+        return fetch(
+          "https://api.github.com/repos/" + REPO + "/issues/" + issueNumber + "/comments?per_page=100",
+          { headers: { Accept: "application/vnd.github.v3+json" } }
+        );
+      })
+      .then(function (r) {
+        if (Array.isArray(r)) return r; // early return from no-match path
+        return r.ok ? r.json() : [];
+      })
       .then(function (items) {
         return items
           .map(parseComment)
@@ -164,7 +181,7 @@
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        issueNumber: ISSUE,
+        postTitle: POST_TITLE,
         body: text,
         displayName: displayName,
         anchor: anchor,
@@ -187,25 +204,26 @@
       localStorage.setItem("rv-github-token", token);
     }
 
-    var name = displayName || "Anonymous";
-    var quote = anchor && anchor.exact
-      ? '> "' + anchor.exact.slice(0, 300) + (anchor.exact.length > 300 ? "..." : "") + '"\n\n'
-      : "";
-    var meta = JSON.stringify({ name: name, anchor: anchor });
-    var commentBody = "**" + name + "** commented:\n" + quote + text + "\n\n<!-- review:" + meta + " -->";
+    var authHeaders = {
+      Authorization: "token " + token,
+      Accept: "application/vnd.github.v3+json",
+      "Content-Type": "application/json",
+    };
 
-    return fetch(
-      "https://api.github.com/repos/" + REPO + "/issues/" + ISSUE + "/comments",
-      {
-        method: "POST",
-        headers: {
-          Authorization: "token " + token,
-          Accept: "application/vnd.github.v3+json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ body: commentBody }),
-      }
-    ).then(function (r) {
+    // Find or create issue
+    return findOrCreateIssueDirect(token).then(function (num) {
+      var name = displayName || "Anonymous";
+      var quote = anchor && anchor.exact
+        ? '> "' + anchor.exact.slice(0, 300) + (anchor.exact.length > 300 ? "..." : "") + '"\n\n'
+        : "";
+      var meta = JSON.stringify({ name: name, anchor: anchor });
+      var commentBody = "**" + name + "** commented:\n" + quote + text + "\n\n<!-- review:" + meta + " -->";
+
+      return fetch(
+        "https://api.github.com/repos/" + REPO + "/issues/" + num + "/comments",
+        { method: "POST", headers: authHeaders, body: JSON.stringify({ body: commentBody }) }
+      );
+    }).then(function (r) {
       if (r.status === 401) {
         localStorage.removeItem("rv-github-token");
         throw new Error("Bad token — cleared, try again");
@@ -213,6 +231,41 @@
       if (!r.ok) throw new Error("HTTP " + r.status);
       return r.json();
     });
+  }
+
+  function findOrCreateIssueDirect(token) {
+    if (issueNumber) return Promise.resolve(issueNumber);
+
+    var searchTitle = "Review: " + POST_TITLE;
+    var q = encodeURIComponent(searchTitle) + "+repo:" + REPO + "+is:issue+is:open";
+    var authHeaders = {
+      Authorization: "token " + token,
+      Accept: "application/vnd.github.v3+json",
+      "Content-Type": "application/json",
+    };
+
+    return fetch("https://api.github.com/search/issues?q=" + q + "&per_page=5", { headers: authHeaders })
+      .then(function (r) { return r.ok ? r.json() : { items: [] }; })
+      .then(function (data) {
+        var match = (data.items || []).find(function (i) { return i.title === searchTitle; });
+        if (match) {
+          issueNumber = match.number;
+          return issueNumber;
+        }
+        // Create it
+        return fetch("https://api.github.com/repos/" + REPO + "/issues", {
+          method: "POST",
+          headers: authHeaders,
+          body: JSON.stringify({
+            title: searchTitle,
+            body: "Inline review comments for: **" + POST_TITLE + "**\n\nAuto-created by the review overlay.",
+          }),
+        }).then(function (r) { return r.json(); })
+          .then(function (issue) {
+            issueNumber = issue.number;
+            return issueNumber;
+          });
+      });
   }
 
   // ═══════════════════════════════════════════════════════════════

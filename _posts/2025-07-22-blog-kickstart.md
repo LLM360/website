@@ -5,7 +5,6 @@ date: 2025-07-22 11:00:00 -0700 # Use current date/time
 categories: [general]
 tags: [LLM360]
 math: true # Keep this to test math rendering
-review_issue: 7
 ---
 
 ## Welcome to the LLM360 Blog!
