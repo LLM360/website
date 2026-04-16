@@ -122,6 +122,11 @@ defaults:
       path: "assets"
     values:
       sitemap: false
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      giscus_comments: true
 
 # -----------------------------------------------------------------------------
 # Optional Features (from al-folio's config)
