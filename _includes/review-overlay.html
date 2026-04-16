@@ -3,6 +3,7 @@
   window.__REVIEW_CONFIG = {
     repo: "{{ site.giscus.repo | default: 'LLM360/website' }}",
     postTitle: {{ page.title | jsonify }},
+    postSlug: {{ page.slug | jsonify }},
     functionUrl: "/.netlify/functions/review-comment"
   };
 </script>

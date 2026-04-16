@@ -5,10 +5,12 @@
   "use strict";
 
   var CFG = window.__REVIEW_CONFIG;
-  if (!CFG || !CFG.postTitle) return;
+  if (!CFG || !CFG.postSlug) return;
 
   var REPO = CFG.repo || "LLM360/website";
-  var POST_TITLE = CFG.postTitle;
+  var POST_TITLE = CFG.postTitle || CFG.postSlug;
+  var POST_SLUG = CFG.postSlug;
+  var ISSUE_KEY = "review/" + POST_SLUG; // stable key — survives title edits
   var FN_URL = CFG.functionUrl || "/.netlify/functions/review-comment";
   var issueNumber = null; // discovered at load time
 
@@ -110,7 +112,7 @@
   // ═══════════════════════════════════════════════════════════════
 
   function fetchComments() {
-    var searchTitle = "Review: " + POST_TITLE;
+    var searchTitle = "[review/" + POST_SLUG + "]";
     var q = encodeURIComponent(searchTitle) + "+repo:" + REPO + "+is:issue+is:open";
 
     return fetch(
@@ -119,7 +121,8 @@
     )
       .then(function (r) { return r.ok ? r.json() : { items: [] }; })
       .then(function (data) {
-        var match = (data.items || []).find(function (i) { return i.title === searchTitle; });
+        var slugTag = "[review/" + POST_SLUG + "]";
+        var match = (data.items || []).find(function (i) { return i.title.indexOf(slugTag) !== -1; });
         if (!match) return []; // no review issue yet — that's fine
         issueNumber = match.number;
         return fetch(
@@ -182,6 +185,7 @@
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         postTitle: POST_TITLE,
+        postSlug: POST_SLUG,
         body: text,
         displayName: displayName,
         anchor: anchor,
@@ -236,7 +240,7 @@
   function findOrCreateIssueDirect(token) {
     if (issueNumber) return Promise.resolve(issueNumber);
 
-    var searchTitle = "Review: " + POST_TITLE;
+    var searchTitle = "[review/" + POST_SLUG + "]";
     var q = encodeURIComponent(searchTitle) + "+repo:" + REPO + "+is:issue+is:open";
     var authHeaders = {
       Authorization: "token " + token,
@@ -247,17 +251,19 @@
     return fetch("https://api.github.com/search/issues?q=" + q + "&per_page=5", { headers: authHeaders })
       .then(function (r) { return r.ok ? r.json() : { items: [] }; })
       .then(function (data) {
-        var match = (data.items || []).find(function (i) { return i.title === searchTitle; });
+        var slugTag = "[review/" + POST_SLUG + "]";
+        var match = (data.items || []).find(function (i) { return i.title.indexOf(slugTag) !== -1; });
         if (match) {
           issueNumber = match.number;
           return issueNumber;
         }
-        // Create it
+        // Create it — title includes slug as stable key + human-readable post title
+        var issueTitle = "Review: " + POST_TITLE + " [review/" + POST_SLUG + "]";
         return fetch("https://api.github.com/repos/" + REPO + "/issues", {
           method: "POST",
           headers: authHeaders,
           body: JSON.stringify({
-            title: searchTitle,
+            title: issueTitle,
             body: "Inline review comments for: **" + POST_TITLE + "**\n\nAuto-created by the review overlay.",
           }),
         }).then(function (r) { return r.json(); })

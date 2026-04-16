@@ -19,12 +19,12 @@ async function ghFetch(path, options = {}) {
   return res;
 }
 
-async function findOrCreateIssue(postTitle) {
-  const searchTitle = `Review: ${postTitle}`;
+async function findOrCreateIssue(postSlug, postTitle) {
+  const slugTag = `[review/${postSlug}]`;
 
-  // Search for existing issue by title
+  // Search for existing issue by slug tag in title
   const searchRes = await fetch(
-    `https://api.github.com/search/issues?q=${encodeURIComponent(searchTitle)}+repo:${REPO}+is:issue+is:open&per_page=5`,
+    `https://api.github.com/search/issues?q=${encodeURIComponent(slugTag)}+repo:${REPO}+is:issue+is:open&per_page=5`,
     {
       headers: {
         Authorization: `token ${process.env.GITHUB_REVIEW_TOKEN}`,
@@ -36,16 +36,17 @@ async function findOrCreateIssue(postTitle) {
 
   if (searchRes.ok) {
     const data = await searchRes.json();
-    const match = data.items && data.items.find((i) => i.title === searchTitle);
+    const match = data.items && data.items.find((i) => i.title.includes(slugTag));
     if (match) return match.number;
   }
 
-  // No existing issue — create one
+  // No existing issue — create one with human-readable title + stable slug tag
+  const issueTitle = `Review: ${postTitle || postSlug} ${slugTag}`;
   const createRes = await ghFetch("/issues", {
     method: "POST",
     body: JSON.stringify({
-      title: searchTitle,
-      body: `Inline review comments for the blog post: **${postTitle}**.\n\nThis issue was auto-created by the review overlay on the first comment.`,
+      title: issueTitle,
+      body: `Inline review comments for the blog post: **${postTitle || postSlug}**.\n\nAuto-created by the review overlay on the first comment.`,
       labels: ["review"],
     }),
   });
@@ -93,9 +94,9 @@ exports.handler = async (event) => {
     };
   }
 
-  const { postTitle, body, displayName, anchor } = payload;
+  const { postTitle, postSlug, body, displayName, anchor } = payload;
 
-  if (!postTitle || !body) {
+  if (!postSlug || !body) {
     return {
       statusCode: 400,
       headers,
@@ -105,7 +106,7 @@ exports.handler = async (event) => {
 
   try {
     // Find or create the review issue for this post
-    const issueNumber = await findOrCreateIssue(postTitle);
+    const issueNumber = await findOrCreateIssue(postSlug, postTitle);
 
     // Build the comment body with embedded anchor metadata
     const name = displayName || "Anonymous";
