@@ -4,13 +4,20 @@
 
 [build.environment]
   RUBY_VERSION = "3.2.2" # Ensure this matches the Ruby version you use locally and in your Gemfile
+  JEKYLL_ENV = "production"
 
 # Optional: Configure deploy previews for Pull Requests
 [context.deploy-preview]
   command = "bundle install && bundle exec jekyll build"
   publish = "_site"
 
+[context.deploy-preview.environment]
+  JEKYLL_ENV = "preview"
+
 # Optional: Configure branch deploys (for non-PR branches if desired)
 [context.branch-deploy]
   command = "bundle install && bundle exec jekyll build"
   publish = "_site"
+
+[context.branch-deploy.environment]
+  JEKYLL_ENV = "preview"

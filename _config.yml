@@ -65,19 +65,27 @@ related_blog_posts:
   enabled: true
   max_related: 5
 
-# If you want comments, enable and configure Giscus (recommended for al-folio)
-# giscus:
-#   repo: [your-github-username]/[your-github-repo-name] # e.g., hectorliu/llm360-website
-#   repo_id: [your-repo-id] # Get this from giscus.app setup
-#   category: Comments
-#   category_id: [your-category-id] # Get this from giscus.app setup
-#   mapping: title
-#   strict: 1
-#   reactions_enabled: 1
-#   input_position: bottom
-#   theme: preferred_color_scheme
-#   emit_metadata: 0
-#   lang: en
+# Giscus-backed reader comments (al-folio renders this block automatically when present).
+# TO ACTIVATE:
+#   1. Enable Discussions on github.com/LLM360/website (Settings -> Features -> Discussions).
+#   2. Create a "Comments" (or "Announcements") category in Discussions.
+#   3. Install the giscus GitHub App on the repo: https://github.com/apps/giscus
+#   4. Visit https://giscus.app, paste the repo name, pick "Discussion title contains page <title>"
+#      as the mapping (or keep `mapping: title` below), and copy the generated `repo_id` and
+#      `category_id` values into the placeholders below.
+#   5. Uncomment the block.
+giscus:
+  repo: LLM360/website
+  repo_id: R_kgDOKsEnoA
+  category: Comments
+  category_id: DIC_kwDOKsEnoM4C6_8n
+  mapping: title
+  strict: 0
+  reactions_enabled: 1
+  input_position: bottom
+  theme: preferred_color_scheme
+  emit_metadata: 0
+  lang: en
 
 # -----------------------------------------------------------------------------
 # Jekyll Defaults (from al-folio's config)
@@ -114,6 +122,11 @@ defaults:
       path: "assets"
     values:
       sitemap: false
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      giscus_comments: true
 
 # -----------------------------------------------------------------------------
 # Optional Features (from al-folio's config)
