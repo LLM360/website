@@ -133,7 +133,7 @@ image: /assets/img/posts/lsh-minhash-dedup/case_study_retention_fraction.png
 </style>
 
 <p><em>A practical hypergraph fix for web-scale LSH-MinHash deduplication and query.</em></p>
-<p><strong>This post summarizes our paper:</strong> <em>LSH-MinHash Deduplication and Query: Hypergraph Formulation, Multi-Seed Extensions, and Min/Max Gates.</em></p>
+<p><strong>This post summarizes our paper:</strong> <em>LSH-MinHash Deduplication and Query: Max-Independent-Set Formulation, Multi-Seed Extensions, and Min/Max Gates.</em></p>
 
 Most LSH-MinHash dedup pipelines still do this in stage 3:
 
@@ -156,8 +156,8 @@ This post explains why, shows the correct formulation, sketches the algorithm, a
     <li><a href="#pipeline-diagram-where-assumptions-hold-vs-break">Pipeline diagram</a></li>
     <li><a href="#where-transitive-bucket-unionization-fails-in-multi-band">Failure mode</a></li>
     <li><a href="#correct-formulation-bucket-hypergraph--strong-independence">Correct formulation</a></li>
-    <li><a href="#two-key-theorems-the-practical-ones">Key theorems</a></li>
-    <li><a href="#algorithm-sketch-greedy-minimum-bucket-weight-clustering">Algorithm sketch</a></li>
+    <li><a href="#practical-bound-stack">Bound stack</a></li>
+    <li><a href="#algorithm-sketch-greedy-layered-clustering">Algorithm sketch</a></li>
     <li><a href="#complexity-and-memory-behavior">Complexity and memory</a></li>
     <li><a href="#multi-seed-dedup-as-a-first-class-extension">Multi-seed extension</a></li>
     <li><a href="#query-side-extension-different-task-same-design-philosophy">Query-side extension</a></li>
@@ -177,8 +177,8 @@ This post explains why, shows the correct formulation, sketches the algorithm, a
 - In multi-band LSH-MinHash, bucket overlap is **not** a transitive duplicate relation.
 - The right stage-3 objective is: keep a maximum set of documents such that every bucket contributes at most one retained document.
 - Unified Stage 2.5 redundancy pruning (equality + proper-subset) materially tightens bounds and improves greedy behavior.
-- This is a strong-independent-set problem on a bucket hypergraph.
-- A bucket-native greedy algorithm plus weight-1 preprocessing yields strong practical behavior at scale.
+- This is a max-independent-set objective in the strong sense: a maximum strong-independent-set on the bucket hypergraph.
+- A bucket-native layered greedy algorithm, with weight-1 preprocessing, decreasing-\(n_{\min}(B)\) bucket ordering, and collision-aware root tie-breaks, yields strong practical behavior at scale.
 - Multi-seed dedup sharpens acceptance and lowers low-similarity false positives while reusing the same pipeline workflow.
 
 ---
@@ -318,9 +318,9 @@ That is exactly maximum strong independent set in this hypergraph. In general, t
 
 ---
 
-## Two key theorems (the practical ones)
+## Practical bound stack
 
-### Theorem A: Explicit upper bound from bucket incidences
+### Bound A: Closed-form upper bound from bucket incidences
 
 Define:
 
@@ -340,50 +340,73 @@ $$
 **Intuition:** each retained doc has one unit of budget spread across its incident buckets.  
 Low-$w(B)$ buckets are most constraining, hence good candidates to process first.
 
-### Theorem B: Weight-1 refinement
+### Bound B: Weight-1 refinement
 
 Buckets with $w(B)=1$ are structurally special: an optimal solution can be chosen to include a degree-1 representative from each such bucket. Removing those forced assignments and recomputing residual buckets gives a tighter practical upper bound than the raw sum above.
 
 This refinement is key for meaningful empirical "closeness to bound" diagnostics. In other words: the tighter the bound, the more informative your "greedy vs bound" percentage becomes.
 
+### Bound C: Covering-family restricted reweighting
+
+The next practical tightening is to replace the full bucket family by a covering subfamily $\mathcal{B}^\star\subseteq\mathcal{B}$, recompute degrees inside that covering family, and apply the same bucket-weight sum there:
+
+
+
+$$
+\alpha(\mathcal{B}) \le \sum_{B\in\mathcal{B}^\star}\frac{1}{w^\star(B)} \le |\mathcal{B}^\star|.
+$$
+
+
+
+This matters because a good covering family can be much smaller than the original bucket file, and the restricted weights can be substantially more informative than the raw covering count. In the paper, a greedy layered covering routine constructs such families and can be iterated for further tightening.
+
+### Exactness regime for the greedy solver
+
+The layered greedy clustering algorithm is not only feasible and maximal; under an incidence-block separation condition it exactly attains the closed-form bound. Intuitively, exactness happens when each intended root class is insulated in one of two ways:
+
+- competing same-degree documents are eliminated earlier by a strictly smaller-weight extra bucket, or
+- they survive to the same layer but lose the collision-score tie-break.
+
+That theorem is important because it explains when the simple bucket-native greedy rule is not just close to optimal, but certifiably exact.
+
 ---
 
-## Algorithm sketch: Greedy minimum-bucket-weight clustering
+## Algorithm sketch: Greedy layered clustering
 
-Below is the implementation-oriented sketch (matching the paper logic):
+Below is the implementation-oriented sketch matching the current paper logic:
 
 ```text
-Input: deduplicated bucket family B
+Input: trimmed bucket family B (after Stage 2.5)
 Output: root set R, cluster map phi
 
-1. Compute document degrees d(v), bucket weights w(B).
-2. Weight-1 pre-elimination:
+1. Compute document degrees d(v) and bucket weights w(B).
+2. Stage-1 reduction inside stage 3:
    - For each bucket with w(B)=1:
-     pick a degree-1 root z_B, cluster current unassigned members to z_B.
-3. Remove already-clustered docs from remaining buckets;
-   keep non-empty residual buckets B_res.
-4. Recompute residual degrees d_res(v), initialize key degree d~(v)=d_res(v).
-5. Build min-heap over residual buckets with key:
-   ( min_{v in bucket} d~(v), bucket_id ).
-6. While heap non-empty:
-   a) Pop lightest bucket.
-   b) Partition members into unresolved docs U and active roots A.
-   c) If A empty and U non-empty:
-      - if tightened weight now exceeds current level, requeue;
-      - else create root u* = argmin_{v in U}(d~(v), id(v)),
-        attach U to u*.
-   d) If |A|=1: attach U to that root.
-   e) If |A|>1: keep best root by (d~(v), id(v)),
-      merge others into it, attach U.
-   f) Update d~ and release processed bucket.
-7. Return R and phi.
+     choose a degree-1 root z_B,
+     cluster current unassigned members of that bucket to z_B.
+3. Remove already-clustered docs from all remaining buckets.
+4. Group surviving buckets into layer sets S_w by current bucket weight w.
+5. For w = 2,3,...:
+   a) Clean every bucket in S_w by removing clustered docs.
+   b) If a bucket becomes empty, discard it.
+   c) If it no longer contains any degree-w doc, move it to a larger layer.
+   d) Build the temporary degree-w document-to-bucket index I_w(v).
+   e) For each active bucket B, define the minimum-degree candidate set
+      M(B) = {v in B : d(v)=w}; note n_min(B)=|M(B)|.
+   f) Scan the active buckets in decreasing n_min(B).
+   g) In the chosen bucket B, select a root from M(B) by the smallest
+      collision score c_w(v), then by source rank / id if needed.
+   h) Immediately cluster the union of that root's w incident buckets,
+      and remove the touched degree-w docs from the current layer index.
+6. Return R and phi.
 ```
 
 ### Invariant and guarantee
 
-- **Invariant:** no bucket contains more than one active root at any step.
+- **Invariant:** no processed bucket ever ends with more than one retained root.
 - **Consequence:** output root set is always feasible.
-- **Also:** output is maximal feasible (no extra document can be added without violating a bucket constraint).
+- **Also:** output is maximal feasible, so rerunning legacy unionization on the greedy output cannot further reduce it.
+- **Dominance over legacy:** because the output is maximal feasible, it retains at least as many documents as one-representative-per-component legacy unionization.
 
 ---
 
@@ -401,20 +424,13 @@ $$
 
 be total bucket-document incidence.
 
-- Preprocessing + weight-1 elimination + residual degree recomputation: $O(I)$.
-- Residual greedy stage:
+The current implementation is layered rather than heap-driven:
 
+- preprocessing plus weight-1 elimination is linear in scanned incidence,
+- each weight layer uses a temporary degree-$w$ document-to-bucket index,
+- within that layer, updates are localized to the selected root's incident buckets rather than global hypergraph maintenance.
 
-
-$$
-O\!\left(J_{\text{res}} + K_{\text{res}}\log M_{\text{res}} + T_{\text{merge}}\right),
-$$
-
-
-
-where $J_{\text{res}}$ is residual incidence scanned over requeues, $K_{\text{res}}$ residual heap visits, and $M_{\text{res}}$ residual bucket count.
-
-Practical memory profile is output-state dominated: beyond transient bucket/heap workspace, resident state is mainly root set $R$ and cluster map $\phi$. In contrast, generic hypergraph routines typically require global overlap structures (for example, explicit overlap graphs or adjacency-style induced-subhypergraph state) for search and updates, which becomes infeasible at billion-document scale. This output-state profile is one reason the method remains practical for very large corpora.
+Practical memory profile is still output-state dominated: beyond transient layer-local bucket and index workspace, resident state is mainly root set $R$ and cluster map $\phi$. In contrast, generic hypergraph routines typically require global overlap structures (for example, explicit overlap graphs or adjacency-style induced-subhypergraph state) for search and updates, which becomes infeasible at billion-document scale. This output-state profile is one reason the method remains practical for very large corpora.
 
 ### Stage 2.5 in practice (unified + distributed)
 
@@ -425,7 +441,7 @@ Stage 2.5 is a unified redundant-bucket pruning pass over stage-2 `.dups` rows:
 - Run distributed by bands: each rank owns one host band and one shard of that band's files.
 - Keep memory shard-local: each rank builds only its host-shard key index and streams other bands for comparisons.
 
-This is exact for the retention objective and gives a substantial practical gain: in our current runs, redundant buckets are about one quarter of pre-Stage-2.5 buckets.
+This is exact for the retention objective and gives a substantial practical gain. In the current case studies, ClueWeb $(14,9,20;1)$ drops from 573,961K raw buckets to 170,902K trimmed buckets (a 70.2\% reduction), while HPLT $(14,9,20;1)$ drops from 8,538,914K to 787,084K (a 90.8\% reduction).
 
 ---
 
@@ -553,7 +569,9 @@ Datasets:
   </table>
 </div>
 
-These deeper-round percentages are the practical signal we care about: the greedy output is frequently near-saturating the tightened incidence bound.
+These deeper-round percentages are the practical signal we care about: the greedy output is frequently near-saturating the tightened incidence bound. Operationally, the updated layered greedy solver is also about $4\times$ faster than legacy unionization in our implementation, because it avoids the repeated dynamic-parent rewrites that legacy clustering performs whenever a component absorbs more documents.
+
+The re-dedup experiments are equally revealing. When we take the largest legacy union clusters and run the greedy solver inside them, they decompose into many feasible representatives rather than one transitive component. On ClueWeb, the largest legacy cluster of size 28,812,792 yields 689,462 representatives under the single-signature greedy run and up to 1,425,338 under the three-seed variant. On HPLT, the largest legacy cluster of size 574,714 yields 41,674 representatives under the single-signature run and 297,095 under the strongest reported four-seed setting. That last HPLT row means the greedy solver recovers 51.7\% of the documents that legacy unionization had forced into one component despite their pairwise dissimilarity.
 
 ### Figure: retained-document fraction
 
@@ -585,6 +603,8 @@ From an engineering perspective, this proposal is attractive because:
 
 - it changes only stage 3 semantics
 - it works directly on emitted bucket files
+- it keeps Stage 2.5 exact while trimming bucket volume sharply before clustering
+- it avoids dynamic parenting and runs about $4\times$ faster than legacy unionization in our implementation
 - it supports rank-aware retention with source-ordered indexing
 - multi-seed mode reuses existing process orchestration
 - query-time LSH can adopt the same min/max-gate idea without changing index construction
@@ -600,7 +620,10 @@ If your current dedup stage uses transitive bucket unionization, migration can b
 1. Keep current signature and bucket generation untouched.
 2. Run Stage 2.5 redundancy pruning (equality + proper-subset buckets).
 3. Add weight-1 pre-elimination pass.
-4. Replace CC merge with bucket-feasible greedy routine.
+4. Replace CC merge with the layered greedy routine:
+   - increasing bucket weight first,
+   - decreasing $n_{\min}(B)$ second,
+   - collision-score tie-break inside the chosen bucket.
 5. Report both loose and tightened bounds for diagnostics.
 6. Add multi-seed reruns for sharper evidence.
 7. Track four KPIs each run:
@@ -616,14 +639,16 @@ If your current dedup stage uses transitive bucket unionization, migration can b
 Important caveats:
 
 - Hypergraph strong-independent-set remains NP-hard in general.
-- Tightened bound is informative but still an upper bound, not exact optimum.
+- Covering-family and weight-1 refinements are informative but still upper bounds in general.
 - Query-side min/max gates depend on signature families that expose within-band statistics.
 
 High-value next steps:
 
+- worst-case tightness of the covering-family refinement and its iteration
 - theory under data-realistic heavy-tailed bucket regimes
 - end-to-end downstream LLM quality impact under fixed compute
 - extension of query gate ideas to additional hash/signature families
+- extension of the layered covering / restricted-reweighting viewpoint to general graph settings
 
 ---
 
@@ -648,6 +673,8 @@ If you already run LSH-MinHash dedup at scale, this is a high-leverage place to 
 - $\mathcal{B}$: post-Stage-2.5 duplicate-bucket family (hyperedges)
 - $d(v)$: number of incident buckets for document $v$
 - $w(B)$: minimum degree among docs in bucket $B$
+- $n_{\min}(B)$: number of minimum-degree candidates in bucket $B$
+- $c_w(v)$: equal-degree collision score used for root tie-breaks
 - $R$: retained root set
 - $\phi$: cluster map (doc $\rightarrow$ root)
 
