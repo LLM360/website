@@ -547,7 +547,7 @@ Datasets:
   </table>
 </div>
 
-### Table 2: near-bound behavior in deeper rounds (tightened bound)
+### Table 2: round-by-round approach to the tightened bound
 
 <div class="table2-wrap">
   <table class="table2-spacious">
@@ -556,22 +556,54 @@ Datasets:
         <th>Corpus</th>
         <th>Setting</th>
         <th>Round</th>
-        <th>Greedy / Tight Bound (M)</th>
+        <th>Greedy (M)</th>
+        <th>Tight Bound (M)</th>
         <th>Ratio</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td>ClueWeb</td><td>(10,12,20) x 3</td><td>3</td><td>14.237 / 14.262</td><td>99.82%</td></tr>
-      <tr><td>ClueWeb</td><td>(12,14,20) x 4</td><td>4</td><td>9.225 / 9.234</td><td>99.91%</td></tr>
-      <tr><td>HPLT</td><td>(10,12,20) x 3</td><td>3</td><td>26.667 / 26.676</td><td>99.97%</td></tr>
-      <tr><td>HPLT</td><td>(12,14,20) x 4</td><td>4</td><td>16.135 / 16.138</td><td>99.98%</td></tr>
+      <tr><td>ClueWeb</td><td>(10,12,20) x 3</td><td>1</td><td>93.764</td><td>96.580</td><td>97.08%</td></tr>
+      <tr><td>ClueWeb</td><td>(10,12,20) x 3</td><td>2</td><td>24.873</td><td>25.006</td><td>99.47%</td></tr>
+      <tr><td>ClueWeb</td><td>(10,12,20) x 3</td><td>3</td><td>14.239</td><td>14.262</td><td>99.84%</td></tr>
+      <tr><td>ClueWeb</td><td>(12,14,20) x 4</td><td>1</td><td>89.326</td><td>92.451</td><td>96.62%</td></tr>
+      <tr><td>ClueWeb</td><td>(12,14,20) x 4</td><td>2</td><td>23.254</td><td>23.391</td><td>99.41%</td></tr>
+      <tr><td>ClueWeb</td><td>(12,14,20) x 4</td><td>3</td><td>13.186</td><td>13.210</td><td>99.80%</td></tr>
+      <tr><td>ClueWeb</td><td>(12,14,20) x 4</td><td>4</td><td>9.226</td><td>9.234</td><td>99.91%</td></tr>
+      <tr><td>HPLT</td><td>(10,12,20) x 3</td><td>1</td><td>733.822</td><td>734.787</td><td>99.87%</td></tr>
+      <tr><td>HPLT</td><td>(10,12,20) x 3</td><td>2</td><td>48.374</td><td>48.415</td><td>99.92%</td></tr>
+      <tr><td>HPLT</td><td>(10,12,20) x 3</td><td>3</td><td>26.667</td><td>26.676</td><td>99.97%</td></tr>
+      <tr><td>HPLT</td><td>(12,14,20) x 4</td><td>1</td><td>726.288</td><td>727.283</td><td>99.86%</td></tr>
+      <tr><td>HPLT</td><td>(12,14,20) x 4</td><td>2</td><td>42.585</td><td>42.621</td><td>99.92%</td></tr>
+      <tr><td>HPLT</td><td>(12,14,20) x 4</td><td>3</td><td>23.390</td><td>23.397</td><td>99.97%</td></tr>
+      <tr><td>HPLT</td><td>(12,14,20) x 4</td><td>4</td><td>16.135</td><td>16.138</td><td>99.98%</td></tr>
     </tbody>
   </table>
 </div>
 
-These deeper-round percentages are the practical signal we care about: the greedy output is frequently near-saturating the tightened incidence bound. Operationally, the updated layered greedy solver is also about $4\times$ faster than legacy unionization in our implementation, because it avoids the repeated dynamic-parent rewrites that legacy clustering performs whenever a component absorbs more documents.
+Table 2 makes the convergence pattern explicit rather than only showing the endpoint. On ClueWeb, the first round can still be a few percent below the tightened structural limit, but the second round already moves into the 99\% regime and later rounds become nearly saturated. HPLT is cleaner still: even first rounds start near saturation, and the later rounds are effectively optimal relative to the tightened bound. Operationally, the updated layered greedy solver is also about $4\times$ faster than legacy unionization in our implementation, because it avoids the repeated dynamic-parent rewrites that legacy clustering performs whenever a component absorbs more documents.
 
-The re-dedup experiments are equally revealing. When we take the largest legacy union clusters and run the greedy solver inside them, they decompose into many feasible representatives rather than one transitive component. On ClueWeb, the largest legacy cluster of size 28,812,792 yields 689,462 representatives under the single-signature greedy run and up to 1,425,338 under the three-seed variant. On HPLT, the largest legacy cluster of size 574,714 yields 41,674 representatives under the single-signature run and 297,095 under the strongest reported four-seed setting. That last HPLT row means the greedy solver recovers 51.7\% of the documents that legacy unionization had forced into one component despite their pairwise dissimilarity.
+### Table 3: re-deduping the largest legacy clusters
+
+<div class="table2-wrap">
+  <table class="table2-spacious">
+    <thead>
+      <tr>
+        <th>Legacy source cluster</th>
+        <th>Legacy size</th>
+        <th>Greedy re-dedup setting</th>
+        <th>Recovered reps</th>
+        <th>Max cluster after re-dedup</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>ClueWeb legacy (14,9,20)</td><td>28,812,792</td><td>Greedy (10,12,20) x 3</td><td>1,425,338</td><td>1,681,156</td></tr>
+      <tr><td>ClueWeb legacy (12,11,20)</td><td>27,213,166</td><td>Greedy (10,12,20) x 3</td><td>908,014</td><td>1,681,124</td></tr>
+      <tr><td>HPLT legacy (14,9,20)</td><td>574,714</td><td>Greedy (12,14,20) x 4</td><td>297,095</td><td>2,103</td></tr>
+    </tbody>
+  </table>
+</div>
+
+Table 3 is the strongest empirical argument in the post. If legacy union clusters were true duplicate classes, re-dedup inside those clusters would recover only a handful of additional representatives. Instead, the largest ClueWeb legacy component breaks into hundreds of thousands to more than a million feasible representatives, and the largest HPLT legacy component yields 297,095 retained documents under the strongest greedy re-dedup setting. The HPLT case is especially stark: the greedy solver recovers 51.7\% of a legacy component that unionization had collapsed into a single retained document. That is not a small semantic mismatch; it is direct evidence that connected components are the wrong abstraction for multi-band LSH-MinHash deduplication.
 
 ### Figure: retained-document fraction
 
