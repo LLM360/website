@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive LSH Curves</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    body { margin: 0; font-family: "Segoe UI", Arial, sans-serif; background: #ffffff; color: #111827; }
+    .wrap { padding: 10px 12px 14px 12px; }
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 10px;
+      margin-bottom: 10px;
+      align-items: end;
+    }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: #f9fafb;
+    }
+    .card label { font-size: 12px; display: block; margin-bottom: 3px; color: #374151; }
+    .card .value { font-size: 18px; font-weight: 700; color: #111827; }
+    .hint { font-size: 12px; color: #4b5563; margin: 6px 2px 2px 2px; }
+    .plot { width: 100%; height: 300px; }
+    input[type=range] { width: 100%; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="controls">
+      <div class="card">
+        <label for="b">Bands (b)</label>
+        <input id="b" type="range" min="4" max="30" value="14" />
+        <div class="value" id="bVal">14</div>
+      </div>
+      <div class="card">
+        <label for="r">Rows per band (r)</label>
+        <input id="r" type="range" min="4" max="16" value="10" />
+        <div class="value" id="rVal">10</div>
+      </div>
+      <div class="card">
+        <label for="t">Seeds / rounds (T)</label>
+        <input id="t" type="range" min="1" max="6" value="4" />
+        <div class="value" id="tVal">4</div>
+      </div>
+      <div class="card">
+        <label for="kappa">min+max proxy (\u03ba)</label>
+        <input id="kappa" type="range" min="30" max="95" value="68" />
+        <div class="value" id="kappaVal">0.68</div>
+      </div>
+    </div>
+
+    <div class="hint">
+      Curves shown: single-seed $(b,r)$, multi-seed union with $T$ seeds, baseline $(b,r+2)$, and a proxy min+max gate.
+    </div>
+
+    <div id="plotLinear" class="plot"></div>
+    <div id="plotLog" class="plot"></div>
+  </div>
+
+  <script>
+    const bEl = document.getElementById("b");
+    const rEl = document.getElementById("r");
+    const tEl = document.getElementById("t");
+    const kEl = document.getElementById("kappa");
+    const bVal = document.getElementById("bVal");
+    const rVal = document.getElementById("rVal");
+    const tVal = document.getElementById("tVal");
+    const kVal = document.getElementById("kappaVal");
+
+    function pSingle(s, b, r) {
+      return 1 - Math.pow(1 - Math.pow(s, r), b);
+    }
+
+    function pRplus2(s, b, r) {
+      return 1 - Math.pow(1 - Math.pow(s, r + 2), b);
+    }
+
+    function pMultiSeed(s, b, r, t) {
+      const p = pSingle(s, b, r);
+      return 1 - Math.pow(1 - p, t);
+    }
+
+    function pMinMaxProxy(s, b, r, kappa) {
+      const p = Math.pow(s, r);
+      const shared = 1 - Math.pow(1 - p, b) - b * p * Math.pow(1 - p, b - 1);
+      const t1 = b * p * Math.pow(1 - p, b - 1) * (kappa * s * s);
+      return Math.max(0, Math.min(1, shared + t1));
+    }
+
+    function draw() {
+      const b = Number(bEl.value);
+      const r = Number(rEl.value);
+      const t = Number(tEl.value);
+      const kappa = Number(kEl.value) / 100;
+
+      bVal.textContent = String(b);
+      rVal.textContent = String(r);
+      tVal.textContent = String(t);
+      kVal.textContent = kappa.toFixed(2);
+
+      const xs = [];
+      const ySingle = [];
+      const yMulti = [];
+      const yR2 = [];
+      const yMinMax = [];
+      const ySingleLog = [];
+      const yMultiLog = [];
+      const yR2Log = [];
+      const yMinMaxLog = [];
+
+      for (let i = 0; i <= 200; i += 1) {
+        const s = i / 200;
+        const ps = pSingle(s, b, r);
+        const pm = pMultiSeed(s, b, r, t);
+        const pr2 = pRplus2(s, b, r);
+        const pmm = pMinMaxProxy(s, b, r, kappa);
+
+        xs.push(s);
+        ySingle.push(ps);
+        yMulti.push(pm);
+        yR2.push(pr2);
+        yMinMax.push(pmm);
+
+        const eps = 1e-12;
+        ySingleLog.push(Math.max(ps, eps));
+        yMultiLog.push(Math.max(pm, eps));
+        yR2Log.push(Math.max(pr2, eps));
+        yMinMaxLog.push(Math.max(pmm, eps));
+      }
+
+      const tracesLinear = [
+        { x: xs, y: ySingle, mode: "lines", name: "(b,r) single-seed", line: { width: 2 } },
+        { x: xs, y: yMulti, mode: "lines", name: "(b,r) multi-seed union", line: { width: 2 } },
+        { x: xs, y: yR2, mode: "lines", name: "(b,r+2) baseline", line: { width: 2, dash: "dash" } },
+        { x: xs, y: yMinMax, mode: "lines", name: "min+max proxy", line: { width: 2, dash: "dot" } }
+      ];
+
+      const tracesLog = [
+        { x: xs, y: ySingleLog, mode: "lines", name: "(b,r) single-seed", line: { width: 2 } },
+        { x: xs, y: yMultiLog, mode: "lines", name: "(b,r) multi-seed union", line: { width: 2 } },
+        { x: xs, y: yR2Log, mode: "lines", name: "(b,r+2) baseline", line: { width: 2, dash: "dash" } },
+        { x: xs, y: yMinMaxLog, mode: "lines", name: "min+max proxy", line: { width: 2, dash: "dot" } }
+      ];
+
+      Plotly.react("plotLinear", tracesLinear, {
+        title: "Acceptance Probability vs Similarity (Linear Scale)",
+        margin: { l: 56, r: 20, t: 40, b: 46 },
+        xaxis: { title: "similarity s", range: [0, 1] },
+        yaxis: { title: "acceptance probability", range: [0, 1] },
+        legend: { orientation: "h", y: -0.25 }
+      }, { displayModeBar: false, responsive: true });
+
+      Plotly.react("plotLog", tracesLog, {
+        title: "Acceptance Probability vs Similarity (Log Scale)",
+        margin: { l: 56, r: 20, t: 40, b: 46 },
+        xaxis: { title: "similarity s", range: [0, 1] },
+        yaxis: { title: "acceptance probability (log)", type: "log", range: [-12, 0] },
+        legend: { orientation: "h", y: -0.25 }
+      }, { displayModeBar: false, responsive: true });
+    }
+
+    [bEl, rEl, tEl, kEl].forEach(el => el.addEventListener("input", draw));
+    draw();
+  </script>
+</body>
+</html>
